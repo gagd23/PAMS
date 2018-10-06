@@ -3,23 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/requirement_panel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/ProgressPanel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Add_volunteer.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/databaseConnectivity/MyPrisonConnection.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/Mark_Attendance.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/superintendant_dash.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/Allocate_Work_search.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/registrationPanel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/add_Requirement.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/PrisonerSchedule.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/Allocate_work.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/jailor_Dash.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/Allocation_details_panel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/loginpage/Under_trial_panel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/head_dash.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/slot_panel.java</file>
-            <file>file:/E:/Prisoner_Activities_Management_System/src/Dashboards/prisoner_Schedule_Search.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/Dashboards/superrintendant.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/Dashboards/registrationPanel.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/loginpage/Registration.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/Dashboards/jailor_Dash.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/Dashboards/Allocate_Work_search.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/databaseConnectivity/MyPrisonConnection.java</file>
+            <file>file:/C:/Users/702/Desktop/Prison/src/Dashboards/superintendant_dash.java</file>
         </group>
     </open-files>
 </project-private>

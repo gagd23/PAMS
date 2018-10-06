@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import net.proteanit.sql.DbUtils;
+//import net.proteanit.sql.DbUtils;
 
 
 //this is a git demo
@@ -155,9 +155,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                  
                  
                   
-       String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type "
-               + "FROM convicted_prisoner "
-               + "WHERE p_firstname LIKE ?";
+       String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ?";
              
    
         PreparedStatement pst;

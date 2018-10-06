@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class MyPrisonConnection {
     
     private static final String USERNAME_STRING = "root";
-    private static final String PASSWORD_STRING = "root";
-    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/prisoner";
+    private static final String PASSWORD_STRING = "mysql";
+    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/prison";
     
     
     Connection con ;

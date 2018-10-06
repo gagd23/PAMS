@@ -664,13 +664,6 @@ private Convicted_panel   c;
       
         
         
-         int years = Integer.parseInt(c.yearsTextfield.getText());
-         int months = Integer.parseInt(c.monthsTextfield.getText());
-         int days = Integer.parseInt(c.daysTextField.getText());
-                 
-         
-        int in_period;
-        in_period = ((years * 365) + (months * 30) + days);
         PreparedStatement pst;
         System.out.println(""+convictedRadio.isSelected()+" "+undertrialRadio.isSelected());
                 
@@ -680,23 +673,23 @@ private Convicted_panel   c;
             if (undertrialRadio.isSelected()) {
                 
                 System.out.println("running");
-                pst = con.prepareStatement("INSERT INTO trial_prisoner VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                pst = con.prepareStatement("INSERT INTO trial_prisoner(p_firstname,p_midname,p_lastname,p_birthdate,p_nationality,p_state,p_city,p_locality,p_occupation,p_qualification,p_indate,t_remarks) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
                 
                 System.out.println("ro");
                 
-                pst.setString(1, null);
-                pst.setString(2,first_nameString);
-                pst.setString(3,middle_nameString);
-                pst.setString(4, last_nameString);
-                pst.setDate(5, sqldate);
-                pst.setString(6,nationality);
-                pst.setString(7,state);
-                pst.setString(8, city);
-                pst.setString(9, locality);
-                pst.setString(10, occupation);
-                pst.setString(11, qualification);
-                pst.setTimestamp(12, new Timestamp(System.currentTimeMillis()));
-                pst.setString(13, u.remarks.getText());
+                //pst.setString(1, null);
+                pst.setString(1,first_nameString);
+                pst.setString(2,middle_nameString);
+                pst.setString(3, last_nameString);
+                pst.setDate(4, sqldate);
+                pst.setString(5,nationality);
+                pst.setString(6,state);
+                pst.setString(7, city);
+                pst.setString(8, locality);
+                pst.setString(9, occupation);
+                pst.setString(10, qualification);
+                pst.setTimestamp(11, new Timestamp(System.currentTimeMillis()));
+                pst.setString(12, u.remarks.getText());
                 int i = pst.executeUpdate();
                 
                  System.out.println("run");
@@ -710,33 +703,42 @@ private Convicted_panel   c;
        
             if (convictedRadio.isSelected())
  {
+     
+     
+         int years = Integer.parseInt(c.yearsTextfield.getText());
+         int months = Integer.parseInt(c.monthsTextfield.getText());
+         int days = Integer.parseInt(c.daysTextField.getText());
+                 
+         
+        int in_period;
+        in_period = ((years * 365) + (months * 30) + days);
                 System.out.println("run");
-                pst = con.prepareStatement("INSERT INTO convicted_prisoner VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                pst = con.prepareStatement("INSERT INTO convicted_prisoner(p_firstname,p_midname,p_lastname,p_birthdate,p_nationality,p_state,p_city,p_locality,p_occupation,p_qualification,p_indate,conviction_date,c_inperiod,c_type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 
                       System.out.println("ro");
-                pst.setString(1, null);
-                pst.setString(2,first_nameString);
-                pst.setString(3,middle_nameString);
-                pst.setString(4, last_nameString);
-                pst.setDate(5, sqldate);
-                pst.setString(6,nationality);
-                pst.setString(7,state);
-                pst.setString(8, city);
-                pst.setString(9, locality);
-                pst.setString(10, occupation);
-                pst.setString(11, qualification);
+                //pst.setString(1, null);
+                pst.setString(1,first_nameString);
+                pst.setString(2,middle_nameString);
+                pst.setString(3, last_nameString);
+                pst.setDate(4, sqldate);
+                pst.setString(5,nationality);
+                pst.setString(6,state);
+                pst.setString(7, city);
+                pst.setString(8, locality);
+                pst.setString(9, occupation);
+                pst.setString(10, qualification);
+                pst.setTimestamp(11,new Timestamp(System.currentTimeMillis()));
                 pst.setTimestamp(12,new Timestamp(System.currentTimeMillis()));
-                pst.setTimestamp(13,new Timestamp(System.currentTimeMillis()));
-                pst.setInt(14,in_period);
+                pst.setInt(13,in_period);
                 
                 if(c.simpleRdoBtn.isSelected())
                 {
                     System.out.println("simplep");
-                    pst.setString(15,"simple");
+                    pst.setString(14,"simple");
                 }
                 if (c.rigorousRdoBtn.isSelected()) {
                     System.out.println("rigorousp");
-                    pst.setString(15, "rigorous");
+                    pst.setString(14, "rigorous");
                     
                 }
                 int i = pst.executeUpdate();
