@@ -5,6 +5,9 @@
  */
 package loginpage;
 
+import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 
 /**
@@ -18,8 +21,20 @@ public class Under_trial_panel extends javax.swing.JPanel {
      */
     
       DefaultListModel dm = new DefaultListModel();
+      private int validate_all=0;
     public Under_trial_panel() {
         initComponents();
+    }
+      
+    private boolean check_regex(String regex,String inputString){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(inputString);
+        if (matcher.matches()) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void add(String name){
@@ -46,7 +61,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         casestxt = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        remarks = new javax.swing.JTextArea();
         Add1 = new javax.swing.JButton();
         Add2 = new javax.swing.JButton();
 
@@ -57,7 +72,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
         jLabel16.setText("Remarks");
-        undertrialPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 90, 20));
+        undertrialPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 90, 20));
 
         jList02.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jList02.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,6 +111,11 @@ public class Under_trial_panel extends javax.swing.JPanel {
 
         casestxt.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         casestxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        casestxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                casestxtFocusLost(evt);
+            }
+        });
         casestxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 casestxtActionPerformed(evt);
@@ -103,13 +123,13 @@ public class Under_trial_panel extends javax.swing.JPanel {
         });
         undertrialPanel.add(casestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 170, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        remarks.setColumns(20);
+        remarks.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        remarks.setForeground(new java.awt.Color(51, 51, 51));
+        remarks.setRows(5);
+        jScrollPane3.setViewportView(remarks);
 
-        undertrialPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 240, 130));
+        undertrialPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 240, 130));
 
         Add1.setBackground(new java.awt.Color(255, 255, 255));
         Add1.setText("Add");
@@ -181,12 +201,42 @@ public class Under_trial_panel extends javax.swing.JPanel {
       
     }//GEN-LAST:event_casestxtActionPerformed
 
+    private void casestxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_casestxtFocusLost
+        // TODO add your handling code here:
+        String regex = "[a-zA-Z]+";
+
+        boolean isValid=check_regex(regex, casestxt.getText());
+
+        if(isValid)
+        {
+             
+            if(casestxt.getBackground().getGreen()!=253)
+            {
+                validate_all--;
+            }
+            casestxt.setBackground(new Color(170, 253, 197));
+        }
+        else{
+            if(casestxt.getBackground().getGreen()==253)
+            {
+                validate_all++;
+            }
+            casestxt.setBackground(new Color(255, 186, 187));
+             
+        }
+    }                                           
+
+    private void middle_name_txt_fieldFocusLost(java.awt.event.FocusEvent evt) {                                                
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_casestxtFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add1;
     private javax.swing.JButton Add2;
     private javax.swing.JButton Delete2;
-    private javax.swing.JTextField casestxt;
+    public javax.swing.JTextField casestxt;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JList<String> jList02;
@@ -194,7 +244,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTextArea remarks;
     private javax.swing.JPanel undertrialPanel;
     // End of variables declaration//GEN-END:variables
 }

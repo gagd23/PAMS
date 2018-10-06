@@ -5,6 +5,7 @@
  */
 package loginpage;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 
 /**
@@ -134,6 +135,11 @@ public class trial extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("First name");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
@@ -269,6 +275,11 @@ public class trial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        jLabel8.setBackground(Color.BLUE);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments

@@ -45,6 +45,7 @@ public class Log2 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -63,7 +64,7 @@ public class Log2 extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 320, 35));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 320, 20));
 
-        jPasswordField1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPasswordField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jPasswordField1.setToolTipText("");
         jPasswordField1.setBorder(null);
         jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -111,9 +112,9 @@ public class Log2 extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 80, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 370, 80, 40));
 
-        jTextField2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jTextField2.setToolTipText("");
         jTextField2.setBorder(null);
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,15 +129,15 @@ public class Log2 extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 320, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ava.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/final.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 100, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 100, 70));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/lock.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 30, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 235, 30, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/contacts.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 30, 50));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 163, 30, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 470));
 

@@ -5,6 +5,9 @@
  */
 package loginpage;
 
+import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 
 /**
@@ -21,13 +24,52 @@ public class Convicted_panel extends javax.swing.JPanel {
     public Convicted_panel() {
         initComponents();
     }
-    
+    private int validate_all=0;
     private void add(String name){
          jList02.setModel(dm);
          dm.addElement(name);
          
      }
+    
+      
+    private boolean check_regex(String regex,String inputString){
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(inputString);
+        if (matcher.matches()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
+    private void monthToYear()
+    {
+        int month;
+        int remain=0;
+        int year=0;
+        if (monthsTextfield.getText().length()!=0) {
+            
+        
+        month = Integer.parseInt(monthsTextfield.getText());
+        if(month >= 12)
+        {
+            year = (month)/12;
+          remain = (month)%12;
+         System.out.println("\n years are="+year);
+         System.out.println("\n months are="+remain);
+         monthsTextfield.setText(Integer.toString(remain));
+        }
+        
+        }
+        
+        if(yearsTextfield.getText().length()!=0){
+            yearsTextfield.setText(Integer.toString(Integer.parseInt(yearsTextfield.getText())+year));
+        }
+        else{
+            yearsTextfield.setText(Integer.toString(year));
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,18 +85,19 @@ public class Convicted_panel extends javax.swing.JPanel {
         simpleRdoBtn = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        crimestxt = new javax.swing.JTextField();
+        daysTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList02 = new javax.swing.JList<>();
         addConvicted = new javax.swing.JButton();
         deleteConvicted = new javax.swing.JButton();
+        crimestxt1 = new javax.swing.JTextField();
+        yearsTextfield = new javax.swing.JTextField();
+        monthsTextfield = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         convictedPanel.setBackground(new java.awt.Color(255, 255, 255));
         convictedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,7 +112,7 @@ public class Convicted_panel extends javax.swing.JPanel {
                 rigorousRdoBtnActionPerformed(evt);
             }
         });
-        convictedPanel.add(rigorousRdoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, -1));
+        convictedPanel.add(rigorousRdoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
 
         simpleRdoBtn.setBackground(new java.awt.Color(255, 255, 255));
         convictedBtnGrp.add(simpleRdoBtn);
@@ -86,91 +129,57 @@ public class Convicted_panel extends javax.swing.JPanel {
                 simpleRdoBtnActionPerformed(evt);
             }
         });
-        convictedPanel.add(simpleRdoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        convictedPanel.add(simpleRdoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Type");
-        convictedPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 60, 30));
+        convictedPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 60, 30));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Crimes");
-        convictedPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
-
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "0" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        convictedPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 50, -1));
-
-        jComboBox2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "0" }));
-        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox2MouseClicked(evt);
-            }
-        });
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        convictedPanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 50, -1));
-
-        jComboBox3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "0", " " }));
-        jComboBox3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jComboBox3FocusGained(evt);
-            }
-        });
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-        convictedPanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 50, -1));
+        convictedPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Days");
-        convictedPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
+        convictedPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Years");
-        convictedPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        convictedPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Months");
-        convictedPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+        convictedPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Sentence Period");
-        convictedPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+        convictedPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 85, -1, -1));
 
-        crimestxt.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        crimestxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        crimestxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crimestxtActionPerformed(evt);
+        daysTextField.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        daysTextField.setText("0");
+        daysTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        daysTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                daysTextFieldFocusLost(evt);
             }
         });
-        convictedPanel.add(crimestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 170, 30));
+        daysTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daysTextFieldActionPerformed(evt);
+            }
+        });
+        convictedPanel.add(daysTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 30, -1));
 
         jList02.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jList02.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,7 +189,7 @@ public class Convicted_panel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList02);
 
-        convictedPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 170, 80));
+        convictedPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 170, 80));
 
         addConvicted.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         addConvicted.setText("Add");
@@ -189,7 +198,7 @@ public class Convicted_panel extends javax.swing.JPanel {
                 addConvictedActionPerformed(evt);
             }
         });
-        convictedPanel.add(addConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 80, -1));
+        convictedPanel.add(addConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, -1));
 
         deleteConvicted.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         deleteConvicted.setText("Delete");
@@ -198,7 +207,54 @@ public class Convicted_panel extends javax.swing.JPanel {
                 deleteConvictedActionPerformed(evt);
             }
         });
-        convictedPanel.add(deleteConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 80, -1));
+        convictedPanel.add(deleteConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 80, -1));
+
+        crimestxt1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        crimestxt1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        crimestxt1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                crimestxt1FocusLost(evt);
+            }
+        });
+        crimestxt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crimestxt1ActionPerformed(evt);
+            }
+        });
+        convictedPanel.add(crimestxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 170, 30));
+
+        yearsTextfield.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        yearsTextfield.setText("0");
+        yearsTextfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        yearsTextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearsTextfieldActionPerformed(evt);
+            }
+        });
+        convictedPanel.add(yearsTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 30, -1));
+
+        monthsTextfield.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        monthsTextfield.setText("0");
+        monthsTextfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        monthsTextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                monthsTextfieldFocusLost(evt);
+            }
+        });
+        monthsTextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthsTextfieldActionPerformed(evt);
+            }
+        });
+        monthsTextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                monthsTextfieldKeyTyped(evt);
+            }
+        });
+        convictedPanel.add(monthsTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 30, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        convictedPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -208,7 +264,9 @@ public class Convicted_panel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(convictedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(convictedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -219,15 +277,15 @@ public class Convicted_panel extends javax.swing.JPanel {
 
         dm.removeElementAt(index);
         //Clear Text
-        crimestxt.setText("");
+        daysTextField.setText("");
     }//GEN-LAST:event_deleteConvictedActionPerformed
 
     private void addConvictedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConvictedActionPerformed
         // TODO add your handling code here:
-        if(crimestxt.getText().length()!=0)
+        if(daysTextField.getText().length()!=0)
         {
-           add(crimestxt.getText());
-           crimestxt.setText("");
+           add(daysTextField.getText());
+           daysTextField.setText("");
         }
     }//GEN-LAST:event_addConvictedActionPerformed
 
@@ -236,39 +294,6 @@ public class Convicted_panel extends javax.swing.JPanel {
         //String selected = jList02.getSelectedValue().toString();
         //crimestxt.setText(selected);
     }//GEN-LAST:event_jList02MouseClicked
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void jComboBox3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox3FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3FocusGained
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-
-        if(jComboBox2.getSelectedItem().equals("20"))
-        {
-            jComboBox1.setEnabled(false);
-            jComboBox3.setEnabled(false);
-            jComboBox1.setSelectedItem("0");
-            jComboBox3.setSelectedItem("0");
-        }
-        else
-        {
-            jComboBox1.setEnabled(true);
-            jComboBox3.setEnabled(true);
-        }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2MouseClicked
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void simpleRdoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpleRdoBtnActionPerformed
         // TODO add your handling code here:
@@ -282,21 +307,107 @@ public class Convicted_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rigorousRdoBtnActionPerformed
 
-    private void crimestxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimestxtActionPerformed
+    private void daysTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daysTextFieldActionPerformed
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_crimestxtActionPerformed
+    }//GEN-LAST:event_daysTextFieldActionPerformed
+
+    private void crimestxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crimestxt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crimestxt1ActionPerformed
+
+    private void yearsTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearsTextfieldActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_yearsTextfieldActionPerformed
+
+    private void monthsTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthsTextfieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_monthsTextfieldActionPerformed
+
+    private void monthsTextfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_monthsTextfieldKeyTyped
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_monthsTextfieldKeyTyped
+
+    private void monthsTextfieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_monthsTextfieldFocusLost
+        // TODO add your handling code here:
+         monthToYear();
+    }//GEN-LAST:event_monthsTextfieldFocusLost
+
+    private void daysTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_daysTextFieldFocusLost
+        // TODO add your handling code here:
+         int days;
+         int remain=0;
+        int months=0;
+         if (daysTextField.getText().length()!=0) {
+            
+        
+        days = Integer.parseInt(daysTextField.getText());
+        
+             if (days > 365) {
+                 days-=5;
+                 
+             }
+        if(days > 30)
+        {
+            months = (days)/30;
+          remain = (days)%30;
+        
+         System.out.println("\n months are="+months);
+          System.out.println("\n days are="+remain);
+        }
+        }
+         daysTextField.setText(Integer.toString(remain));
+         
+         if(monthsTextfield.getText().length()!=0){
+            monthsTextfield.setText(Integer.toString(Integer.parseInt(monthsTextfield.getText())+months));
+        }
+        else{
+            monthsTextfield.setText(Integer.toString(months));
+        }
+         
+         
+        monthToYear();
+    }//GEN-LAST:event_daysTextFieldFocusLost
+
+    private void crimestxt1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_crimestxt1FocusLost
+        // TODO add your handling code here:
+        String regex = "[a-zA-Z]+";
+
+        boolean isValid=check_regex(regex, crimestxt1.getText());
+
+        if(isValid)
+        {
+             
+            if(crimestxt1.getBackground().getGreen()!=253)
+            {
+                validate_all--;
+            }
+            crimestxt1.setBackground(new Color(170, 253, 197));
+        }
+        else{
+            if(crimestxt1.getBackground().getGreen()==253)
+            {
+                validate_all++;
+            }
+            crimestxt1.setBackground(new Color(255, 186, 187));
+             
+        }
+    }//GEN-LAST:event_crimestxt1FocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addConvicted;
     private javax.swing.ButtonGroup convictedBtnGrp;
     private javax.swing.JPanel convictedPanel;
-    private javax.swing.JTextField crimestxt;
+    private javax.swing.JTextField crimestxt1;
+    public javax.swing.JTextField daysTextField;
     private javax.swing.JButton deleteConvicted;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -305,7 +416,9 @@ public class Convicted_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList02;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton rigorousRdoBtn;
-    private javax.swing.JRadioButton simpleRdoBtn;
+    public javax.swing.JTextField monthsTextfield;
+    public javax.swing.JRadioButton rigorousRdoBtn;
+    public javax.swing.JRadioButton simpleRdoBtn;
+    public javax.swing.JTextField yearsTextfield;
     // End of variables declaration//GEN-END:variables
 }
