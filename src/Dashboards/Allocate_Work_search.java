@@ -149,7 +149,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         
        if(searchtxtf.getText().equals(""))
        {
-           JOptionPane.showMessageDialog(null, "Field can not be empty.");
+           JOptionPane.showMessageDialog(null, "Enter prisoner name");
            return;
        }
                  

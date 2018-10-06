@@ -24,7 +24,7 @@ public class Allocate_work extends javax.swing.JPanel {
     public Allocate_work() {
         initComponents();
         
-  //      String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback WHERE c_id="""
+        //String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback";
         
         initProgress(progress_panel,80);
         initProgress(progress_panel1, 60);

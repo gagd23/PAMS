@@ -202,12 +202,12 @@ public class superintendant_dash extends javax.swing.JFrame {
         modifyPrisoner.setText("  Modify ");
         modifyPrisoner.setOpaque(true);
         modifyPrisoner.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 modifyPrisonerAncestorRemoved(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         modifyPrisoner.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -601,12 +601,15 @@ public class superintendant_dash extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
         jLabel7.setToolTipText("Logout");
-        topPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1508, 12, -1, 21));
+        topPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 30, 21));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Logout");
-        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1495, 34, -1, 20));
+        jLabel1.setAlignmentY(0.0F);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1283, 24, 90, 30));
 
         jLabel5.setBackground(new java.awt.Color(73, 78, 83));
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -637,6 +640,8 @@ public class superintendant_dash extends javax.swing.JFrame {
         backgroundPanel.add(topPanel, java.awt.BorderLayout.PAGE_START);
 
         loadingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        loadingPanel.setAlignmentX(0.0F);
+        loadingPanel.setAlignmentY(0.0F);
         loadingPanel.setLayout(new java.awt.BorderLayout());
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N

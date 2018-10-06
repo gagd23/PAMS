@@ -663,7 +663,6 @@ private Convicted_panel   c;
        // String rem;
       
         
-        
         PreparedStatement pst;
         System.out.println(""+convictedRadio.isSelected()+" "+undertrialRadio.isSelected());
                 
@@ -694,10 +693,10 @@ private Convicted_panel   c;
                 
                  System.out.println("run");
                 if(i>0){
-                    JOptionPane.showMessageDialog(null, "UnderTrial Prisoner is added successfully");
+                    JOptionPane.showMessageDialog(null, "Prisoner successfully added as undertrial");
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"UnderTrial Prisoner addition is failed");
+                    JOptionPane.showMessageDialog(null,"Insertion failed");
                 }
             }
        
@@ -745,15 +744,15 @@ private Convicted_panel   c;
                 
                  System.out.println("run");
                 if(i>0){
-                    JOptionPane.showMessageDialog(null, "Data is saved");
+                    JOptionPane.showMessageDialog(null, "Prisoner successfully added as convicted");
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"Data is not saved");
+                    JOptionPane.showMessageDialog(null,"Insertion failed");
                 }
             }
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Data is wrong : "+ex.toString());
+           JOptionPane.showMessageDialog(null, "Incorrect Data : "+ex.toString());
         }
         
          

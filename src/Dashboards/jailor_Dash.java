@@ -176,12 +176,12 @@ public class jailor_Dash extends javax.swing.JFrame {
         checkStatusLabel.setText("  Check Status");
         checkStatusLabel.setOpaque(true);
         checkStatusLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 checkStatusLabelAncestorRemoved(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         checkStatusLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -271,7 +271,7 @@ public class jailor_Dash extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Logout");
-        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 40, -1, -1));
+        topPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 25, -1, 30));
 
         jLabel14.setBackground(new java.awt.Color(73, 78, 83));
         jLabel14.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
