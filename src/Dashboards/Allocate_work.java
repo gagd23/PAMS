@@ -255,7 +255,13 @@ public class Allocate_work extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jButton1.setText("Allocate");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, -1, -1));
+        jButton1.setEnabled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 580, -1, -1));
 
         progress_panel3.setBackground(new java.awt.Color(255, 255, 255));
         progress_panel3.setLayout(new java.awt.BorderLayout());
@@ -361,7 +367,12 @@ public class Allocate_work extends javax.swing.JPanel {
         load_unit_panel.add(new Allocation_details_panel(), BorderLayout.CENTER);
         load_unit_panel.revalidate();
         load_unit_panel.repaint();
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_select_unit_comboItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

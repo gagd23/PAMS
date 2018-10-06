@@ -93,7 +93,7 @@ public class jailor_Dash extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(52, 58, 64));
         jLabel2.setText("Notifications");
-        loadingPanel.add(jLabel2, java.awt.BorderLayout.CENTER);
+        loadingPanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         backgroundPanel.add(loadingPanel, java.awt.BorderLayout.CENTER);
 
@@ -176,12 +176,12 @@ public class jailor_Dash extends javax.swing.JFrame {
         checkStatusLabel.setText("  Check Status");
         checkStatusLabel.setOpaque(true);
         checkStatusLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 checkStatusLabelAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         checkStatusLabel.addMouseListener(new java.awt.event.MouseAdapter() {
