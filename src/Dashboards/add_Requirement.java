@@ -46,13 +46,8 @@ public class add_Requirement extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         checkButton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -153,10 +148,6 @@ public class add_Requirement extends javax.swing.JPanel {
         });
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, 40, 30));
 
-        jLabel17.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel17.setText("Minutes");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, -1, -1));
-
         jTextField2.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,32 +159,6 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel18.setText("Days");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
-
-        jComboBox1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3 ", "4", "5", "6" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 50, -1));
-
-        jComboBox2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "30" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 180, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel19.setText("Time Per Day");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel20.setText("Hours");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, -1, -1));
 
         checkButton.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         checkButton.setText("Check");
@@ -263,10 +228,6 @@ public class add_Requirement extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
         // TODO add your handling code here
         load_slot_panel.removeAll();
@@ -279,26 +240,17 @@ public class add_Requirement extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel active_requirement_panel;
     private javax.swing.JButton checkButton;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
