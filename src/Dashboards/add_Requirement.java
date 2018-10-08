@@ -196,6 +196,7 @@ public class add_Requirement extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         active_requirement_panel.setBackground(new java.awt.Color(255, 255, 255));
         active_requirement_panel.setLayout(new javax.swing.BoxLayout(active_requirement_panel, javax.swing.BoxLayout.Y_AXIS));
@@ -214,8 +215,8 @@ public class add_Requirement extends javax.swing.JPanel {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 17)); // NOI18N
-        jLabel11.setText("End Date");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+        jLabel11.setText("Ends On");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 680, 200));
     }// </editor-fold>//GEN-END:initComponents

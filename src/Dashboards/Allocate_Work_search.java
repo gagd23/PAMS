@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Clock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -155,7 +156,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                  
                  
                   
-       String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ?";
+       String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ? AND CURRENT_DATE()<releasedate(c_id)";
              
    
         PreparedStatement pst;
@@ -185,7 +186,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                   loadingPanel.revalidate();
                   loadingPanel.repaint();
                              
-                String c_id    =     rs.getString("c_id");
+                String c_id  =  rs.getString("c_id");
              String first_name = rs.getString("p_firstname");
              String middle_name = rs.getString("p_midname");
               String last_name = rs.getString("p_lastname");
@@ -200,7 +201,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              aw.fetch_occupation.setText(occupation);
              aw.fetch_qualification.setText(qualification);
                   
-          
+             
              }
              else
              {

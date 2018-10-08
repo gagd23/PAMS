@@ -33,9 +33,9 @@ public class requirement_panel extends javax.swing.JPanel {
         requirement_label_name = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(665, 42));
-        setMinimumSize(new java.awt.Dimension(665, 42));
-        setPreferredSize(new java.awt.Dimension(665, 42));
+        setMaximumSize(new java.awt.Dimension(655, 42));
+        setMinimumSize(new java.awt.Dimension(655, 42));
+        setPreferredSize(new java.awt.Dimension(655, 42));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -52,7 +52,7 @@ public class requirement_panel extends javax.swing.JPanel {
         end_date_label.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         end_date_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         end_date_label.setText("End Date");
-        add(end_date_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        add(end_date_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
 
         requirement_label_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         requirement_label_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
