@@ -97,7 +97,6 @@ public class Convicted_panel extends javax.swing.JPanel {
         crimestxt1 = new javax.swing.JTextField();
         yearsTextfield = new javax.swing.JTextField();
         monthsTextfield = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         convictedPanel.setBackground(new java.awt.Color(255, 255, 255));
         convictedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,7 +188,7 @@ public class Convicted_panel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList02);
 
-        convictedPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 170, 80));
+        convictedPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 170, 80));
 
         addConvicted.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         addConvicted.setText("Add");
@@ -198,7 +197,7 @@ public class Convicted_panel extends javax.swing.JPanel {
                 addConvictedActionPerformed(evt);
             }
         });
-        convictedPanel.add(addConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, -1));
+        convictedPanel.add(addConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 80, -1));
 
         deleteConvicted.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         deleteConvicted.setText("Delete");
@@ -207,7 +206,7 @@ public class Convicted_panel extends javax.swing.JPanel {
                 deleteConvictedActionPerformed(evt);
             }
         });
-        convictedPanel.add(deleteConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 80, -1));
+        convictedPanel.add(deleteConvicted, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 80, -1));
 
         crimestxt1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         crimestxt1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -221,7 +220,7 @@ public class Convicted_panel extends javax.swing.JPanel {
                 crimestxt1ActionPerformed(evt);
             }
         });
-        convictedPanel.add(crimestxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 170, 30));
+        convictedPanel.add(crimestxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 170, 30));
 
         yearsTextfield.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         yearsTextfield.setText("0");
@@ -252,9 +251,6 @@ public class Convicted_panel extends javax.swing.JPanel {
             }
         });
         convictedPanel.add(monthsTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 30, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        convictedPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 140, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -407,7 +403,6 @@ public class Convicted_panel extends javax.swing.JPanel {
     private javax.swing.JTextField crimestxt1;
     public javax.swing.JTextField daysTextField;
     private javax.swing.JButton deleteConvicted;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

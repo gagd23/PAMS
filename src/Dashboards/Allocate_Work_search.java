@@ -36,17 +36,23 @@ public class Allocate_Work_search extends javax.swing.JPanel {
      private jailor_Dash jd;
      JPanel loadingPanel;
      
-     PreparedStatement pst2;
-     ResultSet rs2;
+     //PreparedStatement pst2;
+     //ResultSet rs2;
+     //public String c_id;
+  
      
     public Allocate_Work_search() {
         initComponents();
+        
         
        
         MyPrisonConnection o = new MyPrisonConnection();
         con = o.getMyConnection();
        // fetch();
     }
+
+    
+
 
   //  public void fetch(){
       /*  
@@ -75,8 +81,6 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         searchtxtf = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        search_records_table = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,31 +117,6 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         });
         jPanel1.add(search_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
 
-        jScrollPane1.setEnabled(false);
-
-        search_records_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        search_records_table.setEnabled(false);
-        search_records_table.setGridColor(new java.awt.Color(255, 255, 255));
-        search_records_table.setUpdateSelectionOnSort(false);
-        search_records_table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                search_records_tableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(search_records_table);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 590, 150));
-
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1110, 740));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,7 +132,6 @@ public class Allocate_Work_search extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "Enter prisoner name");
            return;
        }
-                 
                  
                   
        String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ? AND CURRENT_DATE()<releasedate(c_id)";
@@ -185,8 +163,10 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                   loadingPanel.add(aw, BorderLayout.CENTER);
                   loadingPanel.revalidate();
                   loadingPanel.repaint();
+                  
+                      
                              
-                String c_id  =  rs.getString("c_id");
+              String c_id  =  rs.getString("c_id");
              String first_name = rs.getString("p_firstname");
              String middle_name = rs.getString("p_midname");
               String last_name = rs.getString("p_lastname");
@@ -202,6 +182,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              aw.fetch_qualification.setText(qualification);
                   
              
+             
              }
              else
              {
@@ -216,24 +197,15 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              if () {
                  
              }*/
-            
+         
         
         } catch (SQLException ex) {
             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
      }
-        
+     
+       
          
     }//GEN-LAST:event_search_buttonActionPerformed
-
-    private void search_records_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_records_tableMouseClicked
-        // TODO add your handling code here:
-          JTable source = (JTable)evt.getSource();
-            int row = source.rowAtPoint( evt.getPoint() );
-            int column = source.columnAtPoint( evt.getPoint() );
-            String s=source.getModel().getValueAt(row, column)+"";
-
-            JOptionPane.showMessageDialog(null, s);
-    }//GEN-LAST:event_search_records_tableMouseClicked
 
     private void searchtxtfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtfKeyReleased
         // TODO add your handling code here:
@@ -246,9 +218,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton search_button;
-    private javax.swing.JTable search_records_table;
     private javax.swing.JTextField searchtxtf;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.Panel;
@@ -21,9 +22,16 @@ public class Allocate_work extends javax.swing.JPanel {
     /**
      * Creates new form Allocate_work
      */
+    
+    private Allocate_Work_search aw;
+    
+           
+
     public Allocate_work() {
         initComponents();
         
+        
+     
         //String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback";
         
         initProgress(progress_panel,80);
@@ -32,6 +40,7 @@ public class Allocate_work extends javax.swing.JPanel {
       //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
 
     }
+    
    
     private void initProgress(javax.swing.JPanel objPanel,int max){
     
@@ -279,15 +288,15 @@ public class Allocate_work extends javax.swing.JPanel {
         jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel20.setText("14:00");
+        jLabel20.setText("16:00");
         jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel22.setText("14:00");
+        jLabel22.setText("17:00");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel25.setText("Cleaning");
+        jLabel25.setText("Cooking");
         jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 380, 40));
@@ -299,15 +308,15 @@ public class Allocate_work extends javax.swing.JPanel {
         jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel29.setText("14:00");
+        jLabel29.setText("08:30");
         jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel30.setText("14:00");
+        jLabel30.setText("09:30");
         jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel26.setText("Tailoring");
+        jLabel26.setText("Cleaning");
         jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
 
         jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 380, 40));
@@ -319,15 +328,15 @@ public class Allocate_work extends javax.swing.JPanel {
         jPanel8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel24.setText("14:00");
+        jLabel24.setText("10:30");
         jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel27.setText("14:00");
+        jLabel27.setText("11:30");
         jPanel8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel31.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel31.setText("Cooking");
+        jLabel31.setText("Tailoring");
         jPanel8.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
 
         jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 380, 40));
@@ -343,11 +352,11 @@ public class Allocate_work extends javax.swing.JPanel {
         jPanel9.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel34.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel34.setText("14:00");
+        jLabel34.setText("16:00");
         jPanel9.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel35.setText("Cleaning");
+        jLabel35.setText("Masonry");
         jPanel9.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
 
         jPanel5.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 380, 40));
