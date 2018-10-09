@@ -60,7 +60,7 @@ public class Allocate_work extends javax.swing.JPanel {
       //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
 
        
-        String query = "SELECT u.unit_code,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions FROM feedback h,head u WHERE h.head_id=u.head_id GROUP BY head_id ORDER BY suggestions DESC limit 3;"; 
+        String query = "SELECT u.unit_code,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions FROM feedback h,head u WHERE h.head_id=u.head_id AND c_id=? GROUP BY head_id ORDER BY suggestions DESC limit 3;"; 
         
         System.out.println(c_ide);
         
@@ -68,10 +68,13 @@ public class Allocate_work extends javax.swing.JPanel {
         PreparedStatement pst;
         try {
             pst = con.prepareStatement(query);
+            pst.setString(1, c_ide);
             ResultSet rs = pst.executeQuery();
-        rs.next();
+        if(!rs.next())
+        {
+            return;
+        }
             suggest  =  rs.getInt("suggestions");
-        
             
          initProgress(progress_panel,suggest);
          
@@ -146,9 +149,9 @@ public class Allocate_work extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        suggestion3 = new javax.swing.JLabel();
+        suggestion1 = new javax.swing.JLabel();
+        suggestion2 = new javax.swing.JLabel();
         progress_panel = new javax.swing.JPanel();
         progress_panel2 = new javax.swing.JPanel();
         progress_panel1 = new javax.swing.JPanel();
@@ -259,17 +262,17 @@ public class Allocate_work extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Suggestions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel15.setText("Smithy");
-        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
+        suggestion3.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        suggestion3.setText("Smithy");
+        jPanel4.add(suggestion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel17.setText("Carpentry");
-        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        suggestion1.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        suggestion1.setText("Carpentry");
+        jPanel4.add(suggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel19.setText("Cooking");
-        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        suggestion2.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        suggestion2.setText("Cooking");
+        jPanel4.add(suggestion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
 
         progress_panel.setBackground(new java.awt.Color(255, 255, 255));
         progress_panel.setLayout(new java.awt.BorderLayout());
@@ -441,10 +444,7 @@ public class Allocate_work extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -482,5 +482,8 @@ public class Allocate_work extends javax.swing.JPanel {
     private javax.swing.JPanel progress_panel2;
     private javax.swing.JPanel progress_panel3;
     private javax.swing.JComboBox<String> select_unit_combo;
+    private javax.swing.JLabel suggestion1;
+    private javax.swing.JLabel suggestion2;
+    private javax.swing.JLabel suggestion3;
     // End of variables declaration//GEN-END:variables
 }

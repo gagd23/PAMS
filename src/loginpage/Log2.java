@@ -65,7 +65,6 @@ public class Log2 extends javax.swing.JFrame {
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 320, 20));
 
         jPasswordField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jPasswordField1.setToolTipText("");
         jPasswordField1.setBorder(null);
         jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -115,7 +114,6 @@ public class Log2 extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 370, 80, 40));
 
         jTextField2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField2.setToolTipText("");
         jTextField2.setBorder(null);
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

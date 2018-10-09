@@ -9,6 +9,7 @@ import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,10 +26,43 @@ public class head_dash extends javax.swing.JFrame {
     /**
      * Creates new form head_dash
      */
-    public head_dash() {
+    String current_head_id;
+    Connection con=null;
+    public head_dash(String logged_in_head_id) {
         initComponents();
-                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        
+           MyPrisonConnection o = new MyPrisonConnection();
+                con = o.getMyConnection();
+        current_head_id = logged_in_head_id;
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        head_id_label.setText(current_head_id);
+        
+        String q = "SELECT h_firstname,h_lastname FROM head WHERE head_id=?";
+        PreparedStatement pst5;
+        try {
+            pst5 = con.prepareStatement(q);
+            pst5.setString(1, current_head_id);
+            
+            ResultSet rs5 = pst5.executeQuery();
+            
+            if(rs5.next())
+            {
+           String first_name =  rs5.getString("h_firstname");
+            String last_name = rs5.getString("h_lastname");
+            
+            System.out.println(first_name);
+            System.out.println(last_name);
+            head_name_label.setText(first_name+" "+last_name);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+        
+        
+        
+        
     }
     private add_Requirement aRequirement;
     private Mark_Attendance mark_Attendance;
@@ -94,9 +128,9 @@ public class head_dash extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        head_id_label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        head_name_label = new javax.swing.JLabel();
         loadingPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -394,10 +428,10 @@ public class head_dash extends javax.swing.JFrame {
         jLabel4.setOpaque(true);
         topPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 120, 30));
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("H001");
-        topPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 30));
+        head_id_label.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        head_id_label.setForeground(new java.awt.Color(204, 204, 204));
+        head_id_label.setText("H001");
+        topPanel.add(head_id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 30));
 
         jLabel8.setBackground(new java.awt.Color(73, 78, 83));
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -408,10 +442,10 @@ public class head_dash extends javax.swing.JFrame {
         jLabel8.setOpaque(true);
         topPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 100, 30));
 
-        jLabel12.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel12.setText("Abhishek Muddhebihal");
-        topPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 30));
+        head_name_label.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        head_name_label.setForeground(new java.awt.Color(204, 204, 204));
+        head_name_label.setText("Abhishek Muddhebihal");
+        topPanel.add(head_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 30));
 
         backgroundPanel.add(topPanel, java.awt.BorderLayout.PAGE_START);
 
@@ -479,11 +513,15 @@ public class head_dash extends javax.swing.JFrame {
         
       
         
-        Statement statement;
+        PreparedStatement pst3;
         try {
-             statement= con.createStatement();
-             String s = "SELECT req_name,reqend(req_id) AS end_date FROM requirements";
-             ResultSet rs = statement.executeQuery(s);
+              String s = "SELECT req_name,reqend(req_id) AS end_date FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+             pst3= con.prepareStatement(s);
+           
+             
+             pst3.setString(1, current_head_id);
+             
+             ResultSet rs = pst3.executeQuery();
         while (rs.next()) {            
             req_panel = new requirement_panel();
             req_panel.requirement_label_name.setText(rs.getString("req_name"));
@@ -791,7 +829,7 @@ public class head_dash extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new head_dash().setVisible(true);
+                new head_dash("H01").setVisible(true);
             }
         });
     }
@@ -801,12 +839,13 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel attendanceMenuLabel;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel emergencyLabel;
+    private javax.swing.JLabel head_id_label;
+    private javax.swing.JLabel head_name_label;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -818,7 +857,6 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
