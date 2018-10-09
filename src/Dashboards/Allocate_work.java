@@ -9,6 +9,10 @@ import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.Panel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import progressbardemo.ProgressBar;
@@ -25,14 +29,15 @@ public class Allocate_work extends javax.swing.JPanel {
     
     private Allocate_Work_search aw;
     
+    Connection con;
            
-
+    private String c_ide;
     public Allocate_work() {
         initComponents();
         
         
      
-        //String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback";
+       
         
         initProgress(progress_panel,80);
         initProgress(progress_panel1, 60);
@@ -41,6 +46,46 @@ public class Allocate_work extends javax.swing.JPanel {
 
     }
     
+    public Allocate_work(String c_id){
+        
+         initComponents();
+        
+        
+        MyPrisonConnection o = new MyPrisonConnection();
+        con = o.getMyConnection();
+     
+        //String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback";
+         this.c_ide = c_id;
+        
+      //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
+
+       
+        String query = "SELECT u.unit_code,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions FROM feedback h,head u WHERE h.head_id=u.head_id GROUP BY head_id ORDER BY suggestions DESC limit 3;"; 
+        
+        System.out.println(c_ide);
+        
+        int suggest=0;
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+        rs.next();
+            suggest  =  rs.getInt("suggestions");
+        
+            
+         initProgress(progress_panel,suggest);
+         
+         rs.next();
+           suggest  =  rs.getInt("suggestions");
+        initProgress(progress_panel1, suggest);
+         rs.next();
+           suggest  =  rs.getInt("suggestions");
+        initProgress(progress_panel2, suggest);
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
    
     private void initProgress(javax.swing.JPanel objPanel,int max){
     

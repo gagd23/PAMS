@@ -35,7 +35,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
      Connection con = null;
      private jailor_Dash jd;
      JPanel loadingPanel;
-     
+     private String c_id;
      //PreparedStatement pst2;
      //ResultSet rs2;
      //public String c_id;
@@ -51,9 +51,19 @@ public class Allocate_Work_search extends javax.swing.JPanel {
        // fetch();
     }
 
-    
-
-
+       
+  /*  public Allocate_Work_search(String c_id) {
+        initComponents();
+        
+        
+        this.c_id=c_id;
+       
+        MyPrisonConnection o = new MyPrisonConnection();
+        con = o.getMyConnection();
+        
+        
+       
+    }*/
   //  public void fetch(){
       /*  
         String q = "SELECT c_id,p_firstname,p_midname,p_lastname FROM convicted_prisoner";
@@ -135,7 +145,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                  
                   
        String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ? AND CURRENT_DATE()<releasedate(c_id)";
-             
+       
    
         PreparedStatement pst;
    //     PreparedStatement pst1;
@@ -156,14 +166,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                   
      
               //    if(Integer.parsers)
-                 loadingPanel = (JPanel)this.getParent();
-                   Allocate_work aw = new Allocate_work();
-                 loadingPanel.removeAll();
                  
-                  loadingPanel.add(aw, BorderLayout.CENTER);
-                  loadingPanel.revalidate();
-                  loadingPanel.repaint();
-                  
                       
                              
               String c_id  =  rs.getString("c_id");
@@ -174,14 +177,20 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              String qualification = rs.getString("p_qualification");
              String type = rs.getString("c_type");
              
-             
+             loadingPanel = (JPanel)this.getParent();
+                   Allocate_work aw = new Allocate_work(c_id);
+                 loadingPanel.removeAll();
+                 
+                  loadingPanel.add(aw, BorderLayout.CENTER);
+                  loadingPanel.revalidate();
+                  loadingPanel.repaint();
+                  
              aw.fetch_id.setText(c_id);
              aw.fetch_name.setText(first_name+" "+middle_name+" "+last_name);
              aw.fetch_type.setText(type);
              aw.fetch_occupation.setText(occupation);
              aw.fetch_qualification.setText(qualification);
                   
-             
              
              }
              else
@@ -198,7 +207,6 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                  
              }*/
          
-        
         } catch (SQLException ex) {
             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
      }
