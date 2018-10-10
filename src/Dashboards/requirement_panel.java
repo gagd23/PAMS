@@ -29,8 +29,11 @@ public class requirement_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        end_date_label = new javax.swing.JLabel();
         requirement_label_name = new javax.swing.JLabel();
+        end_date = new javax.swing.JLabel();
+        start_time = new javax.swing.JLabel();
+        end_time = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(655, 42));
@@ -49,15 +52,29 @@ public class requirement_panel extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        end_date_label.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        end_date_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        end_date_label.setText("End Date");
-        add(end_date_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
-
         requirement_label_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         requirement_label_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         requirement_label_name.setText("Name");
         add(requirement_label_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        end_date.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        end_date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        end_date.setText("End Date");
+        add(end_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+
+        start_time.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        start_time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        start_time.setText("start_time");
+        add(start_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 60, -1));
+
+        end_time.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        end_time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        end_time.setText("end_time");
+        add(end_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 70, -1));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setText("to");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 13, 20, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
@@ -77,7 +94,10 @@ public class requirement_panel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel end_date_label;
+    public javax.swing.JLabel end_date;
+    public javax.swing.JLabel end_time;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel requirement_label_name;
+    public javax.swing.JLabel start_time;
     // End of variables declaration//GEN-END:variables
 }

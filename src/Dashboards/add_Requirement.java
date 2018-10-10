@@ -21,6 +21,7 @@ public class add_Requirement extends javax.swing.JPanel {
     }
     
     private requirement_panel rp;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,15 +31,15 @@ public class add_Requirement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        unit_details_display = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        unit_name_label = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        workhrs_start_time2 = new javax.swing.JLabel();
+        workhrs_end_time1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        workhrs_start_time1 = new javax.swing.JLabel();
+        workhrs_end_time2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -57,69 +58,69 @@ public class add_Requirement extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         active_requirement_panel = new javax.swing.JPanel();
         panel_text = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        unit_details_display.setBackground(new java.awt.Color(255, 255, 255));
+        unit_details_display.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Unit");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 30));
+        unit_details_display.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 30));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Carpentry");
-        jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 170, 30));
+        unit_name_label.setBackground(new java.awt.Color(255, 255, 255));
+        unit_name_label.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        unit_name_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        unit_name_label.setText("Manufacturing");
+        unit_name_label.setOpaque(true);
+        unit_details_display.add(unit_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 170, 30));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Working Hours");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
+        unit_details_display.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("14:00");
-        jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 70, 30));
+        workhrs_start_time2.setBackground(new java.awt.Color(255, 255, 255));
+        workhrs_start_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        workhrs_start_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        workhrs_start_time2.setText("14:00");
+        workhrs_start_time2.setOpaque(true);
+        unit_details_display.add(workhrs_start_time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 70, 30));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("12:00");
-        jLabel5.setOpaque(true);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 70, 30));
+        workhrs_end_time1.setBackground(new java.awt.Color(255, 255, 255));
+        workhrs_end_time1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        workhrs_end_time1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        workhrs_end_time1.setText("12:00");
+        workhrs_end_time1.setOpaque(true);
+        unit_details_display.add(workhrs_end_time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 70, 30));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel6.setText("to");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 20, 30));
+        unit_details_display.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 20, 30));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("10:00");
-        jLabel7.setOpaque(true);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 70, 30));
+        workhrs_start_time1.setBackground(new java.awt.Color(255, 255, 255));
+        workhrs_start_time1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        workhrs_start_time1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        workhrs_start_time1.setText("10:00");
+        workhrs_start_time1.setOpaque(true);
+        unit_details_display.add(workhrs_start_time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 70, 30));
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("17:00");
-        jLabel8.setOpaque(true);
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 70, 30));
+        workhrs_end_time2.setBackground(new java.awt.Color(255, 255, 255));
+        workhrs_end_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        workhrs_end_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        workhrs_end_time2.setText("17:00");
+        workhrs_end_time2.setOpaque(true);
+        unit_details_display.add(workhrs_end_time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 70, 30));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel9.setText("to");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 20, 30));
+        unit_details_display.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 20, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 160));
+        add(unit_details_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 160));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "New Requirement Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
@@ -210,13 +211,13 @@ public class add_Requirement extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 60, 670, 130));
 
-        jLabel12.setFont(new java.awt.Font("Verdana", 1, 17)); // NOI18N
-        jLabel12.setText("Name");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 17)); // NOI18N
+        jLabel13.setText("Ends On");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Verdana", 1, 17)); // NOI18N
-        jLabel11.setText("Ends On");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        jLabel12.setFont(new java.awt.Font("Verdana", 1, 17)); // NOI18N
+        jLabel12.setText("Work Time");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 680, 200));
     }// </editor-fold>//GEN-END:initComponents
@@ -246,22 +247,16 @@ public class add_Requirement extends javax.swing.JPanel {
     public javax.swing.JPanel active_requirement_panel;
     private javax.swing.JButton checkButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -272,5 +267,11 @@ public class add_Requirement extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel load_slot_panel;
     private javax.swing.JPanel panel_text;
+    public javax.swing.JPanel unit_details_display;
+    public javax.swing.JLabel unit_name_label;
+    public javax.swing.JLabel workhrs_end_time1;
+    public javax.swing.JLabel workhrs_end_time2;
+    public javax.swing.JLabel workhrs_start_time1;
+    public javax.swing.JLabel workhrs_start_time2;
     // End of variables declaration//GEN-END:variables
 }

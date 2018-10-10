@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,10 +25,14 @@ import javax.swing.JFrame;
 public class head_dash extends javax.swing.JFrame {
 
     /**
+     * 
      * Creates new form head_dash
      */
     String current_head_id;
+    private add_Requirement add_req;
+    
     Connection con=null;
+    
     public head_dash(String logged_in_head_id) {
         initComponents();
         
@@ -59,8 +64,7 @@ public class head_dash extends javax.swing.JFrame {
             Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
         }
              
-        
-        
+    
         
         
     }
@@ -513,19 +517,42 @@ public class head_dash extends javax.swing.JFrame {
         
       
         
-        PreparedStatement pst3;
+        PreparedStatement pst3,pst4;
+          ResultSet rs,rs1;
         try {
-              String s = "SELECT req_name,reqend(req_id) AS end_date FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+            
+            
+           // String unit = "SELECT unit_name FROM unit WHERE unit_code=(SELECT unit_code FROM head WHERE head_id = ?)";
+            //pst4 = con.prepareStatement(unit);
+            //pst4.setString(1, current_head_id);
+            //rs1 = pst4.executeQuery();
+            
+            
+            //while (rs1.next()) {                
+                //add_req = new add_Requirement();
+              //  String st = rs1.getString("unit_name");
+               // System.out.println(st);
+                
+                //add_req.unit_name_label.setText(st);
+             // add_req.unit_name_label.revalidate();
+              //add_req.unit_name_label.repaint();
+              
+              
+            
+            
+              String s = "SELECT req_name,DATE_FORMAT(reqend(req_id),'%d/%m/%y') AS end_date,TIME_FORMAT(rstart_time,'%H:%i') AS rstart_time,TIME_FORMAT(rduration(req_id),'%H:%i') AS rend_time FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
              pst3= con.prepareStatement(s);
            
              
              pst3.setString(1, current_head_id);
              
-             ResultSet rs = pst3.executeQuery();
-        while (rs.next()) {            
+            rs = pst3.executeQuery();
+            while (rs.next()) {            
             req_panel = new requirement_panel();
             req_panel.requirement_label_name.setText(rs.getString("req_name"));
-            req_panel.end_date_label.setText(rs.getString("end_date"));
+            req_panel.end_date.setText(rs.getString("end_date"));
+            req_panel.start_time.setText(rs.getString("rstart_time"));
+            req_panel.end_time.setText(rs.getString("rend_time"));
             aRequirement.active_requirement_panel.add(req_panel);
             
           //  aRequirement.active_requirement_panel(req_panel.requirement_label_name.setText(rs.getString("req_name")));
@@ -779,6 +806,7 @@ public class head_dash extends javax.swing.JFrame {
 
     private void emergencyLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseExited
         // TODO add your handling code here:
+
         if (emergencyLabel.getBackground().getBlue()!=184 && emergencyLabel.getBackground().getRed()!=23 && emergencyLabel.getBackground().getGreen()!=162) {
 
             emergencyLabel.setBackground(original);

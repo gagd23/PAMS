@@ -8,6 +8,7 @@ package loginpage;
 import Dashboards.head_dash;
 import Dashboards.jailor_Dash;
 import Dashboards.superintendant_dash;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +32,7 @@ public class Login extends javax.swing.JFrame {
     ResultSet rs1;
     public Login() {
         initComponents();
+        pass1.setBackground(new Color(240,240,240));
         pass2.setVisible(false);
         cnf_label.setVisible(false);
         pwd_submit_button.setVisible(false);
@@ -62,7 +64,6 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(470, 550));
         setMinimumSize(new java.awt.Dimension(470, 500));
-        setPreferredSize(new java.awt.Dimension(470, 550));
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 7));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -77,7 +78,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 21)); // NOI18N
         jLabel1.setText("Username");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 110, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 110, 30));
 
         user_id.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         user_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -86,7 +87,7 @@ public class Login extends javax.swing.JFrame {
                 user_idActionPerformed(evt);
             }
         });
-        jPanel1.add(user_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 155, 240, 30));
+        jPanel1.add(user_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 185, 240, 30));
 
         go_button.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         go_button.setText("Go");
@@ -95,21 +96,21 @@ public class Login extends javax.swing.JFrame {
                 go_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(go_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 155, 90, 30));
+        jPanel1.add(go_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 90, 30));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 21)); // NOI18N
         jLabel2.setText("Password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 100, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 100, 30));
 
         pass1.setEditable(false);
         pass1.setBackground(new java.awt.Color(255, 255, 255));
         pass1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         pass1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 235, 240, 30));
+        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 295, 240, 30));
 
         cnf_label.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         cnf_label.setText("Re Enter Password");
-        jPanel1.add(cnf_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 30));
+        jPanel1.add(cnf_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, 30));
 
         pass2.setEditable(false);
         pass2.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,7 +120,7 @@ public class Login extends javax.swing.JFrame {
                 pass2ActionPerformed(evt);
             }
         });
-        jPanel1.add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 315, 240, 30));
+        jPanel1.add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 240, 30));
 
         pwd_submit_button.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         pwd_submit_button.setText("Submit");
@@ -129,11 +130,10 @@ public class Login extends javax.swing.JFrame {
                 pwd_submit_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(pwd_submit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, 30));
+        jPanel1.add(pwd_submit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, -1, 30));
 
         login_button.setBackground(new java.awt.Color(40, 122, 230));
         login_button.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        login_button.setForeground(new java.awt.Color(255, 255, 255));
         login_button.setText("Login");
         login_button.setEnabled(false);
         login_button.addActionListener(new java.awt.event.ActionListener() {
@@ -141,17 +141,17 @@ public class Login extends javax.swing.JFrame {
                 login_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(login_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 235, 80, 30));
+        jPanel1.add(login_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/final.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 110, 70));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/contacts.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 155, 30, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 185, 30, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/lock.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 235, 30, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 295, 30, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 550));
 
@@ -178,6 +178,7 @@ public class Login extends javax.swing.JFrame {
             {
                 if(rs1.getString(2)==null)
                 {
+                     pass1.setBackground(new Color(255,255,255));
                     pass1.setEditable(true);
                     pass2.setEditable(true);
                     pass2.setVisible(true);
@@ -185,7 +186,7 @@ public class Login extends javax.swing.JFrame {
                     pass1.setEchoChar((char)0);
                     pwd_submit_button.setEnabled(true);
                     pwd_submit_button.setVisible(true);
-                    login_button.setEnabled(false);
+                    login_button.setVisible(false);
                  
                     this.revalidate();
                     this.repaint();
@@ -193,12 +194,16 @@ public class Login extends javax.swing.JFrame {
                 }
                 else
                 {
+                   // pass1.setEnabled(false);
+                    pass1.setBackground(new Color(255,255,255));
                     user_id_str=rs1.getString(1);
                     pass2.setVisible(false);
                     cnf_label.setVisible(false);
                     pwd_submit_button.setVisible(false);
+                    pass1.setEnabled(true);
                     pass1.setEditable(true);
                     
+                    login_button.setVisible(true);
                     login_button.setEnabled(true);
                     this.revalidate();
                     this.repaint();
@@ -275,10 +280,14 @@ public class Login extends javax.swing.JFrame {
                     login_button.setEnabled(true);
                     pwd_submit_button.setEnabled(false);
                     pwd_submit_button.setVisible(false);
-                    login_button.setEnabled(false);
+                    login_button.setVisible(true);
+                    login_button.setEnabled(true);
                     this.revalidate();
                     this.repaint();
                     JOptionPane.showMessageDialog(null, "Password Changed Successfully.");
+                    
+                    pass1.setEnabled(false);
+                    pass1.setBackground(new Color(240,240,240));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -310,7 +319,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
