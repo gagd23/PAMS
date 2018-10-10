@@ -68,30 +68,6 @@ LOCK TABLES `c_crime` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `c_skill`
---
-
-DROP TABLE IF EXISTS `c_skill`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `c_skill` (
-  `c_id` varchar(6) NOT NULL,
-  `skills` varchar(25) NOT NULL,
-  PRIMARY KEY (`c_id`,`skills`),
-  CONSTRAINT `c_skill_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `convicted_prisoner` (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `c_skill`
---
-
-LOCK TABLES `c_skill` WRITE;
-/*!40000 ALTER TABLE `c_skill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `c_skill` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cities`
 --
 
@@ -150,7 +126,7 @@ CREATE TABLE `convicted_prisoner` (
 
 LOCK TABLES `convicted_prisoner` WRITE;
 /*!40000 ALTER TABLE `convicted_prisoner` DISABLE KEYS */;
-INSERT INTO `convicted_prisoner` VALUES ('C001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2016-08-08','2016-08-08',6000,NULL),('C003','Mayuresh','Naresh','Joshi','1997-09-29','India','Maharashtra','Pune','Kothrud','Unemployed','Graduate','2018-10-06','2018-10-06',10950,'rigorous'),('C004','Shirish','B','Khairnar','1997-09-11','India','Maharashtra','Pune','Katraj','Business','Graduate','2018-10-06','2018-10-06',6570,'rigorous');
+INSERT INTO `convicted_prisoner` VALUES ('C001','Akash','Jaysing','Gadhave','1995-01-03','Indian','Maharashtra','Ahmednagar','Sarasnagar','Labourer','graduate','2017-10-18','2017-10-18',2920,'rigorous'),('C002','Akash','Shantaram','Madhavai','1992-07-03','Indian','Maharashta','Nashik','college road','Businessman','graduate','2016-12-22','2017-12-18',3650,'rigorous'),('C003','Abhishek','Mahesh','Muddhebihal','1994-05-13','Indian','Maharashtra','Solapur','midc road','Mechanic','post graduate','2017-12-07','2017-12-07',13000,'rigorous'),('C004','Mayuresh','Naresh','Joshi','1987-09-29','Indian','Maharashtra','Jalgaon','dp road','Unemployed','HSC','2017-09-29','2017-09-29',14000,'rigorous'),('C005','Vinayak','p','Musale','1981-04-21','Indian','Maharashtra','Solapur','barshi','Teacher','Diploma','2017-10-10','2017-10-10',3000,'rigorous'),('C006','Lalit','V ','Kulkarni','1977-12-12','Indian','Maharashtra','Pune','Dhankavdi','carpenter','SSC','2015-05-02','2015-05-02',7800,'simple'),('C007','Abhiskek','Subhash','Kondekar','1991-04-04','Indian','Maharshtra','Ahmednagar','Rahuri factory road','Cleaner','SSC','2016-08-08','2016-08-08',1280,'simple'),('C008','archit','satish','saraswat','1981-09-15','India','Madhya Pradesh','Bhopal','didc','Farming','HSC','2018-10-07','2018-10-07',6205,'simple'),('C009','Pratik','ramesh','Dhoot','1981-03-15','India','Nagaland','Mokokchung','ntpc','business','Diploma','2018-10-07','2018-10-07',4560,'simple'),('C010','ananth','j','narasimhan','1979-08-21','India','Tamil Nadu','Chennai','jd galli','unemployed','None','2018-10-07','2018-10-07',11680,'rigorous'),('C011','lala','b','thakur','1979-10-23','India','Bihar','Asarganj','mg road','labourer','HSC','2018-10-07','2018-10-07',365,'simple'),('C012','abdul','mohammad','qadri','1979-10-23','Pakistan','Baluchistan','Chitkan','hussain road','smith','SSC','2018-10-07','2018-10-07',1825,'simple'),('C013','ramesh','savant','bhosale','1989-01-02','India','Assam','Badarpur','juna bazar','carpenter','HSC','2018-10-07','2018-10-07',7300,'rigorous'),('C014','suresh','ram','mahadik','1979-11-27','India','Sikkim','Jorethang','ym bazar','cleaner','None','2018-10-07','2018-10-07',2190,'simple'),('C015','karan','rupu','verma','1979-11-27','India','Gujarat','Anjar','kd bazar','unemployed','None','2018-10-07','2018-10-07',240,'simple'),('C016','tushar','avi','gawai','1980-03-21','India','Haryana','Kalayat','lokmanya mall','cook','HSC','2018-10-07','2018-10-07',1095,'rigorous'),('C017','omkar','avinash','nagarkar','1993-03-11','India','Odisha','Anandapur','navi peth','Business','SSC','2018-10-07','2018-10-07',1825,'simple'),('C018','gaurav','h','soni','1988-12-18','India','Maharashtra','Yeola','hubli st stand','Labourer','None','2018-10-07','2018-10-07',5840,'simple'),('C019','ajinkya','javid','raut','1980-10-10','India','Maharashtra','Sindi','jd chowk','Painter','SSC','2018-10-07','2018-10-07',365,'simple'),('C020','anay','linkin','rehman','1980-10-10','India','Maharashtra','Rahta Pimplas','laxman','teacher','Graduate','2018-10-07','2018-10-07',1000,'simple'),('C021','mohanish','anand','michael','1980-10-10','India','Goa','Panaji','dav road','player','Graduate','2018-10-07','2018-10-07',10950,'rigorous'),('C022','chayan','ramu','jain','1969-11-11','India','Maharashtra','Pune Cantonment','pimpri','labourer','Graduate','2018-10-07','2018-10-07',180,'simple'),('C023','charan','mangu','narayan','1983-05-12','India','Maharashtra','Nilanga','satara','service','SSC','2018-10-07','2018-10-07',14600,'rigorous'),('C024','chiyan','munna','narit','1981-03-12','India','Maharashtra','Nandurbar','dd road','business','Post Graduate','2018-10-07','2018-10-07',910,'simple'),('C025','samarth','arjun','kapur','1973-05-12','India','Pondicherry','Villianur','camp','business','Graduate','2018-10-07','2018-10-07',11680,'rigorous'),('C026','sanidhya','amandeep','singh','1980-11-02','India','Haryana','Kalka','mg toad','carpemter','Graduate','2018-10-07','2018-10-07',270,'simple');
 /*!40000 ALTER TABLE `convicted_prisoner` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -188,7 +164,7 @@ CREATE TABLE `countries` (
   `name` varchar(150) NOT NULL,
   `phonecode` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,9 +188,10 @@ CREATE TABLE `feedback` (
   `c_id` varchar(6) NOT NULL DEFAULT '',
   `head_id` varchar(5) NOT NULL DEFAULT '',
   `sdate` date NOT NULL DEFAULT '0000-00-00',
-  `attendance` tinyint(3) unsigned DEFAULT NULL,
-  `performance` tinyint(3) unsigned DEFAULT NULL,
-  `conduct` tinyint(3) unsigned DEFAULT NULL,
+  `no_of_days` mediumint(9) NOT NULL,
+  `attendance` tinyint(3) DEFAULT NULL,
+  `performance` tinyint(3) DEFAULT NULL,
+  `conduct` tinyint(3) DEFAULT NULL,
   PRIMARY KEY (`c_id`,`head_id`,`sdate`),
   KEY `head_id` (`head_id`),
   CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `convicted_prisoner` (`c_id`),
@@ -228,7 +205,32 @@ CREATE TABLE `feedback` (
 
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+INSERT INTO `feedback` VALUES ('C004','H04','2018-01-01',45,70,70,70),('C004','H05','2018-01-01',45,60,60,60),('C004','H05','2018-02-01',45,70,70,70);
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `freeslots`
+--
+
+DROP TABLE IF EXISTS `freeslots`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `freeslots` (
+  `unit_code` varchar(6) DEFAULT NULL,
+  `fstart_time` time DEFAULT NULL,
+  `fend_time` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `freeslots`
+--
+
+LOCK TABLES `freeslots` WRITE;
+/*!40000 ALTER TABLE `freeslots` DISABLE KEYS */;
+INSERT INTO `freeslots` VALUES ('U01','12:00:00','12:00:00'),('U01','16:00:00','16:00:00');
+/*!40000 ALTER TABLE `freeslots` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -256,6 +258,7 @@ CREATE TABLE `head` (
 
 LOCK TABLES `head` WRITE;
 /*!40000 ALTER TABLE `head` DISABLE KEYS */;
+INSERT INTO `head` VALUES ('H01','U01','Shreyas','Kharolkar',10),('H02','U02','Tushar','Rotti',8),('H03','U03','Vaibhav','Saraswat',9),('H04','U04','Omkar','Thombre',6),('H05','U05','Soham','Adurkar',8),('H06','U06','Prerit','Wahi',10),('H07','U07','Omkar','Nagarkar',7),('H08','U08','Advait','Khedkar',8);
 /*!40000 ALTER TABLE `head` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -290,7 +293,7 @@ DROP TABLE IF EXISTS `head_sequence`;
 CREATE TABLE `head_sequence` (
   `headid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`headid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,6 +302,7 @@ CREATE TABLE `head_sequence` (
 
 LOCK TABLES `head_sequence` WRITE;
 /*!40000 ALTER TABLE `head_sequence` DISABLE KEYS */;
+INSERT INTO `head_sequence` VALUES (1),(2),(3),(4),(5),(6),(7),(8);
 /*!40000 ALTER TABLE `head_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,6 +332,56 @@ LOCK TABLES `head_unit` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `login_details`
+--
+
+DROP TABLE IF EXISTS `login_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `login_details` (
+  `user_id` varchar(25) NOT NULL,
+  `u_password` varchar(45) DEFAULT NULL,
+  `validity` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `login_details`
+--
+
+LOCK TABLES `login_details` WRITE;
+/*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
+INSERT INTO `login_details` VALUES ('H01','1234',1),('H02','12345',1),('H03','12345',1),('H04','1234',1),('H05','1234',1),('H06','1234',1),('H07','1234',1),('H08','1234',1),('J01','1234',1),('S01','1234',1);
+/*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prisoner_skill`
+--
+
+DROP TABLE IF EXISTS `prisoner_skill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prisoner_skill` (
+  `id` varchar(6) NOT NULL,
+  `skills` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`,`skills`),
+  CONSTRAINT `prisoner_skill_ibfk_1` FOREIGN KEY (`id`) REFERENCES `convicted_prisoner` (`c_id`),
+  CONSTRAINT `prisoner_skill_ibfk_2` FOREIGN KEY (`id`) REFERENCES `trial_prisoner` (`t_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prisoner_skill`
+--
+
+LOCK TABLES `prisoner_skill` WRITE;
+/*!40000 ALTER TABLE `prisoner_skill` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prisoner_skill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `requirements`
 --
 
@@ -346,7 +400,7 @@ CREATE TABLE `requirements` (
   PRIMARY KEY (`req_id`),
   KEY `unit_code` (`unit_code`),
   CONSTRAINT `requirements_ibfk_1` FOREIGN KEY (`unit_code`) REFERENCES `unit` (`unit_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,6 +409,7 @@ CREATE TABLE `requirements` (
 
 LOCK TABLES `requirements` WRITE;
 /*!40000 ALTER TABLE `requirements` DISABLE KEYS */;
+INSERT INTO `requirements` VALUES (1,'40 benches','U01',9,'2018-10-08',25,'10:00:00','02:00:00'),(2,'60 chairs','U01',9,'2018-10-08',20,'14:00:00','01:00:00'),(3,'50 stools','U01',7,'2018-10-08',14,'15:00:00','01:00:00'),(4,'250 dinning set','U02',10,'2018-10-08',17,'10:00:00','01:00:00'),(5,'30 metal desks','U02',10,'2018-10-08',28,'14:00:00','01:00:00'),(6,'50 uniform','U03',8,'2018-10-08',14,'10:00:00','01:00:00'),(7,'40 blazers','U03',8,'2018-10-08',20,'11:00:00','01:00:00'),(8,'200 bedsheets','U04',13,'2018-10-08',24,'14:00:00','02:00:00'),(9,'500 bricks','U05',8,'2018-10-08',15,'11:00:00','01:00:00'),(10,'400 concrete blocks','U05',9,'2018-10-08',21,'15:00:00','01:00:00'),(11,'100 sandals','U07',12,'2018-10-08',12,'14:00:00','01:30:00'),(12,'Cleaning hospital','U08',10,'2018-10-08',15,'16:00:00','01:30:00');
 /*!40000 ALTER TABLE `requirements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +451,7 @@ DROP TABLE IF EXISTS `sequence`;
 CREATE TABLE `sequence` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +460,7 @@ CREATE TABLE `sequence` (
 
 LOCK TABLES `sequence` WRITE;
 /*!40000 ALTER TABLE `sequence` DISABLE KEYS */;
-INSERT INTO `sequence` VALUES (2),(3),(4);
+INSERT INTO `sequence` VALUES (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20),(21),(22),(23),(24),(25),(26);
 /*!40000 ALTER TABLE `sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -456,30 +511,6 @@ CREATE TABLE `t_cases` (
 LOCK TABLES `t_cases` WRITE;
 /*!40000 ALTER TABLE `t_cases` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_cases` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_skill`
---
-
-DROP TABLE IF EXISTS `t_skill`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `t_skill` (
-  `t_id` varchar(6) NOT NULL,
-  `skills` varchar(25) NOT NULL,
-  PRIMARY KEY (`t_id`,`skills`),
-  CONSTRAINT `t_skill_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `trial_prisoner` (`t_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `t_skill`
---
-
-LOCK TABLES `t_skill` WRITE;
-/*!40000 ALTER TABLE `t_skill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `t_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -607,6 +638,7 @@ CREATE TABLE `unit` (
 
 LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` VALUES ('U01','carpentry','rigorous',30),('U02','smithy','rigorous',30),('U03','tailoring','simple',30),('U04','textile','simple',25),('U05','masonry','rigorous',30),('U06','agriculture','simple',25),('U07','leather','simple',30),('U08','cleaning','simple',20);
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -641,7 +673,7 @@ DROP TABLE IF EXISTS `unit_sequence`;
 CREATE TABLE `unit_sequence` (
   `codeid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`codeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -650,6 +682,7 @@ CREATE TABLE `unit_sequence` (
 
 LOCK TABLES `unit_sequence` WRITE;
 /*!40000 ALTER TABLE `unit_sequence` DISABLE KEYS */;
+INSERT INTO `unit_sequence` VALUES (1),(2),(3),(4),(5),(6),(7),(8);
 /*!40000 ALTER TABLE `unit_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -676,6 +709,7 @@ CREATE TABLE `work_hrs` (
 
 LOCK TABLES `work_hrs` WRITE;
 /*!40000 ALTER TABLE `work_hrs` DISABLE KEYS */;
+INSERT INTO `work_hrs` VALUES ('U01',3,'10:00:00','12:00:00'),('U01',4,'14:00:00','16:00:00'),('U02',3,'10:00:00','12:00:00'),('U02',4,'14:00:00','16:00:00'),('U03',3,'10:00:00','12:00:00'),('U03',4,'14:00:00','16:00:00'),('U04',4,'14:00:00','16:00:00'),('U05',3,'10:00:00','12:00:00'),('U05',4,'14:00:00','16:00:00'),('U06',2,'08:30:00','10:00:00'),('U06',5,'16:00:00','17:30:00'),('U07',4,'14:00:00','16:00:00'),('U08',1,'08:30:00','09:30:00'),('U08',5,'16:00:00','17:30:00');
 /*!40000 ALTER TABLE `work_hrs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -709,6 +743,35 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'prison'
 --
+/*!50003 DROP FUNCTION IF EXISTS `end_date` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `end_date`(pid VARCHAR(6)) RETURNS date
+    DETERMINISTIC
+BEGIN
+     SET @result3=(SELECT releasedate(pid));
+     SET @result4=(SELECT start_date FROM works_for WHERE c_id=pid);
+     IF
+     @result3< (@result4 + INTERVAL 90 DAY)
+     THEN
+     RETURN @result3;
+     ELSE
+     SET @result5=(@result4 + INTERVAL 90 DAY);
+     RETURN @result5;
+     END IF;
+     END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `rduration` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -748,8 +811,8 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION `releasedate`(pid VARCHAR(6)) RETURNS date
     DETERMINISTIC
 BEGIN
-       SET @sdate=(SELECT start_date FROM prisoner WHERE id=pid);
-       SET @pdays=(SELECT days FROM prisoner WHERE id=pid);
+       SET @sdate=(SELECT conviction_date FROM convicted_prisoner WHERE c_id=pid);
+       SET @pdays=(SELECT c_inperiod FROM convicted_prisoner WHERE c_id=pid);
        SET @release = (SELECT @sdate + INTERVAL @pdays DAY);
        RETURN @release;
        END ;;
@@ -775,9 +838,65 @@ DECLARE result DATE;
 DECLARE days INT;
 DECLARE endresult DATE;
 SET result=(SELECT rstart_date FROM requirements WHERE req=req_id);
-SET days=(SELECT r_duration FROM requirements WHERE req=req_id);
+SET days=(SELECT r_period FROM requirements WHERE req=req_id);
 SET endresult=(SELECT result + INTERVAL days DAY);
 RETURN endresult;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `slot_find` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `slot_find`(IN unitcode VARCHAR(6),IN start_time TIME,IN end_time TIME)
+BEGIN
+	DECLARE temp_starttime TIME;
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE diff TIME;
+    DECLARE minrstart TIME;
+	DECLARE duration TIME;
+	DECLARE cursor1 CURSOR FOR SELECT rstart_time,r_duration FROM requirements
+    WHERE unit_code=unitcode AND rstart_time BETWEEN start_time AND end_time ORDER BY rstart_time;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=TRUE;
+    
+	SET temp_starttime=start_time;
+	SET minrstart= (SELECT MIN(rstart_time) FROM requirements WHERE unit_code=unitcode AND rstart_time BETWEEN start_time AND end_time);
+	
+    OPEN cursor1;
+    
+    loop1: LOOP 
+		FETCH cursor1 INTO minrstart,duration;
+        loop2:LOOP
+        IF(minrstart=temp_starttime)
+			THEN SET diff=TIMEDIFF(minrstart,temp_starttime);
+            SELECT temp_starttime;
+            SET temp_starttime=ADDTIME(temp_starttime,duration);
+            LEAVE loop2;
+		ELSE
+			IF done THEN SET minrstart=end_time;
+			END IF;
+            INSERT INTO freeslots
+            VALUES(unitcode,temp_starttime,minrstart);
+            SET  diff=TIMEDIFF(minrstart,temp_starttime);
+            SET @T_minrstart=ADDTIME(temp_starttime,diff);
+            SET minrstart=ADDTIME(temp_starttime,diff);
+            SET temp_starttime=ADDTIME(temp_starttime,diff);
+		END IF;
+        end LOOP;
+		select done;   
+    
+	IF done THEN LEAVE loop1;
+    END IF;
+    END LOOP;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -794,4 +913,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-06 16:46:57
+-- Dump completed on 2018-10-10 19:55:04
