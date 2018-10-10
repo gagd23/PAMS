@@ -522,22 +522,19 @@ public class head_dash extends javax.swing.JFrame {
         try {
             
             
-           // String unit = "SELECT unit_name FROM unit WHERE unit_code=(SELECT unit_code FROM head WHERE head_id = ?)";
-            //pst4 = con.prepareStatement(unit);
-            //pst4.setString(1, current_head_id);
-            //rs1 = pst4.executeQuery();
+            String unit = "SELECT unit_name FROM unit WHERE unit_code=(SELECT unit_code FROM head WHERE head_id = ?)";
+            pst4 = con.prepareStatement(unit);
+            pst4.setString(1, current_head_id);
+            rs1 = pst4.executeQuery();
             
             
-            //while (rs1.next()) {                
-                //add_req = new add_Requirement();
-              //  String st = rs1.getString("unit_name");
-               // System.out.println(st);
+            while (rs1.next()) {                
                 
-                //add_req.unit_name_label.setText(st);
-             // add_req.unit_name_label.revalidate();
-              //add_req.unit_name_label.repaint();
+                String st = rs1.getString("unit_name");
+                System.out.println(st);
+                aRequirement.unit_name_label.setText(st);
               
-              
+            }
             
             
               String s = "SELECT req_name,DATE_FORMAT(reqend(req_id),'%d/%m/%y') AS end_date,TIME_FORMAT(rstart_time,'%H:%i') AS rstart_time,TIME_FORMAT(rduration(req_id),'%H:%i') AS rend_time FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";

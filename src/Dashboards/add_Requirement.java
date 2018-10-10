@@ -5,19 +5,37 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Aakash Gadhave
  */
+
 public class add_Requirement extends javax.swing.JPanel {
 
     /**
      * Creates new form add_Requirement
      */
+    head_dash href;
+        Connection con = null;
     public add_Requirement() {
         initComponents();
+     
+             MyPrisonConnection o = new MyPrisonConnection();
+             con = o.getMyConnection();
+    }
+    
+    public  void setUnitLabel(String lbl)
+    {
+        unit_name_label.setText(lbl);
     }
     
     private requirement_panel rp;
@@ -236,6 +254,29 @@ public class add_Requirement extends javax.swing.JPanel {
         load_slot_panel.add(new slot_panel(), BorderLayout.CENTER);
         load_slot_panel.revalidate();
         load_slot_panel.repaint();
+        
+        String qu = " SELECT unit_code,workstart_time,workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+        PreparedStatement pst,pst1;
+        ResultSet rs;
+        try {
+            pst = con.prepareStatement(qu);
+            pst.setString(1, href.current_head_id);
+            rs = pst.executeQuery();
+           String unit = rs.getString("unit_code");
+           String start_time = rs.getString("workstart_time");
+           String end_time = rs.getString("workend_time");
+            while(rs.next()){
+                
+                String query = "CALL test35('"+unit+"','"+start_time+"','"+end_time+"')";
+                pst1 = con.prepareStatement(query);
+                pst1.execute();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(add_Requirement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
     }//GEN-LAST:event_checkButtonActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed

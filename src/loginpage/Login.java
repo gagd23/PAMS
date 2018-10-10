@@ -114,6 +114,7 @@ public class Login extends javax.swing.JFrame {
 
         pass2.setEditable(false);
         pass2.setBackground(new java.awt.Color(255, 255, 255));
+        pass2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         pass2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pass2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +282,7 @@ public class Login extends javax.swing.JFrame {
                     pwd_submit_button.setEnabled(false);
                     pwd_submit_button.setVisible(false);
                     login_button.setVisible(true);
-                    login_button.setEnabled(true);
+                    login_button.setEnabled(false);
                     this.revalidate();
                     this.repaint();
                     JOptionPane.showMessageDialog(null, "Password Changed Successfully.");
