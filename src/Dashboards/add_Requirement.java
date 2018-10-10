@@ -262,12 +262,15 @@ public class add_Requirement extends javax.swing.JPanel {
             pst = con.prepareStatement(qu);
             pst.setString(1, href.current_head_id);
             rs = pst.executeQuery();
+           
            String unit = rs.getString("unit_code");
            String start_time = rs.getString("workstart_time");
            String end_time = rs.getString("workend_time");
-            while(rs.next()){
-                
-                String query = "CALL test35('"+unit+"','"+start_time+"','"+end_time+"')";
+             while(rs.next()){
+                 System.out.println(unit);
+                 System.out.println(start_time);
+                 System.out.println(end_time);
+                String query = "CALL slot_find('"+unit+"','"+start_time+"','"+end_time+"')";
                 pst1 = con.prepareStatement(query);
                 pst1.execute();
             }
