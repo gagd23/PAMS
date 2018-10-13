@@ -42,7 +42,7 @@ public class registrationPanel extends javax.swing.JPanel {
     /**
      * Creates new form registrationPanel
      */
-    
+   
     DefaultListModel dm = new DefaultListModel();
     private int validate_all=0;
     public registrationPanel() {
@@ -62,6 +62,7 @@ public class registrationPanel extends javax.swing.JPanel {
             ResultSet rs = st.executeQuery(s);
             while(rs.next()){
                 nationality_txt.addItem(rs.getString("name"));
+                                
                 
             }
             nationality_txt.setSelectedItem("India");

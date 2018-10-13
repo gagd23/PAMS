@@ -26,6 +26,9 @@ public class superintendant_dash extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
      //   LineBorder lineBorder = new LineBorder(new Color(52, 58, 64), 1, true);
     }
+    
+    private superintendant_view_prisoner_search search;
+   
 
     private final Color originalColor = new Color(52, 58, 64);
     private final Color clickedColor = new Color(23, 162, 184);
@@ -708,7 +711,14 @@ public class superintendant_dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         setAllBlack();
         viewPrisoner.setBackground(clickedColor);
+        
+        search = new superintendant_view_prisoner_search();
+        loadingPanel.removeAll();
+        loadingPanel.add(search,BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
          
+        
         
         
     }//GEN-LAST:event_viewPrisonerMouseClicked

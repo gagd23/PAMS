@@ -30,7 +30,7 @@ public class head_dash extends javax.swing.JFrame {
      */
     String current_head_id;
     private add_Requirement add_req;
-    
+    private submit_feedback sub_feed;
     Connection con=null;
     
     public head_dash(String logged_in_head_id) {
@@ -137,7 +137,7 @@ public class head_dash extends javax.swing.JFrame {
         head_name_label = new javax.swing.JLabel();
         loadingPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        submit_feedback_btn = new javax.swing.JButton();
         mark_Attendance_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -459,15 +459,15 @@ public class head_dash extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(40, 122, 230));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        jButton1.setText("Submit Feedback");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submit_feedback_btn.setBackground(new java.awt.Color(40, 122, 230));
+        submit_feedback_btn.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        submit_feedback_btn.setText("Submit Feedback");
+        submit_feedback_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submit_feedback_btnActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, 40));
+        jPanel2.add(submit_feedback_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, 40));
 
         mark_Attendance_button.setBackground(new java.awt.Color(52, 58, 64));
         mark_Attendance_button.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
@@ -499,7 +499,7 @@ public class head_dash extends javax.swing.JFrame {
         addRequirementsLabel.setBackground(clicked);
         
         loadingPanel.removeAll();
-        aRequirement = new add_Requirement();
+        aRequirement = new add_Requirement(current_head_id);
         loadingPanel.add(aRequirement, BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
@@ -810,9 +810,14 @@ public class head_dash extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_emergencyLabelMouseExited
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void submit_feedback_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_feedback_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        loadingPanel.removeAll();
+        sub_feed = new submit_feedback();
+        loadingPanel.add(sub_feed,BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
+    }//GEN-LAST:event_submit_feedback_btnActionPerformed
 
     private void mark_Attendance_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mark_Attendance_buttonActionPerformed
         // TODO add your handling code here:
@@ -867,7 +872,6 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel head_id_label;
     private javax.swing.JLabel head_name_label;
     private javax.swing.JLabel homeLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -896,6 +900,7 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel prisonerLabel;
     private javax.swing.JLabel requirementsMenuLabel;
     private javax.swing.JLabel schedulePrisonerLabel;
+    private javax.swing.JButton submit_feedback_btn;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel viewAttendanceLabel;
     private javax.swing.JLabel viewRequirementsLabel;

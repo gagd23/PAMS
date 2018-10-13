@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,10 +25,12 @@ public class add_Requirement extends javax.swing.JPanel {
     /**
      * Creates new form add_Requirement
      */
-    head_dash href;
+        head_dash href;
         Connection con = null;
-    public add_Requirement() {
+        String current_id;
+    public add_Requirement(String head_id) {
         initComponents();
+        current_id=head_id;
      
              MyPrisonConnection o = new MyPrisonConnection();
              con = o.getMyConnection();
@@ -255,30 +258,34 @@ public class add_Requirement extends javax.swing.JPanel {
         load_slot_panel.revalidate();
         load_slot_panel.repaint();
         
-        String qu = " SELECT unit_code,workstart_time,workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+        String qu = "SELECT unit_code,workstart_time,workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
         PreparedStatement pst,pst1;
         ResultSet rs;
         try {
             pst = con.prepareStatement(qu);
-            pst.setString(1, href.current_head_id);
+            System.out.println(current_id);
+            pst.setString(1,current_id);
             rs = pst.executeQuery();
-           
-           String unit = rs.getString("unit_code");
-           String start_time = rs.getString("workstart_time");
-           String end_time = rs.getString("workend_time");
-             while(rs.next()){
+            while(rs.next()){
+            String unit = rs.getString("unit_code");
+            String start_time = rs.getString("workstart_time");
+            String end_time = rs.getString("workend_time");
+             
                  System.out.println(unit);
                  System.out.println(start_time);
                  System.out.println(end_time);
                 String query = "CALL slot_find('"+unit+"','"+start_time+"','"+end_time+"')";
                 pst1 = con.prepareStatement(query);
+                
                 pst1.execute();
+                //{
+                //   JOptionPane.showMessageDialog(null, "procedure executing");
+                //}
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(add_Requirement.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         
     }//GEN-LAST:event_checkButtonActionPerformed
 

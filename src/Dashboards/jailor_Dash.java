@@ -29,7 +29,7 @@ public class jailor_Dash extends javax.swing.JFrame {
     private final Color originalColor = new Color(52, 58, 64);
     private final Color clickedColor = new Color(23, 162, 184);
     private final Color focusColor = new Color(40, 122, 230);
-    
+    jailor_view_prisoner_search search;
     
     public void setAlloc()
     {
@@ -426,6 +426,11 @@ public class jailor_Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         setAllBlack();
         viewPrisonerLabel.setBackground(clickedColor);
+        loadingPanel.removeAll();
+        search = new jailor_view_prisoner_search();
+        loadingPanel.add(search, BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
     }//GEN-LAST:event_viewPrisonerLabelMouseClicked
 
     private void emergencyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseClicked
