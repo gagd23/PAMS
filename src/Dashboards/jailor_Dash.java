@@ -56,6 +56,7 @@ public class jailor_Dash extends javax.swing.JFrame {
 
         backgroundPanel = new javax.swing.JPanel();
         loadingPanel = new javax.swing.JPanel();
+        jailor_notification_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         optionsPanel = new javax.swing.JPanel();
         workLabel = new javax.swing.JLabel();
@@ -74,7 +75,7 @@ public class jailor_Dash extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jailor_logout_logo_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -90,10 +91,14 @@ public class jailor_Dash extends javax.swing.JFrame {
         loadingPanel.setBackground(new java.awt.Color(255, 255, 255));
         loadingPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(52, 58, 64));
+        jailor_notification_panel.setBackground(new java.awt.Color(255, 255, 255));
+        jailor_notification_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel2.setText("Notifications");
-        loadingPanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+        jailor_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 140, 40));
+
+        loadingPanel.add(jailor_notification_panel, java.awt.BorderLayout.CENTER);
 
         backgroundPanel.add(loadingPanel, java.awt.BorderLayout.CENTER);
 
@@ -263,10 +268,15 @@ public class jailor_Dash extends javax.swing.JFrame {
         topPanel.setBackground(new java.awt.Color(52, 58, 64));
         topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
-        jLabel7.setToolTipText("Logout");
-        topPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 21));
+        jailor_logout_logo_label.setForeground(new java.awt.Color(255, 255, 255));
+        jailor_logout_logo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
+        jailor_logout_logo_label.setToolTipText("Logout");
+        jailor_logout_logo_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jailor_logout_logo_labelMouseClicked(evt);
+            }
+        });
+        topPanel.add(jailor_logout_logo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 21));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -329,6 +339,11 @@ public class jailor_Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         setAllBlack();
         homeLabel.setBackground(clickedColor);
+        
+        loadingPanel.removeAll();
+        loadingPanel.add(jailor_notification_panel, BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
     }//GEN-LAST:event_homeLabelMouseClicked
 
     private void homeLabelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_homeLabelFocusLost
@@ -431,6 +446,8 @@ public class jailor_Dash extends javax.swing.JFrame {
         loadingPanel.add(search, BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
+        
+        
     }//GEN-LAST:event_viewPrisonerLabelMouseClicked
 
     private void emergencyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseClicked
@@ -454,6 +471,13 @@ public class jailor_Dash extends javax.swing.JFrame {
             emergencyLabel.setBackground(new Color(73, 78, 83));
     }       
     }//GEN-LAST:event_emergencyLabelMouseExited
+
+    private void jailor_logout_logo_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jailor_logout_logo_labelMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+        new loginpage.Login().setVisible(true);
+    }//GEN-LAST:event_jailor_logout_logo_labelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -504,13 +528,14 @@ public class jailor_Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    public javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jailor_logout_logo_label;
+    private javax.swing.JPanel jailor_notification_panel;
     public javax.swing.JPanel loadingPanel;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JLabel prisonerLabel1;

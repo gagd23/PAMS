@@ -5,6 +5,14 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author 702
@@ -15,17 +23,28 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
      * Creates new form jailor_view_prison_history
      */
         
-    String prisoner_id,prisoner_name,prisoner_type;
-    public jailor_view_prison_history(String pid,String pname,String ptype) {
+    String prisoner_id,prisoner_name,prisoner_type,conviction_date;
+    int days_to_release;
+    private jailor_view_prisoner_history view1;
+    Connection con;
+    public jailor_view_prison_history(String pid,String pname,String ptype,String convict_date,int days) {
         initComponents();
+         MyPrisonConnection o = new MyPrisonConnection();
+             con = o.getMyConnection();
         prisoner_id=pid;
         prisoner_name=pname;
         prisoner_type=ptype;
+        conviction_date = convict_date;
+        days_to_release = days;
         
         
         fetch_id.setText(prisoner_id);
         fetch_name.setText(prisoner_name);
         fetch_type.setText(prisoner_type);
+        fetch_convictiondate_label.setText(conviction_date);
+        fetch_days_to_release_label.setText(""+days_to_release);
+        
+        
     }
 
     /**
@@ -52,6 +71,7 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         fetch_convictiondate_label = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         loading_history_panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -72,11 +92,11 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("Name");
-        horizontal_prisoner_details_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 60, -1));
+        horizontal_prisoner_details_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 60, -1));
 
         fetch_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_name.setText("Mayuresh N. Joshi");
-        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setText("Type");
@@ -91,23 +111,23 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 27)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Work History");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 150, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 150, 30));
 
         sort_by_performance_button.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        sort_by_performance_button.setText("Sort By Performance");
+        sort_by_performance_button.setText("Sort By Max Work ");
         sort_by_performance_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sort_by_performance_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(sort_by_performance_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 270, -1));
+        jPanel1.add(sort_by_performance_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 240, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fetch_days_to_release_label.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         fetch_days_to_release_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         fetch_days_to_release_label.setText("390");
-        jPanel2.add(fetch_days_to_release_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
+        jPanel2.add(fetch_days_to_release_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -126,14 +146,72 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 320, 110));
 
-        loading_history_panel.setLayout(new javax.swing.BoxLayout(loading_history_panel, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel1.add(loading_history_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1110, 510));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        loading_history_panel.setLayout(new javax.swing.BoxLayout(loading_history_panel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(loading_history_panel);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 1130, 510));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 690));
     }// </editor-fold>//GEN-END:initComponents
 
     private void sort_by_performance_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sort_by_performance_buttonActionPerformed
         // TODO add your handling code here:
+           
+        loading_history_panel.removeAll();
+         String query = "SELECT f.c_id,u.unit_name,ROUND(AVG(f.attendance)) AS attendance,ROUND(AVG(f.performance)) AS performance,ROUND(AVG(f.conduct)) AS CONDUCT,count(f.head_id) AS count\n" +
+"FROM feedback f \n" +
+"INNER JOIN head h ON f.head_id=h.head_id\n" +
+"INNER JOIN unit u ON u.unit_code=h.unit_code \n" +
+"WHERE c_id=?\n" +
+"GROUP BY f.head_id\n" +
+"ORDER BY count DESC;";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, prisoner_id);
+            
+            System.out.println(prisoner_id);
+          
+            ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+        view1 = new jailor_view_prisoner_history(loading_history_panel,prisoner_id);
+        loading_history_panel.add(view1);
+        loading_history_panel.revalidate();
+        loading_history_panel.repaint();
+            
+           String unitname = rs.getString("unit_name");
+           int count = rs.getInt("count");
+           int performance = rs.getInt("performance");
+           int attendance  = rs.getInt("attendance");
+           int conduct = rs.getInt("conduct");
+           
+           
+            System.out.println(count);
+            System.out.println(unitname);
+         view1.initProgress(view1.performance_load_panel1, performance);
+         view1.initProgress(view1.attendance_load_panel1,attendance);
+         view1.initProgress(view1.conduct_load_panel1,conduct);
+         
+         view1.fetch_unit_name_label4.setText(unitname);
+         view1.fetch_no_of_times_worked_label4.setText(""+count);
+         
+           
+          //  unitname = rs.getString("unit_name");     
+      //  initProgress(attendance_load_panel1, suggest);
+        
+         
+         //  suggest  =  rs.getInt("suggestions");
+           // unitname = rs.getString("unit_name");
+          // initProgress(conduct_load_panel1, suggest);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
        
     }//GEN-LAST:event_sort_by_performance_buttonActionPerformed
 
@@ -153,6 +231,7 @@ public class jailor_view_prison_history extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPanel loading_history_panel;
     private javax.swing.JButton sort_by_performance_button;
     // End of variables declaration//GEN-END:variables

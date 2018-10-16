@@ -96,15 +96,17 @@ public class superintendant_dash extends javax.swing.JFrame {
         emergencyPanel = new javax.swing.JPanel();
         emergencyLabel = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        superintendant_logout_logo_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         loadingPanel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        superintendant_notification_panel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -507,7 +509,7 @@ public class superintendant_dash extends javax.swing.JFrame {
         unitPanelLayout.setHorizontalGroup(
             unitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, unitPanelLayout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(unitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         unitPanelLayout.setVerticalGroup(
@@ -517,7 +519,7 @@ public class superintendant_dash extends javax.swing.JFrame {
                 .addComponent(unitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        optionsPanel.add(unitPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
+        optionsPanel.add(unitPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 200, -1));
 
         headPanel.setBackground(new java.awt.Color(52, 58, 64));
 
@@ -596,15 +598,24 @@ public class superintendant_dash extends javax.swing.JFrame {
 
         optionsPanel.add(emergencyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 534, -1, -1));
 
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/community.png"))); // NOI18N
+        optionsPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
         backgroundPanel.add(optionsPanel, java.awt.BorderLayout.LINE_START);
 
         topPanel.setBackground(new java.awt.Color(52, 58, 64));
         topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
-        jLabel7.setToolTipText("Logout");
-        topPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 30, 21));
+        superintendant_logout_logo_label.setForeground(new java.awt.Color(255, 255, 255));
+        superintendant_logout_logo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
+        superintendant_logout_logo_label.setToolTipText("Logout");
+        superintendant_logout_logo_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                superintendant_logout_logo_labelMouseClicked(evt);
+            }
+        });
+        topPanel.add(superintendant_logout_logo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, 20, 21));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -647,10 +658,14 @@ public class superintendant_dash extends javax.swing.JFrame {
         loadingPanel.setAlignmentY(0.0F);
         loadingPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("                                                            Notifications");
-        loadingPanel.add(jLabel4, java.awt.BorderLayout.PAGE_START);
+        superintendant_notification_panel.setBackground(new java.awt.Color(255, 255, 255));
+        superintendant_notification_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setText("Notifications");
+        superintendant_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 140, 40));
+
+        loadingPanel.add(superintendant_notification_panel, java.awt.BorderLayout.CENTER);
 
         backgroundPanel.add(loadingPanel, java.awt.BorderLayout.CENTER);
 
@@ -703,6 +718,10 @@ public class superintendant_dash extends javax.swing.JFrame {
         setAllBlack();
         homeLabel.setBackground(clickedColor);
            
+         loadingPanel.removeAll();
+        loadingPanel.add(superintendant_notification_panel, BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
            
         
     }//GEN-LAST:event_homeLabelMouseClicked
@@ -1019,6 +1038,13 @@ public class superintendant_dash extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addPrisoner1FocusGained
 
+    private void superintendant_logout_logo_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_superintendant_logout_logo_labelMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+        new loginpage.Login().setVisible(true);
+    }//GEN-LAST:event_superintendant_logout_logo_labelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1078,15 +1104,15 @@ public class superintendant_dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel loadingPanel;
@@ -1096,6 +1122,8 @@ public class superintendant_dash extends javax.swing.JFrame {
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JLabel prisonerLabel;
     private javax.swing.JPanel prisonerPanel;
+    private javax.swing.JLabel superintendant_logout_logo_label;
+    private javax.swing.JPanel superintendant_notification_panel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel unitLabel;
     private javax.swing.JPanel unitPanel;

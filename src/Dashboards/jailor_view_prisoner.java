@@ -30,7 +30,8 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
     jailor_view_prisoner_history view1;
      String p_id ;
     Connection con;
-    String first_name,mid_name,last_name,fullname,type;
+    String first_name,mid_name,last_name,fullname,type,conviction_date;
+    int days_to_release;
     public jailor_view_prisoner(JPanel load,String c_id) {
         initComponents();
         parentpanel = load;
@@ -45,7 +46,7 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
         PreparedStatement pst;
        
         
-        String query = "SELECT p_firstname,p_midname,p_lastname,c_type FROM convicted_prisoner WHERE c_id LIKE ?";
+        String query = "SELECT p_firstname,p_midname,p_lastname,c_type,DATE_FORMAT(conviction_date,'%d/%m/%y') AS conviction_date,DATEDIFF(releasedate(c_id),CURRENT_DATE())AS days_to_release  FROM convicted_prisoner WHERE c_id LIKE ?";
         try {
             pst = con.prepareStatement(query);
             pst.setString(1, p_id);
@@ -56,6 +57,8 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
              mid_name = rs.getString("p_midname");
              last_name = rs.getString("p_lastname");
              type = rs.getString("c_type");
+             conviction_date = rs.getString("conviction_date");
+             days_to_release = rs.getInt("days_to_release");
             fullname=first_name+" "+mid_name+" "+last_name;
             fetch_id.setText(p_id);
             fetch_name.setText(fullname);
@@ -206,15 +209,63 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
     private void view_prison_history_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_view_prison_history_panelMouseClicked
         // TODO add your handling code here:
         parentpanel.removeAll();
-        view = new jailor_view_prison_history(p_id,fullname,type);
+        view = new jailor_view_prison_history(p_id,fullname,type,conviction_date,days_to_release);
         parentpanel.add(view, BorderLayout.CENTER);
         parentpanel.revalidate();
         parentpanel.repaint();
        
-        view1 = new jailor_view_prisoner_history(view.loading_history_panel);
+       
+        
+         String query = "SELECT f.c_id,u.unit_name,ROUND(AVG(f.attendance)) AS attendance,ROUND(AVG(f.performance)) AS performance,ROUND(AVG(f.conduct)) AS CONDUCT,count(f.head_id) AS count\n" +
+"FROM feedback f \n" +
+"INNER JOIN head h ON f.head_id=h.head_id\n" +
+"INNER JOIN unit u ON u.unit_code=h.unit_code \n" +
+"WHERE c_id=?\n" +
+"GROUP BY f.head_id\n" +
+"ORDER BY AVG((performance+attendance+conduct)/3) DESC;";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, p_id);
+            
+            System.out.println(p_id);
+          
+            ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+        view1 = new jailor_view_prisoner_history(view.loading_history_panel,p_id);
         view.loading_history_panel.add(view1);
         view.loading_history_panel.revalidate();
         view.loading_history_panel.repaint();
+            
+           String unitname = rs.getString("unit_name");
+           int count = rs.getInt("count");
+           int performance = rs.getInt("performance");
+           int attendance  = rs.getInt("attendance");
+           int conduct = rs.getInt("conduct");
+           
+           
+            System.out.println(count);
+            System.out.println(unitname);
+         view1.initProgress(view1.performance_load_panel1, performance);
+         view1.initProgress(view1.attendance_load_panel1,attendance);
+         view1.initProgress(view1.conduct_load_panel1,conduct);
+         
+         view1.fetch_unit_name_label4.setText(unitname);
+         view1.fetch_no_of_times_worked_label4.setText(""+count);
+         
+           
+          //  unitname = rs.getString("unit_name");     
+      //  initProgress(attendance_load_panel1, suggest);
+        
+         
+         //  suggest  =  rs.getInt("suggestions");
+           // unitname = rs.getString("unit_name");
+          // initProgress(conduct_load_panel1, suggest);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_view_prison_history_panelMouseClicked
 

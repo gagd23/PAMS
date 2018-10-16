@@ -31,6 +31,10 @@ public class head_dash extends javax.swing.JFrame {
     String current_head_id;
     private add_Requirement add_req;
     private submit_feedback sub_feed;
+    private head_status_view status_view;
+    private head_report_dash report;
+    private prisoners_working_in_unit_panel prison_work;
+    private add_requirement_working_hrs_panel working;
     Connection con=null;
     
     public head_dash(String logged_in_head_id) {
@@ -84,9 +88,12 @@ public class head_dash extends javax.swing.JFrame {
     addRequirementsLabel.setBackground(original);
     modifyRequirementsLabel.setBackground(original);
     viewRequirementsLabel.setBackground(original);
-    viewAttendanceLabel.setBackground(original);
+    unit_reports_label.setBackground(original);
     modifyAttendanceLabel.setBackground(original);
-    emergencyLabel.setBackground(new Color(73, 78, 83));
+    viewAttendanceLabel1.setBackground(original);
+    unit_label.setBackground(new Color(73, 78, 83));
+    unit_reports_label.setBackground(original);
+    unit_view_status_label.setBackground(original);
         
     }
         
@@ -112,10 +119,10 @@ public class head_dash extends javax.swing.JFrame {
         schedulePrisonerLabel = new javax.swing.JLabel();
         modifyPrisoner = new javax.swing.JLabel();
         attendanceMenuLabel = new javax.swing.JLabel();
-        viewAttendanceLabel = new javax.swing.JLabel();
+        unit_reports_label = new javax.swing.JLabel();
         modifyAttendanceLabel = new javax.swing.JLabel();
         homeLabel = new javax.swing.JLabel();
-        emergencyLabel = new javax.swing.JLabel();
+        unit_label = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -128,18 +135,26 @@ public class head_dash extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        viewAttendanceLabel1 = new javax.swing.JLabel();
+        unit_view_status_label = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         topPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        head_logout_logo_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         head_id_label = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         head_name_label = new javax.swing.JLabel();
         loadingPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        submit_feedback_btn = new javax.swing.JButton();
-        mark_Attendance_button = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        head_notification_panel = new javax.swing.JPanel();
+        mark_attendance_panel = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        submit_feedback_panel = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -279,23 +294,23 @@ public class head_dash extends javax.swing.JFrame {
         attendanceMenuLabel.setOpaque(true);
         optionsPanel.add(attendanceMenuLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 367, 200, 40));
 
-        viewAttendanceLabel.setBackground(new java.awt.Color(52, 58, 64));
-        viewAttendanceLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        viewAttendanceLabel.setForeground(new java.awt.Color(204, 204, 204));
-        viewAttendanceLabel.setText("  View");
-        viewAttendanceLabel.setOpaque(true);
-        viewAttendanceLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        unit_reports_label.setBackground(new java.awt.Color(52, 58, 64));
+        unit_reports_label.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        unit_reports_label.setForeground(new java.awt.Color(204, 204, 204));
+        unit_reports_label.setText("  Reports");
+        unit_reports_label.setOpaque(true);
+        unit_reports_label.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                viewAttendanceLabelMouseClicked(evt);
+                unit_reports_labelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                viewAttendanceLabelMouseEntered(evt);
+                unit_reports_labelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                viewAttendanceLabelMouseExited(evt);
+                unit_reports_labelMouseExited(evt);
             }
         });
-        optionsPanel.add(viewAttendanceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 407, 176, 30));
+        optionsPanel.add(unit_reports_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 544, 176, 30));
 
         modifyAttendanceLabel.setBackground(new java.awt.Color(52, 58, 64));
         modifyAttendanceLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -341,36 +356,36 @@ public class head_dash extends javax.swing.JFrame {
         });
         optionsPanel.add(homeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 83, 200, 40));
 
-        emergencyLabel.setBackground(new java.awt.Color(73, 78, 83));
-        emergencyLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        emergencyLabel.setForeground(new java.awt.Color(255, 255, 255));
-        emergencyLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        emergencyLabel.setText("  Emergency");
-        emergencyLabel.setAlignmentY(0.3F);
-        emergencyLabel.setOpaque(true);
-        emergencyLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        unit_label.setBackground(new java.awt.Color(73, 78, 83));
+        unit_label.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        unit_label.setForeground(new java.awt.Color(255, 255, 255));
+        unit_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        unit_label.setText("  Unit");
+        unit_label.setAlignmentY(0.3F);
+        unit_label.setOpaque(true);
+        unit_label.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emergencyLabelMouseClicked(evt);
+                unit_labelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                emergencyLabelMouseEntered(evt);
+                unit_labelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                emergencyLabelMouseExited(evt);
+                unit_labelMouseExited(evt);
             }
         });
-        optionsPanel.add(emergencyLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 474, 200, 40));
+        optionsPanel.add(unit_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 474, 200, 40));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/view.png"))); // NOI18N
-        optionsPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 407, -1, 30));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/diagram.png"))); // NOI18N
+        optionsPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 544, -1, 30));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/tasks.png"))); // NOI18N
         optionsPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 367, -1, 40));
 
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/siren.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/community.png"))); // NOI18N
         optionsPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 474, -1, 40));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -409,15 +424,64 @@ public class head_dash extends javax.swing.JFrame {
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/prisoner.png"))); // NOI18N
         optionsPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 123, -1, 40));
 
+        viewAttendanceLabel1.setBackground(new java.awt.Color(52, 58, 64));
+        viewAttendanceLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        viewAttendanceLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        viewAttendanceLabel1.setText("  View");
+        viewAttendanceLabel1.setOpaque(true);
+        viewAttendanceLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewAttendanceLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                viewAttendanceLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                viewAttendanceLabel1MouseExited(evt);
+            }
+        });
+        optionsPanel.add(viewAttendanceLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 407, 176, 30));
+
+        unit_view_status_label.setBackground(new java.awt.Color(52, 58, 64));
+        unit_view_status_label.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        unit_view_status_label.setForeground(new java.awt.Color(204, 204, 204));
+        unit_view_status_label.setText("  View Status");
+        unit_view_status_label.setOpaque(true);
+        unit_view_status_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unit_view_status_labelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                unit_view_status_labelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                unit_view_status_labelMouseExited(evt);
+            }
+        });
+        optionsPanel.add(unit_view_status_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 514, 176, 30));
+
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/view.png"))); // NOI18N
+        optionsPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 407, -1, 30));
+
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/view.png"))); // NOI18N
+        optionsPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 514, -1, 30));
+
         backgroundPanel.add(optionsPanel, java.awt.BorderLayout.LINE_START);
 
         topPanel.setBackground(new java.awt.Color(52, 58, 64));
         topPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
-        jLabel7.setToolTipText("Logout");
-        topPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 21));
+        head_logout_logo_label.setForeground(new java.awt.Color(255, 255, 255));
+        head_logout_logo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
+        head_logout_logo_label.setToolTipText("Logout");
+        head_logout_logo_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                head_logout_logo_labelMouseClicked(evt);
+            }
+        });
+        topPanel.add(head_logout_logo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, 21));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -456,35 +520,59 @@ public class head_dash extends javax.swing.JFrame {
         loadingPanel.setBackground(new java.awt.Color(255, 255, 255));
         loadingPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        head_notification_panel.setBackground(new java.awt.Color(255, 255, 255));
+        head_notification_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        submit_feedback_btn.setBackground(new java.awt.Color(40, 122, 230));
-        submit_feedback_btn.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        submit_feedback_btn.setText("Submit Feedback");
-        submit_feedback_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submit_feedback_btnActionPerformed(evt);
+        mark_attendance_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mark_attendance_panelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mark_attendance_panelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mark_attendance_panelMouseExited(evt);
             }
         });
-        jPanel2.add(submit_feedback_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, 40));
+        mark_attendance_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mark_Attendance_button.setBackground(new java.awt.Color(52, 58, 64));
-        mark_Attendance_button.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        mark_Attendance_button.setText("Mark Attendance");
-        mark_Attendance_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mark_Attendance_buttonActionPerformed(evt);
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/attendance1.png"))); // NOI18N
+        mark_attendance_panel.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 70, 80));
+
+        jLabel28.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        jLabel28.setText("Mark Attendance");
+        mark_attendance_panel.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        head_notification_panel.add(mark_attendance_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 190, 140));
+
+        submit_feedback_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submit_feedback_panelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                submit_feedback_panelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                submit_feedback_panelMouseExited(evt);
             }
         });
-        jPanel2.add(mark_Attendance_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, 40));
+        submit_feedback_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loadingPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rating.png"))); // NOI18N
+        submit_feedback_panel.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 70, 80));
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(52, 58, 64));
-        jLabel2.setText("Notifications");
-        loadingPanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+        jLabel26.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        jLabel26.setText("Submit Feedback");
+        submit_feedback_panel.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        head_notification_panel.add(submit_feedback_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 190, 140));
+
+        jLabel29.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(52, 58, 64));
+        jLabel29.setText("Notifications");
+        head_notification_panel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 180, -1));
+
+        loadingPanel.add(head_notification_panel, java.awt.BorderLayout.CENTER);
 
         backgroundPanel.add(loadingPanel, java.awt.BorderLayout.CENTER);
 
@@ -504,21 +592,36 @@ public class head_dash extends javax.swing.JFrame {
         loadingPanel.revalidate();
         loadingPanel.repaint();
         
-        Connection con = null;
-        MyPrisonConnection o = new MyPrisonConnection();
-        con = o.getMyConnection();
-        
-        //aRequirement.active_requirement_panel.removeAll();
-       // req_panel = new requirement_panel();
-       // aRequirement.active_requirement_panel.add(req_panel);
-       // aRequirement.active_requirement_panel.add(new requirement_panel());
-        
-       // aRequirement.active_requirement_panel.add(new requirement_panel());
+        PreparedStatement pst3,pst4,pst5;
+          ResultSet rs,rs1,rs2;
+      String work_hrs = "SELECT TIME_FORMAT(workstart_time,'%H:%i') AS workstart_time,TIME_FORMAT(workend_time,'%H:%i') AS workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+        try {
+            pst5 = con.prepareStatement(work_hrs);
+            pst5.setString(1, current_head_id);
+            rs2 = pst5.executeQuery();
+            
+            while (rs2.next()) {
+                
+                working = new add_requirement_working_hrs_panel();
+                working.workhrs_start_time2.setText(rs2.getString("workstart_time"));
+                working.workhrs_end_time2.setText(rs2.getString("workend_time"));
+                aRequirement.working_hrs_load_panel.add(working);
+                aRequirement.working_hrs_load_panel.revalidate();
+                aRequirement.working_hrs_load_panel.repaint();
+            }
+            //aRequirement.active_requirement_panel.removeAll();
+            // req_panel = new requirement_panel();
+            // aRequirement.active_requirement_panel.add(req_panel);
+            // aRequirement.active_requirement_panel.add(new requirement_panel());
+            
+            // aRequirement.active_requirement_panel.add(new requirement_panel());
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
       
         
-        PreparedStatement pst3,pst4;
-          ResultSet rs,rs1;
+        
         try {
             
             
@@ -704,27 +807,33 @@ public class head_dash extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_modifyPrisonerMouseExited
 
-    private void viewAttendanceLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabelMouseClicked
+    private void unit_reports_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_reports_labelMouseClicked
         // TODO add your handling code here:
         setAllBlack();
-        viewAttendanceLabel.setBackground(clicked);
-    }//GEN-LAST:event_viewAttendanceLabelMouseClicked
+        unit_reports_label.setBackground(clicked);
+        
+        report = new head_report_dash();
+        loadingPanel.removeAll();
+        loadingPanel.add(report, BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
+    }//GEN-LAST:event_unit_reports_labelMouseClicked
 
-    private void viewAttendanceLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabelMouseEntered
+    private void unit_reports_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_reports_labelMouseEntered
         // TODO add your handling code here:
-        if (viewAttendanceLabel.getBackground().getBlue()!=184 && viewAttendanceLabel.getBackground().getRed()!=23 && viewAttendanceLabel.getBackground().getGreen()!=162) {
+        if (unit_reports_label.getBackground().getBlue()!=184 && unit_reports_label.getBackground().getRed()!=23 && unit_reports_label.getBackground().getGreen()!=162) {
 
-            viewAttendanceLabel.setBackground(focusColor);
+            unit_reports_label.setBackground(focusColor);
         }
-    }//GEN-LAST:event_viewAttendanceLabelMouseEntered
+    }//GEN-LAST:event_unit_reports_labelMouseEntered
 
-    private void viewAttendanceLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabelMouseExited
+    private void unit_reports_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_reports_labelMouseExited
         // TODO add your handling code here:
-        if (viewAttendanceLabel.getBackground().getBlue()!=184 && viewAttendanceLabel.getBackground().getRed()!=23 && viewAttendanceLabel.getBackground().getGreen()!=162) {
+        if (unit_reports_label.getBackground().getBlue()!=184 && unit_reports_label.getBackground().getRed()!=23 && unit_reports_label.getBackground().getGreen()!=162) {
 
-            viewAttendanceLabel.setBackground(original);
+            unit_reports_label.setBackground(original);
         }
-    }//GEN-LAST:event_viewAttendanceLabelMouseExited
+    }//GEN-LAST:event_unit_reports_labelMouseExited
 
     private void modifyAttendanceLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyAttendanceLabelMouseClicked
         // TODO add your handling code here:
@@ -762,6 +871,11 @@ public class head_dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         setAllBlack();
         homeLabel.setBackground(clicked);
+        
+        loadingPanel.removeAll();
+        loadingPanel.add(head_notification_panel, BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
 
     }//GEN-LAST:event_homeLabelMouseClicked
 
@@ -786,48 +900,152 @@ public class head_dash extends javax.swing.JFrame {
 
     }//GEN-LAST:event_homeLabelMouseExited
 
-    private void emergencyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseClicked
+    private void unit_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_labelMouseClicked
         // TODO add your handling code here:
-        setAllBlack();
-        emergencyLabel.setBackground(clicked);
+     
 
-    }//GEN-LAST:event_emergencyLabelMouseClicked
+    }//GEN-LAST:event_unit_labelMouseClicked
 
-    private void emergencyLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseEntered
+    private void unit_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_labelMouseEntered
         // TODO add your handling code here:
-        if (emergencyLabel.getBackground().getBlue()!=184 && emergencyLabel.getBackground().getRed()!=23 && emergencyLabel.getBackground().getGreen()!=162) {
+        
+    }//GEN-LAST:event_unit_labelMouseEntered
 
-            emergencyLabel.setBackground(focusColor);
+    private void unit_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_labelMouseExited
+        // TODO add your handling code here:
+
+        
+    }//GEN-LAST:event_unit_labelMouseExited
+
+    private void viewAttendanceLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabel1MouseClicked
+        // TODO add your handling code here:
+         setAllBlack();
+        viewAttendanceLabel1.setBackground(clicked);
+    }//GEN-LAST:event_viewAttendanceLabel1MouseClicked
+
+    private void viewAttendanceLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabel1MouseEntered
+        // TODO add your handling code here:
+          if (viewAttendanceLabel1.getBackground().getBlue()!=184 && viewAttendanceLabel1.getBackground().getRed()!=23 && viewAttendanceLabel1.getBackground().getGreen()!=162) {
+
+            viewAttendanceLabel1.setBackground(focusColor);
+
         }
-    }//GEN-LAST:event_emergencyLabelMouseEntered
+    }//GEN-LAST:event_viewAttendanceLabel1MouseEntered
 
-    private void emergencyLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emergencyLabelMouseExited
+    private void viewAttendanceLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewAttendanceLabel1MouseExited
         // TODO add your handling code here:
+         if (viewAttendanceLabel1.getBackground().getBlue()!=184 && viewAttendanceLabel1.getBackground().getRed()!=23 && viewAttendanceLabel1.getBackground().getGreen()!=162) {
 
-        if (emergencyLabel.getBackground().getBlue()!=184 && emergencyLabel.getBackground().getRed()!=23 && emergencyLabel.getBackground().getGreen()!=162) {
+            viewAttendanceLabel1.setBackground(original);
 
-            emergencyLabel.setBackground(original);
         }
-    }//GEN-LAST:event_emergencyLabelMouseExited
+    }//GEN-LAST:event_viewAttendanceLabel1MouseExited
 
-    private void submit_feedback_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_feedback_btnActionPerformed
+    private void unit_view_status_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_view_status_labelMouseClicked
         // TODO add your handling code here:
+          setAllBlack();
+        unit_view_status_label.setBackground(clicked);
+        status_view = new head_status_view();
         loadingPanel.removeAll();
-        sub_feed = new submit_feedback();
-        loadingPanel.add(sub_feed,BorderLayout.CENTER);
+        loadingPanel.add(status_view, BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
-    }//GEN-LAST:event_submit_feedback_btnActionPerformed
+        
+        
+        
+        
+        String query = "SELECT w.c_id,c.p_firstname,c.p_midname,c.p_lastname,end_date(w.c_id,w.unit_code) AS end_date FROM works_for w INNER JOIN convicted_prisoner c ON w.c_id=c.c_id WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+        ResultSet rs;
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, current_head_id);
+            
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+                prison_work = new prisoners_working_in_unit_panel();
+                String pr_id = rs.getString("c_id");
+                System.out.println(pr_id);
+                String first_name = rs.getString("p_firstname");
+                String mid_name = rs.getString("p_midname");
+                String last_name = rs.getString("p_lastname");
+                String fullname = (first_name+" "+mid_name+" "+last_name);
+                String end_date1 = rs.getString("end_date");
+                prison_work.fetch_id_label.setText(pr_id);
+                prison_work.fetch_name_label.setText(fullname);
+                prison_work.fetch_end_date_label.setText(end_date1);
+               
+                status_view.active_prisoner_panel.add(prison_work);
+                status_view.active_prisoner_panel.revalidate();
+                status_view.active_prisoner_panel.repaint();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_unit_view_status_labelMouseClicked
 
-    private void mark_Attendance_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mark_Attendance_buttonActionPerformed
+    private void unit_view_status_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_view_status_labelMouseEntered
+        // TODO add your handling code here:
+          if (unit_view_status_label.getBackground().getBlue()!=184 && unit_view_status_label.getBackground().getRed()!=23 && unit_view_status_label.getBackground().getGreen()!=162) {
+
+            unit_view_status_label.setBackground(focusColor);
+        }
+    }//GEN-LAST:event_unit_view_status_labelMouseEntered
+
+    private void unit_view_status_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_view_status_labelMouseExited
+        // TODO add your handling code here:
+         if (unit_view_status_label.getBackground().getBlue()!=184 && unit_view_status_label.getBackground().getRed()!=23 && unit_view_status_label.getBackground().getGreen()!=162) {
+
+            unit_view_status_label.setBackground(original);
+        }
+    }//GEN-LAST:event_unit_view_status_labelMouseExited
+
+    private void mark_attendance_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mark_attendance_panelMouseClicked
         // TODO add your handling code here:
         loadingPanel.removeAll();
         mark_Attendance = new Mark_Attendance();
         loadingPanel.add(mark_Attendance , BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
+    }//GEN-LAST:event_mark_attendance_panelMouseClicked
 
-    }//GEN-LAST:event_mark_Attendance_buttonActionPerformed
+    private void submit_feedback_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_feedback_panelMouseClicked
+        // TODO add your handling code here:
+        loadingPanel.removeAll();
+        sub_feed = new submit_feedback();
+        loadingPanel.add(sub_feed,BorderLayout.CENTER);
+        loadingPanel.revalidate();
+        loadingPanel.repaint();
+    }//GEN-LAST:event_submit_feedback_panelMouseClicked
+
+    private void head_logout_logo_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_head_logout_logo_labelMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new loginpage.Login().setVisible(true);
+    }//GEN-LAST:event_head_logout_logo_labelMouseClicked
+
+    private void mark_attendance_panelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mark_attendance_panelMouseEntered
+        // TODO add your handling code here:
+        mark_attendance_panel.setBackground(new Color(153, 153, 153));
+    }//GEN-LAST:event_mark_attendance_panelMouseEntered
+
+    private void mark_attendance_panelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mark_attendance_panelMouseExited
+        // TODO add your handling code here:
+         mark_attendance_panel.setBackground(new Color(240, 240, 240));
+    }//GEN-LAST:event_mark_attendance_panelMouseExited
+
+    private void submit_feedback_panelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_feedback_panelMouseEntered
+        // TODO add your handling code here:
+        submit_feedback_panel.setBackground(new Color(153, 153, 153));
+    }//GEN-LAST:event_submit_feedback_panelMouseEntered
+
+    private void submit_feedback_panelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_feedback_panelMouseExited
+        // TODO add your handling code here:
+        submit_feedback_panel.setBackground(new Color(240, 240, 240));
+    }//GEN-LAST:event_submit_feedback_panelMouseExited
 
     /**
      * @param args the command line arguments
@@ -868,31 +1086,36 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel addRequirementsLabel;
     private javax.swing.JLabel attendanceMenuLabel;
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JLabel emergencyLabel;
     private javax.swing.JLabel head_id_label;
+    private javax.swing.JLabel head_logout_logo_label;
     private javax.swing.JLabel head_name_label;
+    private javax.swing.JPanel head_notification_panel;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel loadingPanel;
-    private javax.swing.JButton mark_Attendance_button;
+    private javax.swing.JPanel mark_attendance_panel;
     private javax.swing.JLabel modifyAttendanceLabel;
     private javax.swing.JLabel modifyPrisoner;
     private javax.swing.JLabel modifyRequirementsLabel;
@@ -900,9 +1123,12 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel prisonerLabel;
     private javax.swing.JLabel requirementsMenuLabel;
     private javax.swing.JLabel schedulePrisonerLabel;
-    private javax.swing.JButton submit_feedback_btn;
+    private javax.swing.JPanel submit_feedback_panel;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel viewAttendanceLabel;
+    private javax.swing.JLabel unit_label;
+    private javax.swing.JLabel unit_reports_label;
+    private javax.swing.JLabel unit_view_status_label;
+    private javax.swing.JLabel viewAttendanceLabel1;
     private javax.swing.JLabel viewRequirementsLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,12 +56,12 @@ public class superintendant_view_prison_history_panel extends javax.swing.JPanel
         jLabel8 = new javax.swing.JLabel();
         fetch_type = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        sort_by_performance_button = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         fetch_days_to_release_label = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         fetch_convictiondate_label = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         loading_history_panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -79,35 +79,26 @@ public class superintendant_view_prison_history_panel extends javax.swing.JPanel
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel3.setText("Name");
-        horizontal_prisoner_details_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 60, -1));
+        horizontal_prisoner_details_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 60, -1));
 
         fetch_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_name.setText("Mayuresh N. Joshi");
-        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setText("Type");
-        horizontal_prisoner_details_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         fetch_type.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_type.setText("Rigorous");
-        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, 20));
+        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 20));
 
         add(horizontal_prisoner_details_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 40));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 27)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Work History");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 150, 30));
-
-        sort_by_performance_button.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        sort_by_performance_button.setText("Sort By Performance");
-        sort_by_performance_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sort_by_performance_buttonActionPerformed(evt);
-            }
-        });
-        add(sort_by_performance_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 270, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 150, 30));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -133,14 +124,14 @@ public class superintendant_view_prison_history_panel extends javax.swing.JPanel
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 320, 110));
 
-        loading_history_panel.setLayout(new javax.swing.BoxLayout(loading_history_panel, javax.swing.BoxLayout.Y_AXIS));
-        add(loading_history_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1110, 510));
-    }// </editor-fold>//GEN-END:initComponents
+        jScrollPane1.setHorizontalScrollBar(null);
 
-    private void sort_by_performance_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sort_by_performance_buttonActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_sort_by_performance_buttonActionPerformed
+        loading_history_panel.setBackground(new java.awt.Color(255, 255, 255));
+        loading_history_panel.setLayout(new javax.swing.BoxLayout(loading_history_panel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(loading_history_panel);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1130, 540));
+    }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -157,7 +148,7 @@ public class superintendant_view_prison_history_panel extends javax.swing.JPanel
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPanel loading_history_panel;
-    private javax.swing.JButton sort_by_performance_button;
     // End of variables declaration//GEN-END:variables
 }

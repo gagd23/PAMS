@@ -5,6 +5,7 @@
  */
 package Dashboards;
 
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -16,13 +17,43 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
     /**
      * Creates new form jailor_view_prisoner_history
      */
-    
-    private know_more_panel know;
-    JPanel view;
-   
-    public jailor_view_prisoner_history(JPanel ref) {
+    JPanel ref;
+    String p_id;
+    public jailor_view_prisoner_history(JPanel panel,String c_id) {
         initComponents();
-        view = ref;
+        ref = panel;
+        p_id = c_id;
+    }
+    
+     public void initProgress(javax.swing.JPanel objPanel,int max){
+    
+        
+        ProgressPanel jpProgress = new ProgressPanel();
+        objPanel.removeAll();
+        objPanel.add(jpProgress,BorderLayout.CENTER);
+        objPanel.revalidate();
+        objPanel.repaint();
+       drawProgress(jpProgress,max);
+    }
+   public void drawProgress(ProgressPanel objPanel ,int max){
+     
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <= max; i++) {
+                    try {
+                        objPanel.updateProgress(i);
+                        objPanel.repaint();
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        System.out.println("Exception");
+                    }
+                    // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            }
+
+        }).start();
+
     }
 
     /**
@@ -34,104 +65,130 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        fetch_no_of_times_worked_label1 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        fetch_unit_name_label1 = new javax.swing.JLabel();
-        know_more_button1 = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        fetch_no_of_times_worked_label4 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        fetch_unit_name_label4 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         conduct_load_panel1 = new javax.swing.JPanel();
         performance_load_panel1 = new javax.swing.JPanel();
         attendance_load_panel1 = new javax.swing.JPanel();
+        know_more_button = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel16.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel16.setText("No Of Times Worked");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, -1));
-
-        fetch_no_of_times_worked_label1.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
-        fetch_no_of_times_worked_label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        fetch_no_of_times_worked_label1.setText("3");
-        jPanel3.add(fetch_no_of_times_worked_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setText("Conduct");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
-
-        fetch_unit_name_label1.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
-        fetch_unit_name_label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        fetch_unit_name_label1.setText("Carpentry");
-        jPanel3.add(fetch_unit_name_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
-
-        know_more_button1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        know_more_button1.setText("Know More ->");
-        know_more_button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                know_more_button1ActionPerformed(evt);
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel6MouseExited(evt);
             }
         });
-        jPanel3.add(know_more_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel18.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel18.setText("Unit");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 50, -1));
+        jLabel22.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel22.setText("No Of Times Worked");
+        jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, -1));
 
-        jLabel19.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel19.setText("Performance");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 10, -1, -1));
+        fetch_no_of_times_worked_label4.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
+        fetch_no_of_times_worked_label4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        fetch_no_of_times_worked_label4.setText("3");
+        jPanel6.add(fetch_no_of_times_worked_label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setText("Attendance");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        jLabel23.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel23.setText("Conduct");
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
+
+        fetch_unit_name_label4.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
+        fetch_unit_name_label4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        fetch_unit_name_label4.setText("Carpentry");
+        jPanel6.add(fetch_unit_name_label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel24.setText("Unit");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 50, -1));
+
+        jLabel25.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel25.setText("Performance");
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 10, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel26.setText("Attendance");
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 10, -1, -1));
 
         conduct_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        conduct_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(conduct_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 120, 100));
+        conduct_load_panel1.setLayout(new java.awt.BorderLayout());
+        jPanel6.add(conduct_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, 120, 100));
 
         performance_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        performance_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(performance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 120, 100));
+        performance_load_panel1.setLayout(new java.awt.BorderLayout());
+        jPanel6.add(performance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 120, 100));
 
         attendance_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        attendance_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(attendance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 120, 100));
+        attendance_load_panel1.setLayout(new java.awt.BorderLayout());
+        jPanel6.add(attendance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 120, 100));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 160));
+        know_more_button.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        know_more_button.setText("Know More ->");
+        jPanel6.add(know_more_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 150, 30));
+
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 160));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void know_more_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_know_more_button1ActionPerformed
-       // TODO add your handling code here:
-       know = new know_more_panel();
-       view.removeAll();
-       view.add(know);
-       view.revalidate();
-       view.repaint();    
-    }//GEN-LAST:event_know_more_button1ActionPerformed
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+        // TODO add your handling code here:
+        //this.setBackground(new Color(240, 240, 240));
+
+    }//GEN-LAST:event_jPanel6MouseEntered
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        // TODO add your handling code here:
+        //this.setBackground(Color.WHITE);
+    }//GEN-LAST:event_jPanel6MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel attendance_load_panel1;
-    private javax.swing.JPanel conduct_load_panel1;
-    private javax.swing.JLabel fetch_no_of_times_worked_label1;
-    private javax.swing.JLabel fetch_unit_name_label1;
+    public javax.swing.JPanel attendance_load_panel1;
+    public javax.swing.JPanel conduct_load_panel1;
+    public javax.swing.JLabel fetch_no_of_times_worked_label1;
+    public javax.swing.JLabel fetch_no_of_times_worked_label2;
+    public javax.swing.JLabel fetch_no_of_times_worked_label3;
+    public javax.swing.JLabel fetch_no_of_times_worked_label4;
+    public javax.swing.JLabel fetch_unit_name_label1;
+    public javax.swing.JLabel fetch_unit_name_label2;
+    public javax.swing.JLabel fetch_unit_name_label3;
+    public javax.swing.JLabel fetch_unit_name_label4;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    public javax.swing.JPanel jPanel3;
-    private javax.swing.JButton know_more_button1;
-    private javax.swing.JPanel performance_load_panel1;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JButton know_more_button;
+    public javax.swing.JButton know_more_button1;
+    public javax.swing.JButton know_more_button2;
+    public javax.swing.JButton know_more_button3;
+    public javax.swing.JPanel performance_load_panel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,6 +75,8 @@ public class requirement_panel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel1.setText("to");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 13, 20, -1));
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered

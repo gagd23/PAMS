@@ -56,7 +56,16 @@ public class Allocate_work extends javax.swing.JPanel {
       //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
 
        
-        String query = "SELECT u.unit_code,n.unit_name,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions FROM feedback h,head u INNER JOIN unit n ON n.unit_code=u.unit_code WHERE h.head_id=u.head_id AND c_id=? GROUP BY head_id ORDER BY suggestions DESC limit 3;"; 
+        String query = "SELECT u.unit_code,n.unit_name,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions \n" +
+"FROM feedback h,head u \n" +
+"INNER JOIN unit n ON n.unit_code=u.unit_code \n" +
+"WHERE h.head_id=u.head_id AND c_id=?\n" +
+"GROUP BY head_id \n" +
+"HAVING head_id NOT IN(SELECT DISTINCT head_id FROM feedback WHERE sdate NOT IN\n" +
+"(SELECT sdate FROM feedback h,head u INNER JOIN unit n ON n.unit_code=u.unit_code\n" +
+"WHERE h.head_id=u.head_id AND sdate + INTERVAL (SELECT feedback_end(h.c_id,h.head_id,h.sdate)) DAY < CURRENT_DATE() - INTERVAL 15 DAY )) \n" +
+"AND head_id IN(SELECT head_id FROM head WHERE unit_code NOT IN(SELECT unit_code FROM works_for WHERE c_id=?))\n" +
+"ORDER BY suggestions DESC limit 3;"; 
         
         System.out.println(c_ide);
         
@@ -66,6 +75,7 @@ public class Allocate_work extends javax.swing.JPanel {
         try {
             pst = con.prepareStatement(query);
             pst.setString(1, c_ide);
+            pst.setString(2, c_ide);
             ResultSet rs = pst.executeQuery();
         if(!rs.next())
         {
@@ -270,17 +280,14 @@ public class Allocate_work extends javax.swing.JPanel {
 
         suggestion3.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         suggestion3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        suggestion3.setText("Smithy");
         jPanel4.add(suggestion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 110, -1));
 
         suggestion1.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         suggestion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        suggestion1.setText("Carpentry");
         jPanel4.add(suggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
 
         suggestion2.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         suggestion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        suggestion2.setText("Cooking");
         jPanel4.add(suggestion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 110, -1));
 
         progress_panel.setBackground(new java.awt.Color(255, 255, 255));

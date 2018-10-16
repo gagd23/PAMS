@@ -56,12 +56,8 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         unit_name_label = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        workhrs_start_time2 = new javax.swing.JLabel();
-        workhrs_end_time1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        workhrs_start_time1 = new javax.swing.JLabel();
-        workhrs_end_time2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        working_hrs_load_panel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -105,41 +101,10 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel3.setText("Working Hours");
         unit_details_display.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
 
-        workhrs_start_time2.setBackground(new java.awt.Color(255, 255, 255));
-        workhrs_start_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        workhrs_start_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        workhrs_start_time2.setText("14:00");
-        workhrs_start_time2.setOpaque(true);
-        unit_details_display.add(workhrs_start_time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 70, 30));
+        working_hrs_load_panel.setLayout(new javax.swing.BoxLayout(working_hrs_load_panel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane3.setViewportView(working_hrs_load_panel);
 
-        workhrs_end_time1.setBackground(new java.awt.Color(255, 255, 255));
-        workhrs_end_time1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        workhrs_end_time1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        workhrs_end_time1.setText("12:00");
-        workhrs_end_time1.setOpaque(true);
-        unit_details_display.add(workhrs_end_time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 70, 30));
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel6.setText("to");
-        unit_details_display.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 20, 30));
-
-        workhrs_start_time1.setBackground(new java.awt.Color(255, 255, 255));
-        workhrs_start_time1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        workhrs_start_time1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        workhrs_start_time1.setText("10:00");
-        workhrs_start_time1.setOpaque(true);
-        unit_details_display.add(workhrs_start_time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 70, 30));
-
-        workhrs_end_time2.setBackground(new java.awt.Color(255, 255, 255));
-        workhrs_end_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        workhrs_end_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        workhrs_end_time2.setText("17:00");
-        workhrs_end_time2.setOpaque(true);
-        unit_details_display.add(workhrs_end_time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 70, 30));
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel9.setText("to");
-        unit_details_display.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 20, 30));
+        unit_details_display.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 70));
 
         add(unit_details_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 160));
 
@@ -306,12 +271,11 @@ public class add_Requirement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -320,9 +284,6 @@ public class add_Requirement extends javax.swing.JPanel {
     private javax.swing.JPanel panel_text;
     public javax.swing.JPanel unit_details_display;
     public javax.swing.JLabel unit_name_label;
-    public javax.swing.JLabel workhrs_end_time1;
-    public javax.swing.JLabel workhrs_end_time2;
-    public javax.swing.JLabel workhrs_start_time1;
-    public javax.swing.JLabel workhrs_start_time2;
+    public javax.swing.JPanel working_hrs_load_panel;
     // End of variables declaration//GEN-END:variables
 }

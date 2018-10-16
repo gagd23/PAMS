@@ -185,19 +185,19 @@ public class superintendant_view_prisoner extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel10.setText("Name");
-        horizontal_prisoner_details_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 60, -1));
+        horizontal_prisoner_details_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 60, -1));
 
         fetch_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_name.setText("Mayuresh N. Joshi");
-        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel11.setText("Type");
-        horizontal_prisoner_details_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         fetch_type.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_type.setText("Rigorous");
-        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 20));
+        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 20));
 
         add(horizontal_prisoner_details_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 40));
     }// </editor-fold>//GEN-END:initComponents
@@ -240,10 +240,58 @@ public class superintendant_view_prisoner extends javax.swing.JPanel {
         parentPanel.revalidate();
         parentPanel.repaint();
         
-         work = new prisoner_work_details();
+        
+       
+       
+       String query = "SELECT f.c_id,u.unit_name,ROUND(AVG(f.attendance)) AS attendance,ROUND(AVG(f.performance)) AS performance,ROUND(AVG(f.conduct)) AS CONDUCT,count(f.head_id) AS count\n" +
+"FROM feedback f \n" +
+"INNER JOIN head h ON f.head_id=h.head_id\n" +
+"INNER JOIN unit u ON u.unit_code=h.unit_code \n" +
+"WHERE c_id=?\n" +
+"GROUP BY f.head_id\n" +
+"ORDER BY count DESC;";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setString(1, p_id);
+          
+            ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+       
+             work = new prisoner_work_details(p_id);
         view.loading_history_panel.add(work);
         view.loading_history_panel.revalidate();
         view.loading_history_panel.repaint();
+            
+           String unitname = rs.getString("unit_name");
+           int count = rs.getInt("count");
+           int performance = rs.getInt("performance");
+           int attendance  = rs.getInt("attendance");
+           int conduct = rs.getInt("conduct");
+           
+         work.initProgress(work.performance_load_panel1, performance);
+         work.initProgress(work.attendance_load_panel1,attendance);
+         work.initProgress(work.conduct_load_panel1,conduct);
+         
+         work.fetch_unit_name_label1.setText(unitname);
+         work.fetch_no_of_times_worked_label1.setText(""+count);
+         
+           
+          //  unitname = rs.getString("unit_name");     
+      //  initProgress(attendance_load_panel1, suggest);
+        
+         
+         //  suggest  =  rs.getInt("suggestions");
+           // unitname = rs.getString("unit_name");
+          // initProgress(conduct_load_panel1, suggest);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         
+       
         
         
     }//GEN-LAST:event_view_prison_history_panelMouseClicked
