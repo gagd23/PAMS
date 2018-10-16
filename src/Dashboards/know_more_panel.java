@@ -14,8 +14,18 @@ public class know_more_panel extends javax.swing.JPanel {
     /**
      * Creates new form know_more_panel
      */
-    public know_more_panel() {
+    
+    String unit_name,s_date;
+    int no_of_days;
+    public know_more_panel(String u_name,String date,int days) {
         initComponents();
+       unit_name = u_name;
+       s_date = date;
+       no_of_days = days;
+       
+       fetch_unit_name_label1.setText(unit_name);
+       fetch_from_date_label.setText(s_date);
+       fetch_no_of_days_worked_label.setText(""+no_of_days);
     }
 
     /**
@@ -42,8 +52,13 @@ public class know_more_panel extends javax.swing.JPanel {
         fetch_no_of_days_worked_label = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(980, 160));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setMaximumSize(new java.awt.Dimension(980, 160));
+        jPanel3.setMinimumSize(new java.awt.Dimension(980, 160));
+        jPanel3.setPreferredSize(new java.awt.Dimension(980, 160));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
@@ -110,9 +125,9 @@ public class know_more_panel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel attendance_load_panel1;
     private javax.swing.JPanel conduct_load_panel1;
-    private javax.swing.JLabel fetch_from_date_label;
-    private javax.swing.JLabel fetch_no_of_days_worked_label;
-    private javax.swing.JLabel fetch_unit_name_label1;
+    public javax.swing.JLabel fetch_from_date_label;
+    public javax.swing.JLabel fetch_no_of_days_worked_label;
+    public javax.swing.JLabel fetch_unit_name_label1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

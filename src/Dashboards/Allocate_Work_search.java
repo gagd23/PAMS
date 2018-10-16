@@ -36,18 +36,20 @@ public class Allocate_Work_search extends javax.swing.JPanel {
      private jailor_Dash jd;
      JPanel loadingPanel;
      private String c_id;
+     private search_load_panel_allocate_work search;
      //PreparedStatement pst2;
      //ResultSet rs2;
      //public String c_id;
-  
      
-    public Allocate_Work_search() {
+     
+    public Allocate_Work_search(JPanel ref) {
         initComponents();
-        
+        loadingPanel=ref;
         
        
         MyPrisonConnection o = new MyPrisonConnection();
         con = o.getMyConnection();
+//        c_id = p_id;
        // fetch();
     }
 
@@ -91,6 +93,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         searchtxtf = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
+        loadin_panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,6 +118,9 @@ public class Allocate_Work_search extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchtxtfKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchtxtfKeyTyped(evt);
+            }
         });
         jPanel1.add(searchtxtf, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 260, 30));
 
@@ -127,7 +133,12 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         });
         jPanel1.add(search_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1110, 740));
+        loadin_panel.setBackground(new java.awt.Color(255, 255, 255));
+        loadin_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        loadin_panel.setLayout(new javax.swing.BoxLayout(loadin_panel, javax.swing.BoxLayout.Y_AXIS));
+        jPanel1.add(loadin_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 750, 520));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1110, 750));
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchtxtfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtxtfActionPerformed
@@ -152,24 +163,16 @@ public class Allocate_Work_search extends javax.swing.JPanel {
          try {
              pst = con.prepareStatement(qString);
              pst.setString(1, searchtxtf.getText());
-             // pst.setString(2, searchtxtf.getText()+"%");
-             //  pst.setString(3, searchtxtf.getText()+"%");
+            
              
              
              ResultSet rs = pst.executeQuery();
-             //String s = rs.getString("name");
-             //System.out.println(s);
+             
              
               
                  
-             if(rs.next()){
-                  
-     
-              //    if(Integer.parsers)
-                 
-                      
-                             
-              String c_id  =  rs.getString("c_id");
+             if(rs.next()){                
+             String c_id  =  rs.getString("c_id");
              String first_name = rs.getString("p_firstname");
              String middle_name = rs.getString("p_midname");
               String last_name = rs.getString("p_lastname");
@@ -177,7 +180,8 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              String qualification = rs.getString("p_qualification");
              String type = rs.getString("c_type");
              
-             loadingPanel = (JPanel)this.getParent();
+             String full_name = first_name+" "+middle_name+" "+last_name;
+                     //loadingPanel = (JPanel)this.getParent();
                    Allocate_work aw = new Allocate_work(c_id);
                  loadingPanel.removeAll();
                  
@@ -186,7 +190,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                   loadingPanel.repaint();
                   
              aw.fetch_id.setText(c_id);
-             aw.fetch_name.setText(first_name+" "+middle_name+" "+last_name);
+             aw.fetch_name.setText(full_name);
              aw.fetch_type.setText(type);
              aw.fetch_occupation.setText(occupation);
              aw.fetch_qualification.setText(qualification);
@@ -198,14 +202,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
                  JOptionPane.showMessageDialog(null, "Record not found.");
              }
              
-         /*     String c_id    =     rs.getString("c_id");
-              pst1 = con.prepareStatement(q);
-              pst1.setString(1, c_id);
-             ResultSet rs1 = pst1.executeQuery();
-             
-             if () {
-                 
-             }*/
+      
          
         } catch (SQLException ex) {
             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,11 +218,84 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         
         //String query = "SELECT "
     }//GEN-LAST:event_searchtxtfKeyReleased
+//OD113618036216704000
+    private void searchtxtfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtfKeyTyped
+        // TODO add your handling code here:
+        String searchstr=searchtxtf.getText();
+        
+        if(evt.getKeyChar()==java.awt.event.KeyEvent.VK_BACK_SPACE)
+        {
+            System.out.println("Im in BACKSPACE");
+            
+        }
+        else
+        {
+            searchstr=searchtxtf.getText()+evt.getKeyChar();
+            
+        }
+        System.out.println(searchstr+" "+searchstr.length());
+        
+        if(searchstr.isEmpty())
+        {
+            System.out.println("in if....");
+            loadin_panel.removeAll();
+            loadin_panel.revalidate();
+            loadin_panel.repaint();
+        }
+        else
+        {
+            System.out.println("in else.....");
+        String query = "SELECT c_id,p_firstname,p_midname,p_lastname FROM convicted_prisoner WHERE p_firstname LIKE '"+searchstr+"%'";
+        PreparedStatement pst;
+        ResultSet rs;
+        String pris,fir_name,mi_name,l_nm;
+         try {
+             pst = con.prepareStatement(query);
+             // searchtxtf.getText()+"%");
+             rs = pst.executeQuery();
+             loadin_panel.removeAll();
+             while(rs.next()){
+                   
+                   pris = rs.getString("c_id");
+                   fir_name = rs.getString("p_firstname");
+                   mi_name = rs.getString("p_midname");
+                   l_nm = rs.getString("p_lastname");
+                   
+                   search = new search_load_panel_allocate_work(pris,loadingPanel);
+                   
+                   search.fetch_id_label.setText(pris);
+                   search.fetch_name_label.setText(fir_name+" "+mi_name+" "+l_nm);
+ 
+                   loadin_panel.add(search);
+                   loadin_panel.revalidate();
+                   loadin_panel.repaint();
+               /*   prison_work = new prisoners_working_in_unit_panel();
+                String pr_id = rs.getString("c_id");
+                System.out.println(pr_id);
+                String first_name = rs.getString("p_firstname");
+                String mid_name = rs.getString("p_midname");
+                String last_name = rs.getString("p_lastname");
+                String fullname = (first_name+" "+mid_name+" "+last_name);
+                String end_date1 = rs.getString("end_date");
+                prison_work.fetch_id_label.setText(pr_id);
+                prison_work.fetch_name_label.setText(fullname);
+                prison_work.fetch_end_date_label.setText(end_date1);
+               
+                status_view.active_prisoner_panel.add(prison_work);
+                status_view.active_prisoner_panel.revalidate();
+                status_view.active_prisoner_panel.repaint();*/
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }
+    }//GEN-LAST:event_searchtxtfKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel loadin_panel;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchtxtf;
     // End of variables declaration//GEN-END:variables

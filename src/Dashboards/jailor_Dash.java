@@ -21,9 +21,11 @@ public class jailor_Dash extends javax.swing.JFrame {
     /**
      * Creates new form jailor_Dash
      */
+    String c_id;
     public jailor_Dash() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+     
     }
     
     private final Color originalColor = new Color(52, 58, 64);
@@ -415,7 +417,7 @@ public class jailor_Dash extends javax.swing.JFrame {
         //viewPrisoner.setBackground(new Color(52, 58, 64));
         
         loadingPanel.removeAll();
-        loadingPanel.add(new Allocate_Work_search(), BorderLayout.CENTER);
+        loadingPanel.add(new Allocate_Work_search(loadingPanel), BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
         

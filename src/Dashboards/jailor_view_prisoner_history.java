@@ -5,7 +5,14 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -19,10 +26,16 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
      */
     JPanel ref;
     String p_id;
+    private know_more_panel know;
+    private jailor_view_prison_history view_history;
+    Connection con;
     public jailor_view_prisoner_history(JPanel panel,String c_id) {
         initComponents();
+         MyPrisonConnection o = new MyPrisonConnection();
+             con = o.getMyConnection();
         ref = panel;
         p_id = c_id;
+        
     }
     
      public void initProgress(javax.swing.JPanel objPanel,int max){
@@ -142,6 +155,11 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
 
         know_more_button.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         know_more_button.setText("Know More ->");
+        know_more_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                know_more_buttonActionPerformed(evt);
+            }
+        });
         jPanel6.add(know_more_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 150, 30));
 
         add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 160));
@@ -158,37 +176,56 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
         //this.setBackground(Color.WHITE);
     }//GEN-LAST:event_jPanel6MouseExited
 
+    private void know_more_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_know_more_buttonActionPerformed
+        // TODO add your handling code here:
+        PreparedStatement pst;
+        ResultSet rs;
+   
+        String query = "SELECT c_id,sdate,no_of_days FROM feedback WHERE c_id=? AND head_id= (SELECT head_id FROM head WHERE unit_code = (SELECT unit_code FROM unit WHERE unit_name LIKE ?));";
+        try {
+              String u_name = fetch_unit_name_label4.getText();
+           
+            pst = con.prepareStatement(query);
+            pst.setString(1, p_id);
+            pst.setString(2, u_name);
+            rs = pst.executeQuery();
+            
+           
+            ref.removeAll();
+            while (rs.next()) {
+                 String from_date = rs.getString("sdate");
+            int no_of_days = rs.getInt("no_of_days");
+                System.out.println(from_date);
+                System.out.println(no_of_days);
+              know = new know_more_panel(u_name,from_date,no_of_days);
+              
+              
+              ref.add(know);
+              
+                
+            }
+            ref.revalidate();
+              ref.repaint();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(jailor_view_prisoner_history.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_know_more_buttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel attendance_load_panel1;
     public javax.swing.JPanel conduct_load_panel1;
-    public javax.swing.JLabel fetch_no_of_times_worked_label1;
-    public javax.swing.JLabel fetch_no_of_times_worked_label2;
-    public javax.swing.JLabel fetch_no_of_times_worked_label3;
     public javax.swing.JLabel fetch_no_of_times_worked_label4;
-    public javax.swing.JLabel fetch_unit_name_label1;
-    public javax.swing.JLabel fetch_unit_name_label2;
-    public javax.swing.JLabel fetch_unit_name_label3;
     public javax.swing.JLabel fetch_unit_name_label4;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JButton know_more_button;
-    public javax.swing.JButton know_more_button1;
-    public javax.swing.JButton know_more_button2;
-    public javax.swing.JButton know_more_button3;
     public javax.swing.JPanel performance_load_panel1;
     // End of variables declaration//GEN-END:variables
 }

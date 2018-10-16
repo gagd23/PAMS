@@ -32,6 +32,7 @@ public class Allocate_work extends javax.swing.JPanel {
     Connection con;
            
     private String c_ide;
+    String p_name,p_occupation,p_qualification,p_type;
     public Allocate_work() {
         initComponents();
                
@@ -50,12 +51,48 @@ public class Allocate_work extends javax.swing.JPanel {
         MyPrisonConnection o = new MyPrisonConnection();
         con = o.getMyConnection();
      
-        //String query = "SELECT ROUND(AVG(attendance + performance + conduct)/3) AS suggestions FROM feedback";
-         this.c_ide = c_id;
-        
-      //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
-
-       
+          c_ide = c_id;
+        PreparedStatement pst1;
+        ResultSet rs1;
+        String query1 = "SELECT p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE c_id = ?";
+        try { 
+            pst1 = con.prepareStatement(query1);
+            pst1.setString(1, c_ide);
+            rs1 = pst1.executeQuery();
+            
+            while(rs1.next())
+            {
+            String fir_nm = rs1.getString("p_firstname");
+            String mid_nm = rs1.getString("p_midname");
+            String las_nm = rs1.getString("p_lastname");
+            
+            String occ = rs1.getString("p_occupation");
+            String qua = rs1.getString("p_qualification");
+            String type1 = rs1.getString("c_type");
+            fetch_id.setText(c_ide);
+            fetch_name.setText(fir_nm+" "+mid_nm+" "+las_nm);
+            fetch_occupation.setText(occ);
+            fetch_qualification.setText(qua);
+            fetch_type.setText(type1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+         
+       /*  p_name = name;
+         p_occupation = occupation;
+         p_qualification = qualification;
+         p_type = type;
+         
+         fetch_name.setText(p_name);
+         fetch_occupation.setText(p_occupation);
+         fetch_qualification.setText(p_qualification);
+         fetch_type.setText(p_type);*/
+         
+         
         String query = "SELECT u.unit_code,n.unit_name,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions \n" +
 "FROM feedback h,head u \n" +
 "INNER JOIN unit n ON n.unit_code=u.unit_code \n" +
@@ -67,7 +104,7 @@ public class Allocate_work extends javax.swing.JPanel {
 "AND head_id IN(SELECT head_id FROM head WHERE unit_code NOT IN(SELECT unit_code FROM works_for WHERE c_id=?))\n" +
 "ORDER BY suggestions DESC limit 3;"; 
         
-        System.out.println(c_ide);
+        
         
         int suggest=0;
        // String unitname;
