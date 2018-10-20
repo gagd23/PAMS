@@ -105,10 +105,11 @@ private Convicted_panel   c;
         jPanel1 = new javax.swing.JPanel();
         foregroundPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         registration_submit_btn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         fname_text = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         mname_text = new javax.swing.JTextField();
@@ -116,6 +117,8 @@ private Convicted_panel   c;
         lname_text = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         dob_txt = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
+        mname_text1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         state_txt = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
@@ -156,11 +159,23 @@ private Convicted_panel   c;
         titlePanel.setBackground(new java.awt.Color(204, 255, 255));
         titlePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Prisoner Registration Form");
-        titlePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 16, -1, 40));
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("C004");
+        titlePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 23, 100, 30));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel10.setText("ID");
+        titlePanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 16, -1, 40));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel11.setText("Prisoner Form ");
+        titlePanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 16, -1, 40));
 
         foregroundPanel.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 70));
 
@@ -177,12 +192,6 @@ private Convicted_panel   c;
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Personal Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("First name");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         fname_text.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         fname_text.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -238,6 +247,26 @@ private Convicted_panel   c;
         dob_txt.setMinimumSize(new java.awt.Dimension(10, 10));
         dob_txt.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(dob_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 170, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel9.setText("First name");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        mname_text1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        mname_text1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        mname_text1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mname_text1FocusLost(evt);
+            }
+        });
+        mname_text1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mname_text1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(mname_text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
 
         foregroundPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 90, 410, 240));
 
@@ -815,6 +844,14 @@ private Convicted_panel   c;
         }
     }//GEN-LAST:event_state_txtItemStateChanged
 
+    private void mname_text1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mname_text1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mname_text1FocusLost
+
+    private void mname_text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mname_text1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mname_text1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -823,6 +860,9 @@ private Convicted_panel   c;
     private com.toedter.calendar.JDateChooser dob_txt;
     private javax.swing.JTextField fname_text;
     private javax.swing.JPanel foregroundPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
@@ -831,10 +871,9 @@ private Convicted_panel   c;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -845,6 +884,7 @@ private Convicted_panel   c;
     private javax.swing.JTextField lname_text;
     private javax.swing.JTextField locality_text;
     private javax.swing.JTextField mname_text;
+    private javax.swing.JTextField mname_text1;
     private javax.swing.JComboBox<String> nationality_txt;
     private javax.swing.JTextField occupation_text;
     private javax.swing.JComboBox<String> qualification_text;

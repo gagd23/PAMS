@@ -63,15 +63,16 @@ public class search_load_panel_allocate_work extends javax.swing.JPanel {
 
         fetch_name_label.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_name_label.setText("Name");
-        add(fetch_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 8, -1, -1));
+        add(fetch_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
+        select_btn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         select_btn.setText("Select");
         select_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select_btnActionPerformed(evt);
             }
         });
-        add(select_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+        add(select_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 5, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered

@@ -53,7 +53,7 @@ public class slot_panel extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel6.setText("14:00");
+        jLabel6.setText("15:00");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 30, 210, 40));

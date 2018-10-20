@@ -81,7 +81,6 @@ public class add_Requirement extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        unit_details_display.setBackground(new java.awt.Color(255, 255, 255));
         unit_details_display.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -89,7 +88,6 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel1.setText("Unit");
         unit_details_display.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 30));
 
-        unit_name_label.setBackground(new java.awt.Color(255, 255, 255));
         unit_name_label.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         unit_name_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         unit_name_label.setText("Manufacturing");
@@ -101,12 +99,14 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel3.setText("Working Hours");
         unit_details_display.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 160, 30));
 
+        jScrollPane3.setBorder(null);
+
         working_hrs_load_panel.setLayout(new javax.swing.BoxLayout(working_hrs_load_panel, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane3.setViewportView(working_hrs_load_panel);
 
         unit_details_display.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 70));
 
-        add(unit_details_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 160));
+        add(unit_details_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 160));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "New Requirement Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N

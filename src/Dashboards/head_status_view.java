@@ -39,6 +39,7 @@ public class head_status_view extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         unit_name_label1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         working_hrs_load_panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -115,10 +116,14 @@ public class head_status_view extends javax.swing.JPanel {
         jLabel4.setText("Working Hours");
         unit_details_display1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 30));
 
-        working_hrs_load_panel.setLayout(new javax.swing.BoxLayout(working_hrs_load_panel, javax.swing.BoxLayout.Y_AXIS));
-        unit_details_display1.add(working_hrs_load_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 180, 70));
+        jScrollPane1.setBorder(null);
 
-        add(unit_details_display1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 160));
+        working_hrs_load_panel.setLayout(new javax.swing.BoxLayout(working_hrs_load_panel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(working_hrs_load_panel);
+
+        unit_details_display1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 64));
+
+        add(unit_details_display1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 400, 160));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prisoners", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 26))); // NOI18N
@@ -171,6 +176,7 @@ public class head_status_view extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panel_text;
     public javax.swing.JPanel unit_details_display1;

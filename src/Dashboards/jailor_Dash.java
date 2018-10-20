@@ -94,11 +94,12 @@ public class jailor_Dash extends javax.swing.JFrame {
         loadingPanel.setLayout(new java.awt.BorderLayout());
 
         jailor_notification_panel.setBackground(new java.awt.Color(255, 255, 255));
+        jailor_notification_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jailor_notification_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setText("Notifications");
-        jailor_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 140, 40));
+        jailor_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 200, 40));
 
         loadingPanel.add(jailor_notification_panel, java.awt.BorderLayout.CENTER);
 
@@ -444,7 +445,7 @@ public class jailor_Dash extends javax.swing.JFrame {
         setAllBlack();
         viewPrisonerLabel.setBackground(clickedColor);
         loadingPanel.removeAll();
-        search = new jailor_view_prisoner_search();
+        search = new jailor_view_prisoner_search(loadingPanel);
         loadingPanel.add(search, BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();

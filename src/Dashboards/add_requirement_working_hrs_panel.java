@@ -31,13 +31,11 @@ public class add_requirement_working_hrs_panel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         workhrs_end_time2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(175, 30));
         setMinimumSize(new java.awt.Dimension(175, 30));
         setPreferredSize(new java.awt.Dimension(175, 30));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        workhrs_start_time2.setBackground(new java.awt.Color(255, 255, 255));
         workhrs_start_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         workhrs_start_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         workhrs_start_time2.setText("14:00");
@@ -48,7 +46,6 @@ public class add_requirement_working_hrs_panel extends javax.swing.JPanel {
         jLabel6.setText("to");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 20, 30));
 
-        workhrs_end_time2.setBackground(new java.awt.Color(255, 255, 255));
         workhrs_end_time2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         workhrs_end_time2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         workhrs_end_time2.setText("17:00");

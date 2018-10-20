@@ -28,8 +28,9 @@ public class superintendant_dash extends javax.swing.JFrame {
     }
     
     private superintendant_view_prisoner_search search;
-   
+    private superintendant_modify_prisoner_search_panel modify;
 
+            
     private final Color originalColor = new Color(52, 58, 64);
     private final Color clickedColor = new Color(23, 162, 184);
     private final Color focusColor = new Color(40, 122, 230);
@@ -661,9 +662,9 @@ public class superintendant_dash extends javax.swing.JFrame {
         superintendant_notification_panel.setBackground(new java.awt.Color(255, 255, 255));
         superintendant_notification_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setText("Notifications");
-        superintendant_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 140, 40));
+        superintendant_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 190, 40));
 
         loadingPanel.add(superintendant_notification_panel, java.awt.BorderLayout.CENTER);
 
@@ -701,7 +702,11 @@ public class superintendant_dash extends javax.swing.JFrame {
         setAllBlack();
           modifyPrisoner.setBackground(clickedColor);
          
-          
+          modify = new superintendant_modify_prisoner_search_panel(loadingPanel);
+          loadingPanel.removeAll();
+          loadingPanel.add(modify, BorderLayout.CENTER);
+          loadingPanel.revalidate();
+          loadingPanel.repaint();
          
          
     }//GEN-LAST:event_modifyPrisonerMouseClicked
@@ -731,7 +736,7 @@ public class superintendant_dash extends javax.swing.JFrame {
         setAllBlack();
         viewPrisoner.setBackground(clickedColor);
         
-        search = new superintendant_view_prisoner_search();
+        search = new superintendant_view_prisoner_search(loadingPanel);
         loadingPanel.removeAll();
         loadingPanel.add(search,BorderLayout.CENTER);
         loadingPanel.revalidate();

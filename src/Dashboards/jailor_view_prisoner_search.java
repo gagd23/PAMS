@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,10 +28,13 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
      JPanel loadingpanel;
      Connection con;
      jailor_view_prisoner view;
-    public jailor_view_prisoner_search() {
+     jailor_search_view_prisoner_load_panel search;
+    public jailor_view_prisoner_search(JPanel ref) {
         initComponents();
            MyPrisonConnection o = new MyPrisonConnection();
              con = o.getMyConnection();
+             loadingpanel = ref;
+             
     }
 
     /**
@@ -46,6 +50,8 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         searchtxtf = new javax.swing.JTextField();
         search_button = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        loadin_panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,6 +76,9 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchtxtfKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchtxtfKeyTyped(evt);
+            }
         });
         jPanel1.add(searchtxtf, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 260, 30));
 
@@ -81,6 +90,14 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
             }
         });
         jPanel1.add(search_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        loadin_panel.setBackground(new java.awt.Color(255, 255, 255));
+        loadin_panel.setLayout(new javax.swing.BoxLayout(loadin_panel, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(loadin_panel);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 750, 420));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 670));
     }// </editor-fold>//GEN-END:initComponents
@@ -123,7 +140,7 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
 
                 //    if(Integer.parsers)
                   p_id =   rs.getString("c_id");
-                loadingpanel = (JPanel)this.getParent();
+                
                 loadingpanel.removeAll();
                 view = new jailor_view_prisoner(loadingpanel,p_id);
                 loadingpanel.add(view, BorderLayout.CENTER);
@@ -162,10 +179,84 @@ public class jailor_view_prisoner_search extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_search_buttonActionPerformed
 
+    private void searchtxtfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchtxtfKeyTyped
+        // TODO add your handling code here:
+         String searchstr=searchtxtf.getText();
+        
+        if(evt.getKeyChar()==java.awt.event.KeyEvent.VK_BACK_SPACE)
+        {
+            System.out.println("Im in BACKSPACE");
+            
+        }
+        else
+        {
+            searchstr=searchtxtf.getText()+evt.getKeyChar();
+            
+        }
+        System.out.println(searchstr+" "+searchstr.length());
+        
+        if(searchstr.isEmpty())
+        {
+            System.out.println("in if....");
+            loadin_panel.removeAll();
+            loadin_panel.revalidate();
+            loadin_panel.repaint();
+        }
+        else
+        {
+            System.out.println("in else.....");
+        String query = "SELECT c_id,p_firstname,p_midname,p_lastname,c_type FROM convicted_prisoner WHERE p_firstname LIKE '"+searchstr+"%'";
+        PreparedStatement pst;
+        ResultSet rs;
+        String pris,fir_name,mi_name,l_nm,c_type;
+         try {
+             pst = con.prepareStatement(query);
+             // searchtxtf.getText()+"%");
+             rs = pst.executeQuery();
+             loadin_panel.removeAll();
+             while(rs.next()){
+                   
+                   pris = rs.getString("c_id");
+                   fir_name = rs.getString("p_firstname");
+                   mi_name = rs.getString("p_midname");
+                   l_nm = rs.getString("p_lastname");
+                   c_type = rs.getString("c_type");
+                   search = new jailor_search_view_prisoner_load_panel(loadingpanel,pris);
+                   
+                   search.fetch_id_label.setText(pris);
+                   search.fetch_name_label.setText(fir_name+" "+mi_name+" "+l_nm);
+                   
+                   loadin_panel.add(search);
+                   loadin_panel.revalidate();
+                   loadin_panel.repaint();
+               /*   prison_work = new prisoners_working_in_unit_panel();
+                String pr_id = rs.getString("c_id");
+                System.out.println(pr_id);
+                String first_name = rs.getString("p_firstname");
+                String mid_name = rs.getString("p_midname");
+                String last_name = rs.getString("p_lastname");
+                String fullname = (first_name+" "+mid_name+" "+last_name);
+                String end_date1 = rs.getString("end_date");
+                prison_work.fetch_id_label.setText(pr_id);
+                prison_work.fetch_name_label.setText(fullname);
+                prison_work.fetch_end_date_label.setText(end_date1);
+               
+                status_view.active_prisoner_panel.add(prison_work);
+                status_view.active_prisoner_panel.revalidate();
+                status_view.active_prisoner_panel.repaint();*/
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }
+    }//GEN-LAST:event_searchtxtfKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel loadin_panel;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchtxtf;
     // End of variables declaration//GEN-END:variables

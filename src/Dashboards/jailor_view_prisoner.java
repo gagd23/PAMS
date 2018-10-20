@@ -38,7 +38,7 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
         
          MyPrisonConnection o = new MyPrisonConnection();
              con = o.getMyConnection();
-        parentpanel =  load;
+        
         p_id = c_id;
         
         System.out.println(p_id);
@@ -183,23 +183,23 @@ public class jailor_view_prisoner extends javax.swing.JPanel {
 
         fetch_id.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_id.setText("C001");
-        horizontal_prisoner_details_panel.add(fetch_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(fetch_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel10.setText("Name");
-        horizontal_prisoner_details_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 60, -1));
+        horizontal_prisoner_details_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 60, -1));
 
         fetch_name.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_name.setText("Mayuresh N. Joshi");
-        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(fetch_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel11.setText("Type");
-        horizontal_prisoner_details_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
+        horizontal_prisoner_details_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         fetch_type.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         fetch_type.setText("Rigorous");
-        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 20));
+        horizontal_prisoner_details_panel.add(fetch_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, 20));
 
         jPanel1.add(horizontal_prisoner_details_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 40));
 

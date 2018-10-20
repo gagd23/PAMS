@@ -52,13 +52,16 @@ public class know_more_panel extends javax.swing.JPanel {
         fetch_no_of_days_worked_label = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(980, 160));
+        setMaximumSize(new java.awt.Dimension(1120, 160));
+        setMinimumSize(new java.awt.Dimension(1120, 160));
+        setPreferredSize(new java.awt.Dimension(1120, 160));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setMaximumSize(new java.awt.Dimension(980, 160));
-        jPanel3.setMinimumSize(new java.awt.Dimension(980, 160));
-        jPanel3.setPreferredSize(new java.awt.Dimension(980, 160));
+        jPanel3.setMaximumSize(new java.awt.Dimension(1120, 160));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1120, 160));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1120, 160));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
@@ -116,9 +119,9 @@ public class know_more_panel extends javax.swing.JPanel {
         fetch_no_of_days_worked_label.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         fetch_no_of_days_worked_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         fetch_no_of_days_worked_label.setText("3");
-        jPanel3.add(fetch_no_of_days_worked_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
+        jPanel3.add(fetch_no_of_days_worked_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 160));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 160));
     }// </editor-fold>//GEN-END:initComponents
 
 

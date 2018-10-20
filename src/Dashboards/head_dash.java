@@ -951,12 +951,57 @@ public class head_dash extends javax.swing.JFrame {
         loadingPanel.revalidate();
         loadingPanel.repaint();
         
+        ResultSet rs,rs2,rs3;
+        PreparedStatement pst,pst5,pst6;
+        
+        String query10 = " SELECT u.u_capacity,u.unit_code,u.unit_name,COUNT(r.req_id) AS cnt FROM unit u INNER JOIN requirements r ON u.unit_code=r.unit_code WHERE CURRENT_DATE() BETWEEN r.rstart_date AND reqend(req_id) AND r.unit_code = (SELECT unit_code FROM head WHERE head_id = ?) ;";
+        int capacity,active_req,count;
+        String name;
+        try {
+            pst6= con.prepareStatement(query10);
+            pst6.setString(1, current_head_id);
+            rs3 = pst6.executeQuery();
+            
+            while(rs3.next()){
+                capacity = rs3.getInt("u_capacity");
+                name = rs3.getString("unit_name");
+                count = rs3.getInt("cnt");
+                status_view.fetch_maximum_capacity.setText(""+capacity);
+                status_view.fetch_serving_requirements.setText(""+count);
+                status_view.unit_name_label1.setText(name);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
+        String work_hrs1 = "SELECT TIME_FORMAT(workstart_time,'%H:%i') AS workstart_time,TIME_FORMAT(workend_time,'%H:%i') AS workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+        try {
+            pst5 = con.prepareStatement(work_hrs1);
+            pst5.setString(1, current_head_id);
+            rs2 = pst5.executeQuery();
+            
+            while (rs2.next()) {
+                
+                working = new add_requirement_working_hrs_panel();
+                working.workhrs_start_time2.setText(rs2.getString("workstart_time"));
+                working.workhrs_end_time2.setText(rs2.getString("workend_time"));
+                status_view.working_hrs_load_panel.add(working);
+                status_view.working_hrs_load_panel.revalidate();
+                status_view.working_hrs_load_panel.repaint();
+            }
+            //aRequirement.active_requirement_panel.removeAll();
+            // req_panel = new requirement_panel();
+            // aRequirement.active_requirement_panel.add(req_panel);
+            // aRequirement.active_requirement_panel.add(new requirement_panel());
+            
+            // aRequirement.active_requirement_panel.add(new requirement_panel());
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         String query = "SELECT w.c_id,c.p_firstname,c.p_midname,c.p_lastname,end_date(w.c_id,w.unit_code) AS end_date FROM works_for w INNER JOIN convicted_prisoner c ON w.c_id=c.c_id WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
-        ResultSet rs;
-        PreparedStatement pst;
+        
         try {
             pst = con.prepareStatement(query);
             pst.setString(1, current_head_id);

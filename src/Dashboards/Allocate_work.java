@@ -93,17 +93,8 @@ public class Allocate_work extends javax.swing.JPanel {
          fetch_type.setText(p_type);*/
          
          
-        String query = "SELECT u.unit_code,n.unit_name,h.head_id,ROUND(AVG(h.attendance + h.performance + h.conduct)/3) AS suggestions \n" +
-"FROM feedback h,head u \n" +
-"INNER JOIN unit n ON n.unit_code=u.unit_code \n" +
-"WHERE h.head_id=u.head_id AND c_id=?\n" +
-"GROUP BY head_id \n" +
-"HAVING head_id NOT IN(SELECT DISTINCT head_id FROM feedback WHERE sdate NOT IN\n" +
-"(SELECT sdate FROM feedback h,head u INNER JOIN unit n ON n.unit_code=u.unit_code\n" +
-"WHERE h.head_id=u.head_id AND sdate + INTERVAL (SELECT feedback_end(h.c_id,h.head_id,h.sdate)) DAY < CURRENT_DATE() - INTERVAL 15 DAY )) \n" +
-"AND head_id IN(SELECT head_id FROM head WHERE unit_code NOT IN(SELECT unit_code FROM works_for WHERE c_id=?))\n" +
-"ORDER BY suggestions DESC limit 3;"; 
-        
+        String query = "CALL suggestion(?)";
+
         
         
         int suggest=0;
@@ -112,7 +103,6 @@ public class Allocate_work extends javax.swing.JPanel {
         try {
             pst = con.prepareStatement(query);
             pst.setString(1, c_ide);
-            pst.setString(2, c_ide);
             ResultSet rs = pst.executeQuery();
         if(!rs.next())
         {
