@@ -31,6 +31,7 @@ import loginpage.Convicted_panel;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import loginpage.Under_trial_panel;
 
 /**
@@ -50,6 +51,62 @@ public class registrationPanel extends javax.swing.JPanel {
         load_cities();
         
     }
+    boolean validateData()
+    {
+        if(!fname_text.getText().matches("[a-zA-Z ]{3,}"))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid First Name", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if(!mname_text.getText().matches("[a-zA-Z ]{3,}"))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Middle Name", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if(!lname_text.getText().matches("[a-zA-Z ]{3,}"))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Last Name", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if(!occupation_text.getText().matches("[a-zA-Z .]{3,}"))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Last Name", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        if(!locality_text.getText().matches("[a-zA-Z0-9 ]{3,}"))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Last Name", "Warning", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        databaseConnectivity.MyPrisonConnection o=new MyPrisonConnection();
+        Connection con=o.getMyConnection();
+        PreparedStatement lps;
+        try {
+            lps = con.prepareStatement("SELECT validate_dob(?) AS valid;");
+            lps.setString(1, new java.sql.Date(dob_txt.getDate().getTime())+"");
+            //JOptionPane.showMessageDialog(null, new java.sql.Date(dob_txt.getDate().getTime())+"");
+            ResultSet lrs=lps.executeQuery();
+            if(lrs.next())
+            {
+                if(lrs.getString("valid").equals("0"))
+                {
+                    JOptionPane.showMessageDialog(null, "Select Appropriate DOB", "Warning", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(registrationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return true;
+    }
+   
     public void load_cities(){
         try {
              Connection con = null;
@@ -105,8 +162,6 @@ private Convicted_panel   c;
         jPanel1 = new javax.swing.JPanel();
         foregroundPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         registration_submit_btn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -159,18 +214,6 @@ private Convicted_panel   c;
         titlePanel.setBackground(new java.awt.Color(204, 255, 255));
         titlePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("C004");
-        titlePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 23, 100, 30));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("ID");
-        titlePanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 16, -1, 40));
-
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
@@ -182,6 +225,11 @@ private Convicted_panel   c;
         registration_submit_btn.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         registration_submit_btn.setText("Submit");
         registration_submit_btn.setEnabled(false);
+        registration_submit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registration_submit_btnMouseClicked(evt);
+            }
+        });
         registration_submit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registration_submit_btnActionPerformed(evt);
@@ -246,6 +294,11 @@ private Convicted_panel   c;
         dob_txt.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         dob_txt.setMinimumSize(new java.awt.Dimension(10, 10));
         dob_txt.setPreferredSize(new java.awt.Dimension(10, 10));
+        dob_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dob_txtFocusLost(evt);
+            }
+        });
         jPanel2.add(dob_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 170, 30));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -500,10 +553,14 @@ private Convicted_panel   c;
 
     private void skillAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skillAddActionPerformed
         // TODO add your handling code here:
-        if(skills_text.getText().length()!=0)
+        if(skills_text.getText().matches("[a-zA-Z .]{3,}"))
         {
             add(skills_text.getText());
             skills_text.setText("");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Skill", "Warning", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_skillAddActionPerformed
@@ -670,6 +727,10 @@ private Convicted_panel   c;
 
     private void registration_submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registration_submit_btnActionPerformed
         // TODO add your handling code here:
+        if(!validateData())
+        {
+            return;
+        }
         
         Connection con = null;
         MyPrisonConnection o = new MyPrisonConnection();
@@ -718,12 +779,12 @@ private Convicted_panel   c;
                 pst.setString(9, occupation);
                 pst.setString(10, qualification);
                 pst.setTimestamp(11, new Timestamp(System.currentTimeMillis()));
-                pst.setString(12, u.remarks.getText());
+                pst.setString(12,"0");
                 int i = pst.executeUpdate();
                 
                  System.out.println("run");
                 if(i>0){
-                    JOptionPane.showMessageDialog(null, "Prisoner successfully added as undertrial");
+                    JOptionPane.showMessageDialog(null, "Prisoner successfully added as undertrial");       
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Insertion failed");
@@ -780,6 +841,82 @@ private Convicted_panel   c;
                     JOptionPane.showMessageDialog(null,"Insertion failed");
                 }
             }
+            
+            String skill_insert_query="";
+            if(convictedRadio.isSelected())
+            {
+                Statement lst=con.createStatement();
+                ResultSet lrs1=lst.executeQuery("SELECT max(c_id) AS id FROM convicted_prisoner;");
+                lrs1.next();
+                String curr_id=lrs1.getString("id");
+                skill_insert_query="INSERT INTO convicted_skills\n" +
+                                    "VALUES(?,?);";
+                PreparedStatement lps1=con.prepareStatement(skill_insert_query);
+                lps1.setString(1, curr_id);
+                for(int i=0;i<dm.getSize();i++)
+                {
+                    lps1.setString(2, (String)dm.get(i));
+                    lps1.executeUpdate();
+                }
+            }
+            if(undertrialRadio.isSelected())
+            {
+                Statement lst=con.createStatement();
+                ResultSet lrs1=lst.executeQuery("SELECT max(t_id) AS id FROM trial_prisoner;");
+                lrs1.next();
+                String curr_id=lrs1.getString("id");
+                skill_insert_query="INSERT INTO trial_skills\n" +
+                                    "VALUES(?,?);";
+                PreparedStatement lps1=con.prepareStatement(skill_insert_query);
+                lps1.setString(1, curr_id);
+                for(int i=0;i<dm.getSize();i++)
+                {
+                    lps1.setString(2, (String)dm.get(i));
+                    lps1.executeUpdate();
+                }
+            }
+            
+            String curr_id = null;
+           String c_insert_string="";
+            if(convictedRadio.isSelected())
+            {
+                Statement lst=con.createStatement();
+                ResultSet lrs1=lst.executeQuery("SELECT max(c_id) AS id FROM convicted_prisoner;");
+                lrs1.next();
+                curr_id=lrs1.getString("id");
+                c_insert_string="INSERT INTO c_crime\n" +
+                                    "VALUES(?,?);";
+                PreparedStatement lps1=con.prepareStatement(c_insert_string);
+                lps1.setString(1, curr_id);
+                for(int i=0;i<c.crime_model.getSize();i++)
+                {
+                    lps1.setString(2, (String)c.crime_model.get(i));
+                    lps1.executeUpdate();
+                }
+            }
+            
+            if(undertrialRadio.isSelected())
+            {
+                Statement lst=con.createStatement();
+                ResultSet lrs1=lst.executeQuery("SELECT max(t_id) AS id FROM trial_prisoner;");
+                lrs1.next();
+                curr_id=lrs1.getString("id");
+                c_insert_string="INSERT INTO t_cases\n" +
+                                    "VALUES(?,?);";
+                PreparedStatement lps1=con.prepareStatement(c_insert_string);
+                lps1.setString(1, curr_id);
+                for(int i=0;i<u.cases_model.getSize();i++)
+                {
+                    lps1.setString(2, (String)u.cases_model.get(i));
+                    lps1.executeUpdate();
+                }
+            }
+            
+            JOptionPane.showMessageDialog(null, "GeneratedID: "+curr_id);
+            JPanel p=(JPanel) this.getParent();
+            p.removeAll();
+            p.getParent().revalidate();
+            p.getParent().repaint();
             
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Incorrect Data : "+ex.toString());
@@ -852,6 +989,15 @@ private Convicted_panel   c;
         // TODO add your handling code here:
     }//GEN-LAST:event_mname_text1ActionPerformed
 
+    private void registration_submit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registration_submit_btnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registration_submit_btnMouseClicked
+
+    private void dob_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dob_txtFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_dob_txtFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -860,8 +1006,6 @@ private Convicted_panel   c;
     private com.toedter.calendar.JDateChooser dob_txt;
     private javax.swing.JTextField fname_text;
     private javax.swing.JPanel foregroundPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

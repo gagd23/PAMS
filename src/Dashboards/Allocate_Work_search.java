@@ -37,6 +37,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
      JPanel loadingPanel;
      private String c_id;
      private search_load_panel_allocate_work search;
+     private jailor_dash_prisoner_schedule_load_panel schedule;
      //PreparedStatement pst2;
      //ResultSet rs2;
      //public String c_id;
@@ -164,7 +165,9 @@ public class Allocate_Work_search extends javax.swing.JPanel {
        String qString = "SELECT c_id,p_firstname,p_midname,p_lastname,p_occupation,p_qualification,c_type FROM convicted_prisoner WHERE p_firstname LIKE ? AND CURRENT_DATE()<releasedate(c_id)";
        
    
-        PreparedStatement pst;
+        PreparedStatement pst,pstmt;
+        ResultSet rs,res;
+         Allocate_work aw = new Allocate_work(c_id);
    //     PreparedStatement pst1;
          try {
              pst = con.prepareStatement(qString);
@@ -172,10 +175,10 @@ public class Allocate_Work_search extends javax.swing.JPanel {
             
              
              
-             ResultSet rs = pst.executeQuery();
+           rs = pst.executeQuery();
              
              
-              
+             
                  
              if(rs.next()){                
              String c_id  =  rs.getString("c_id");
@@ -188,7 +191,7 @@ public class Allocate_Work_search extends javax.swing.JPanel {
              
              String full_name = first_name+" "+middle_name+" "+last_name;
                      //loadingPanel = (JPanel)this.getParent();
-                   Allocate_work aw = new Allocate_work(c_id);
+                   
                  loadingPanel.removeAll();
                  
                   loadingPanel.add(aw, BorderLayout.CENTER);
@@ -213,8 +216,35 @@ public class Allocate_Work_search extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
      }
+         
+       /*  String start_time,end_time,unit_name;
+         String q = "SELECT h.unit_code,u.unit_name,s.head_id,s.s_starttime,s.s_sendtime FROM schedule s INNER JOIN head h ON s.head_id=h.head_id INNER JOIN unit u ON u.unit_code=h.unit_code WHERE c_id=?;";
      
-       
+         try {
+             pstmt = con.prepareStatement(q);
+             pstmt.setString(1, c_id);
+             res = pstmt.executeQuery();
+             
+             aw.schedule_loadpanel.removeAll();
+             while (res.next()) {     
+                 
+                 start_time = res.getString("s_starttime");
+                 end_time = res.getString("s_sendtime");
+                 unit_name = res.getString("unit_name");
+                 
+                 System.out.println(start_time);
+                 
+                 schedule = new jailor_dash_prisoner_schedule_load_panel(start_time, end_time, unit_name);
+                 aw.schedule_loadpanel.add(schedule);
+                 aw.schedule_loadpanel.revalidate();
+                 aw.schedule_loadpanel.repaint();
+                 schedule.fetch_schedule_start_time.setText(start_time);
+                 schedule.fetch_schedule_end_time.setText(end_time);
+                 schedule.fetch_untname_label.setText(unit_name);
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(Allocate_Work_search.class.getName()).log(Level.SEVERE, null, ex);
+         }*/ 
          
     }//GEN-LAST:event_search_buttonActionPerformed
 

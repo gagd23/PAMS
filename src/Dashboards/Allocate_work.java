@@ -13,8 +13,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 //import progressbardemo.ProgressBar;
 
 /**
@@ -36,21 +41,36 @@ public class Allocate_work extends javax.swing.JPanel {
     public Allocate_work() {
         initComponents();
                
-        initProgress(progress_panel,80);
-        initProgress(progress_panel1, 60);
-        initProgress(progress_panel2, 40);
+     //   initProgress(progress_panel,80);
+       // initProgress(progress_panel1, 60);
+       // initProgress(progress_panel2, 40);
       //  this.drawCenteredCircle(g, WIDTH, WIDTH, ERROR);
 
+    }
+    
+    void initSelectUnitCombo()
+    {
+        try {
+            PreparedStatement lps=con.prepareStatement("SELECT unit_name FROM unit");
+            ResultSet lrs = lps.executeQuery();
+            DefaultComboBoxModel select_unit_combo_model=(DefaultComboBoxModel) select_unit_combo.getModel();
+            while(lrs.next())
+            {
+                select_unit_combo_model.addElement(lrs.getString("unit_name"));
+            }
+              
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public Allocate_work(String c_id){
         
          initComponents();
         
-        
         MyPrisonConnection o = new MyPrisonConnection();
         con = o.getMyConnection();
-     
+        initSelectUnitCombo();
           c_ide = c_id;
         PreparedStatement pst1;
         ResultSet rs1;
@@ -115,13 +135,19 @@ public class Allocate_work extends javax.swing.JPanel {
          
          
          
-         rs.next();
+         if(!rs.next())
+         {
+             return;
+         }
            suggest  =  rs.getInt("suggestions");
             unitname = rs.getString("unit_name");
              suggestion2.setText(unitname);
         initProgress(progress_panel1, suggest);
         
-         rs.next();
+         if(!rs.next())
+         {
+             return;
+         }
            suggest  =  rs.getInt("suggestions");
             unitname = rs.getString("unit_name");
             suggestion3.setText(unitname);
@@ -133,7 +159,7 @@ public class Allocate_work extends javax.swing.JPanel {
        
     }
    
-    private void initProgress(javax.swing.JPanel objPanel,int max){
+    public void initProgress(javax.swing.JPanel objPanel,int max){
     
         
         ProgressPanel jpProgress = new ProgressPanel();
@@ -143,7 +169,7 @@ public class Allocate_work extends javax.swing.JPanel {
         objPanel.repaint();
         drawProgress(jpProgress,max);
     }
-    private void drawProgress(ProgressPanel objPanel ,int max){
+    public void drawProgress(ProgressPanel objPanel ,int max){
      
         new Thread(new Runnable() {
             @Override
@@ -152,7 +178,7 @@ public class Allocate_work extends javax.swing.JPanel {
                     try {
                         objPanel.updateProgress(i);
                         objPanel.repaint();
-                        Thread.sleep(10);
+                        Thread.sleep(20);
                     } catch (InterruptedException ex) {
                         System.out.println("Exception");
                     }
@@ -204,27 +230,24 @@ public class Allocate_work extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         progress_panel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel5 = new javax.swing.JPanel();
+        schedule_p = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        schedule_loadpanel = new javax.swing.JPanel();
+        panel_text = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
+        check_btn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -336,7 +359,6 @@ public class Allocate_work extends javax.swing.JPanel {
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, 32));
 
         select_unit_combo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        select_unit_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Carpentry", "Cooking", "Smithy", "Cleaning", "Tailoring" }));
         select_unit_combo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 select_unit_comboItemStateChanged(evt);
@@ -351,7 +373,7 @@ public class Allocate_work extends javax.swing.JPanel {
 
         load_unit_panel.setBackground(new java.awt.Color(255, 255, 255));
         load_unit_panel.setLayout(new java.awt.BorderLayout());
-        add(load_unit_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 440, 220));
+        add(load_unit_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 440, 210));
 
         jButton1.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         jButton1.setText("Allocate");
@@ -361,7 +383,7 @@ public class Allocate_work extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 580, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 560, -1, -1));
 
         progress_panel3.setBackground(new java.awt.Color(255, 255, 255));
         progress_panel3.setLayout(new java.awt.BorderLayout());
@@ -369,92 +391,89 @@ public class Allocate_work extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(null);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Schedule", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        schedule_p.setBackground(new java.awt.Color(255, 255, 255));
+        schedule_p.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Schedule", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
+        schedule_p.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane3.setBorder(null);
+
+        schedule_loadpanel.setBackground(new java.awt.Color(255, 255, 255));
+        schedule_loadpanel.setLayout(new javax.swing.BoxLayout(schedule_loadpanel, javax.swing.BoxLayout.Y_AXIS));
+
+        panel_text.setBackground(new java.awt.Color(255, 255, 255));
+        panel_text.setMaximumSize(new java.awt.Dimension(0, 0));
+        panel_text.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        schedule_loadpanel.add(panel_text);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel18.setText("to");
-        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 45, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel20.setText("16:00");
-        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel6.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 45, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel22.setText("17:00");
+        jLabel22.setText("10:00");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel25.setText("Cooking");
-        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
+        jLabel25.setText("Carpentry");
+        jPanel6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, 40));
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 380, 40));
+        jLabel23.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel23.setText("08:30");
+        jPanel6.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel28.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel28.setText("to");
-        jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
-
-        jLabel29.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel29.setText("08:30");
-        jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel30.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel30.setText("09:30");
-        jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        jLabel24.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel24.setText("14:00");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel26.setText("Cleaning");
-        jPanel7.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
+        jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
 
-        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 380, 40));
-
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel23.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel23.setText("to");
-        jPanel8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
-
-        jLabel24.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel24.setText("10:30");
-        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel19.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel19.setText("to");
+        jPanel6.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel27.setText("11:30");
-        jPanel8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        jLabel27.setText("17:00");
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 30));
 
-        jLabel31.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel31.setText("Tailoring");
-        jPanel8.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
+        jLabel28.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel28.setText("to");
+        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, 30));
 
-        jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 380, 40));
+        jLabel29.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel29.setText("18:00");
+        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, 30));
 
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel30.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel30.setText("Smithy");
+        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 75, -1, 40));
 
-        jLabel32.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel32.setText("to");
-        jPanel9.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        schedule_loadpanel.add(jPanel6);
 
-        jLabel33.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel33.setText("14:00");
-        jPanel9.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jScrollPane3.setViewportView(schedule_loadpanel);
 
-        jLabel34.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel34.setText("16:00");
-        jPanel9.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        schedule_p.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 370, 150));
 
-        jLabel35.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel35.setText("Masonry");
-        jPanel9.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 40));
+        jScrollPane2.setViewportView(schedule_p);
 
-        jPanel5.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 380, 40));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 390, 200));
 
-        jScrollPane2.setViewportView(jPanel5);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 400, 280));
+        check_btn.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        check_btn.setText("Check");
+        check_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_btnActionPerformed(evt);
+            }
+        });
+        add(check_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 320, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void select_unit_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_unit_comboActionPerformed
@@ -463,19 +482,91 @@ public class Allocate_work extends javax.swing.JPanel {
 
     private void select_unit_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_unit_comboItemStateChanged
         // TODO add your handling code here:
+        /*
+        String selected_unit=(String)select_unit_combo.getSelectedItem();
+        try {
+            PreparedStatement lps=con.prepareStatement("CALL unit_allocation_checker(?,?);");
+            lps.setString(1, selected_unit);
+            lps.setString(2, c_ide);
+            ResultSet lrs = lps.executeQuery();
+            lrs.next();
+            
+            String isAllowed=lrs.getString("Allowed");
+            String reason=lrs.getString("reason");
+            
+            if(isAllowed.equalsIgnoreCase("0"))
+            {
+                JOptionPane.showMessageDialog(this, reason);
+                return;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jButton1.setEnabled(true);
         load_unit_panel.removeAll();
         load_unit_panel.add(new Allocation_details_panel(), BorderLayout.CENTER);
         load_unit_panel.revalidate();
-        load_unit_panel.repaint();
-        jButton1.setEnabled(true);
+        load_unit_panel.repaint();*/
+       
     }//GEN-LAST:event_select_unit_comboItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            PreparedStatement lps1=con.prepareStatement("SELECT unit_code FROM unit WHERE unit_name=?;");
+            lps1.setString(1, ""+select_unit_combo.getSelectedItem());
+            ResultSet lrs1=lps1.executeQuery();
+            lrs1.next();
+            PreparedStatement lps =con.prepareStatement("INSERT INTO works_for VALUES (?,?, CURRENT_DATE()+ INTERVAL 1 DAY,90);");
+            lps.setString(1, c_ide);
+            lps.setString(2, lrs1.getString(1));
+            
+            if(lps.executeUpdate()>0)
+            {
+                JOptionPane.showMessageDialog(null, "Prisoner Successfully Allocated.");
+                jButton1.setEnabled(false);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Problem encountered in allocation.");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void check_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_btnActionPerformed
+        // TODO add your handling code here:
+        String selected_unit=(String)select_unit_combo.getSelectedItem();
+        try {
+            PreparedStatement lps=con.prepareStatement("CALL unit_allocation_checker(?,?);");
+            lps.setString(1, selected_unit);
+            lps.setString(2, c_ide);
+            ResultSet lrs = lps.executeQuery();
+            lrs.next();
+            
+            String isAllowed=lrs.getString("Allowed");
+            String reason=lrs.getString("reason");
+            
+            if(isAllowed.equalsIgnoreCase("0"))
+            {
+                JOptionPane.showMessageDialog(this, reason);
+                jButton1.setEnabled(false);
+                return;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Allocate_work.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jButton1.setEnabled(true);
+    }//GEN-LAST:event_check_btnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton check_btn;
     public javax.swing.JLabel fetch_id;
     public javax.swing.JLabel fetch_name;
     public javax.swing.JLabel fetch_occupation;
@@ -488,6 +579,7 @@ public class Allocate_work extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -500,11 +592,6 @@ public class Allocate_work extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -512,21 +599,21 @@ public class Allocate_work extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel load_unit_panel;
-    private javax.swing.JPanel progress_panel;
-    private javax.swing.JPanel progress_panel1;
-    private javax.swing.JPanel progress_panel2;
+    private javax.swing.JPanel panel_text;
+    public javax.swing.JPanel progress_panel;
+    public javax.swing.JPanel progress_panel1;
+    public javax.swing.JPanel progress_panel2;
     private javax.swing.JPanel progress_panel3;
+    public javax.swing.JPanel schedule_loadpanel;
+    public javax.swing.JPanel schedule_p;
     private javax.swing.JComboBox<String> select_unit_combo;
-    private javax.swing.JLabel suggestion1;
-    private javax.swing.JLabel suggestion2;
-    private javax.swing.JLabel suggestion3;
+    public javax.swing.JLabel suggestion1;
+    public javax.swing.JLabel suggestion2;
+    public javax.swing.JLabel suggestion3;
     // End of variables declaration//GEN-END:variables
 }

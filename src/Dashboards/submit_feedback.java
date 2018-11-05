@@ -5,6 +5,15 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aakash
@@ -14,8 +23,13 @@ public class submit_feedback extends javax.swing.JPanel {
     /**
      * Creates new form submit_feedback
      */
-    public submit_feedback() {
+    String desc;
+    Connection con;
+    public submit_feedback(String description) {
         initComponents();
+         MyPrisonConnection o = new MyPrisonConnection();
+                con = o.getMyConnection();
+        desc = description;
     }
 
     /**
@@ -138,7 +152,7 @@ public class submit_feedback extends javax.swing.JPanel {
 
         fetch_attendance_label1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         fetch_attendance_label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        fetch_attendance_label1.setText("45");
+        fetch_attendance_label1.setText("90");
         show_prisoner_details_panel.add(fetch_attendance_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, 30));
 
         add(show_prisoner_details_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 450, 300));
@@ -191,18 +205,53 @@ public class submit_feedback extends javax.swing.JPanel {
 
     private void submit_feedback_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_feedback_buttonActionPerformed
         // TODO add your handling code here:
+       PreparedStatement pstm;
+        ResultSet res;
+        int convert=0,convert1=0;
+        convert=Integer.parseInt(performance_combobox.getSelectedItem().toString().trim());
+        convert1=Integer.parseInt(conduct_combobox.getSelectedItem().toString().trim());
+        //String que="INSERT INTO feedback VALUES()";
+        String qe = "UPDATE feedback SET performance=?,conduct=? WHERE c_id= ? AND performance IS NULL AND conduct IS NULL";
+        try {
+            pstm = con.prepareStatement(qe);
+            pstm.setInt(1,20 * convert);
+            pstm.setInt(2,convert1 * 20);
+            pstm.setString(3, desc);
+            
+            int i = pstm.executeUpdate();
+            
+            if(i>0){
+                 JOptionPane.showMessageDialog(null, "Feedback saved successfully");
+                 
+                 //String q = "SELECT receiver_id,title,description,DATE_FORMAT(receive,'%d/%m/%y   %H:%i')AS receive FROM notification WHERE receiver_id=?";
+                 //PreparedStatement ps;
+                 //ResultSet rs;
+                 
+                 //ps = con.prepareStatement(q);
+                 //rs = ps.
+            }
+            
+              
+                else{
+                    JOptionPane.showMessageDialog(null,"Feedback already submitted");
+                }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(head_notification_loadpanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_submit_feedback_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> conduct_combobox;
+    public javax.swing.JComboBox<String> conduct_combobox;
     private javax.swing.JLabel fetch_attendance_label;
-    private javax.swing.JLabel fetch_attendance_label1;
+    public javax.swing.JLabel fetch_attendance_label1;
     public javax.swing.JLabel fetch_id;
     public javax.swing.JLabel fetch_name;
-    private javax.swing.JLabel fetch_no_of_days_present_label;
-    private javax.swing.JLabel fetch_no_of_days_worked_label;
-    private javax.swing.JLabel fetch_start_date_label;
+    public javax.swing.JLabel fetch_no_of_days_present_label;
+    public javax.swing.JLabel fetch_no_of_days_worked_label;
+    public javax.swing.JLabel fetch_start_date_label;
     public javax.swing.JLabel fetch_type;
     private javax.swing.JPanel horizontal_prisoner_details_panel;
     private javax.swing.JLabel jLabel1;
@@ -215,9 +264,9 @@ public class submit_feedback extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JComboBox<String> performance_combobox;
+    public javax.swing.JComboBox<String> performance_combobox;
     private javax.swing.JPanel show_prisoner_details_panel;
-    private javax.swing.JButton submit_feedback_button;
+    public javax.swing.JButton submit_feedback_button;
     private javax.swing.JPanel submit_feedback_panel;
     // End of variables declaration//GEN-END:variables
 }

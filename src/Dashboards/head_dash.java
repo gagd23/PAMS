@@ -35,8 +35,10 @@ public class head_dash extends javax.swing.JFrame {
     private head_report_dash report;
     private prisoners_working_in_unit_panel prison_work;
     private add_requirement_working_hrs_panel working;
+    private mark_attendance_loadpanel mark;
+    private head_notification_loadpanel notify;
     Connection con=null;
-    
+    String f_name,mid_name,l_name,c_id;
     public head_dash(String logged_in_head_id) {
         initComponents();
         
@@ -44,16 +46,44 @@ public class head_dash extends javax.swing.JFrame {
                 con = o.getMyConnection();
         current_head_id = logged_in_head_id;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        PreparedStatement pst5,pst10;
+        ResultSet rs5,res;
+        
+        String Que = "SELECT receiver_id,title,description,DATE_FORMAT(receive,'%d/%m/%y   %H:%i')AS receive FROM notification WHERE receiver_id=?";
+        try {
+            pst10 = con.prepareStatement(Que);
+            pst10.setString(1, current_head_id);
+            res = pst10.executeQuery();
+            notification_load_pan.removeAll();
+            String title,description,receiver;
+            while(res.next()){
+                title = res.getString("title");
+                description = res.getString("description");
+                receiver = res.getString("receive");
+              
+                notify = new head_notification_loadpanel(description,loadingPanel,title,current_head_id);
+                notification_load_pan.add(notify);
+                notification_load_pan.revalidate();
+                notification_load_pan.repaint();
+                  
+                notify.fetch_title_label.setText(title);
+                notify.fetch_description_label.setText(description);
+                 notify.fetch_receive_label.setText(receiver);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         head_id_label.setText(current_head_id);
         
         String q = "SELECT h_firstname,h_lastname FROM head WHERE head_id=?";
-        PreparedStatement pst5;
+        
         try {
             pst5 = con.prepareStatement(q);
             pst5.setString(1, current_head_id);
             
-            ResultSet rs5 = pst5.executeQuery();
+             rs5 = pst5.executeQuery();
             
             if(rs5.next())
             {
@@ -83,7 +113,7 @@ public class head_dash extends javax.swing.JFrame {
     private void setAllBlack(){
         
     homeLabel.setBackground(original);
-    schedulePrisonerLabel.setBackground(original);
+//    schedulePrisonerLabel.setBackground(original);
     modifyPrisoner.setBackground(original);
     addRequirementsLabel.setBackground(original);
     modifyRequirementsLabel.setBackground(original);
@@ -116,7 +146,6 @@ public class head_dash extends javax.swing.JFrame {
         viewRequirementsLabel = new javax.swing.JLabel();
         modifyRequirementsLabel = new javax.swing.JLabel();
         requirementsMenuLabel = new javax.swing.JLabel();
-        schedulePrisonerLabel = new javax.swing.JLabel();
         modifyPrisoner = new javax.swing.JLabel();
         attendanceMenuLabel = new javax.swing.JLabel();
         unit_reports_label = new javax.swing.JLabel();
@@ -128,7 +157,6 @@ public class head_dash extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -155,6 +183,8 @@ public class head_dash extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        notification_load_pan = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -239,39 +269,18 @@ public class head_dash extends javax.swing.JFrame {
         requirementsMenuLabel.setOpaque(true);
         optionsPanel.add(requirementsMenuLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 200, 40));
 
-        schedulePrisonerLabel.setBackground(new java.awt.Color(52, 58, 64));
-        schedulePrisonerLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        schedulePrisonerLabel.setForeground(new java.awt.Color(204, 204, 204));
-        schedulePrisonerLabel.setText("  Schedule");
-        schedulePrisonerLabel.setOpaque(true);
-        schedulePrisonerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                schedulePrisonerLabelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                schedulePrisonerLabelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                schedulePrisonerLabelMouseExited(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                schedulePrisonerLabelMouseReleased(evt);
-            }
-        });
-        optionsPanel.add(schedulePrisonerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 163, 176, 30));
-
         modifyPrisoner.setBackground(new java.awt.Color(52, 58, 64));
         modifyPrisoner.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         modifyPrisoner.setForeground(new java.awt.Color(204, 204, 204));
         modifyPrisoner.setText("  Modify ");
         modifyPrisoner.setOpaque(true);
         modifyPrisoner.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 modifyPrisonerAncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         modifyPrisoner.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -285,7 +294,7 @@ public class head_dash extends javax.swing.JFrame {
                 modifyPrisonerMouseExited(evt);
             }
         });
-        optionsPanel.add(modifyPrisoner, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 193, 176, 30));
+        optionsPanel.add(modifyPrisoner, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 163, 176, 30));
 
         attendanceMenuLabel.setBackground(new java.awt.Color(73, 78, 83));
         attendanceMenuLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -394,11 +403,7 @@ public class head_dash extends javax.swing.JFrame {
 
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/edit.png"))); // NOI18N
-        optionsPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 193, 20, 30));
-
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/calendar.png"))); // NOI18N
-        optionsPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 163, 20, 30));
+        optionsPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 163, 20, 30));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/plus.png"))); // NOI18N
@@ -570,7 +575,12 @@ public class head_dash extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(52, 58, 64));
         jLabel29.setText("Notifications");
-        head_notification_panel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 180, -1));
+        head_notification_panel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 180, -1));
+
+        notification_load_pan.setLayout(new javax.swing.BoxLayout(notification_load_pan, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(notification_load_pan);
+
+        head_notification_panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 885, 550));
 
         loadingPanel.add(head_notification_panel, java.awt.BorderLayout.CENTER);
 
@@ -640,7 +650,7 @@ public class head_dash extends javax.swing.JFrame {
             }
             
             
-              String s = "SELECT req_name,DATE_FORMAT(reqend(req_id),'%d/%m/%y') AS end_date,TIME_FORMAT(rstart_time,'%H:%i') AS rstart_time,TIME_FORMAT(rduration(req_id),'%H:%i') AS rend_time FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
+             String s = "SELECT req_name,DATE_FORMAT(reqend(req_id),'%d/%m/%y') AS end_date,TIME_FORMAT(rstart_time,'%H:%i') AS rstart_time,TIME_FORMAT(rduration(req_id),'%H:%i') AS rend_time FROM requirements WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=? AND reqend(req_id) >= CURRENT_DATE()) AND rstart_date <= CURRENT_DATE()";
              pst3= con.prepareStatement(s);
            
              
@@ -731,82 +741,6 @@ public class head_dash extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_modifyRequirementsLabelMouseExited
 
-    private void schedulePrisonerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schedulePrisonerLabelMouseClicked
-        // TODO add your handling code here:
-        setAllBlack();
-        schedulePrisonerLabel.setBackground(clicked);
-        //  modifyPrisoner.setBackground(new Color(52, 58, 64));
-        //viewPrisoner.setBackground(new Color(52, 58, 64));
-
-     //   loadingPanel.removeAll();
-       // loadingPanel.add(new registrationPanel(), BorderLayout.CENTER);
-        //loadingPanel.revalidate();
-        //loadingPanel.repaint();
-        
-         
-        loadingPanel.removeAll();
-        loadingPanel.add(new PrisonerSchedule(), BorderLayout.CENTER);
-        loadingPanel.revalidate();
-        loadingPanel.repaint();
-
-    }//GEN-LAST:event_schedulePrisonerLabelMouseClicked
-
-    private void schedulePrisonerLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schedulePrisonerLabelMouseEntered
-        // TODO add your handling code here:
-        if (schedulePrisonerLabel.getBackground().getBlue()!=184 && schedulePrisonerLabel.getBackground().getRed()!=23 && schedulePrisonerLabel.getBackground().getGreen()!=162) {
-
-            schedulePrisonerLabel.setBackground(focusColor);
-
-        }
-
-    }//GEN-LAST:event_schedulePrisonerLabelMouseEntered
-
-    private void schedulePrisonerLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schedulePrisonerLabelMouseExited
-        // TODO add your handling code here:
-
-        if (schedulePrisonerLabel.getBackground().getBlue()!=184 && schedulePrisonerLabel.getBackground().getRed()!=23 && schedulePrisonerLabel.getBackground().getGreen()!=162) {
-
-            schedulePrisonerLabel.setBackground(original);
-
-        }
-    }//GEN-LAST:event_schedulePrisonerLabelMouseExited
-
-    private void schedulePrisonerLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schedulePrisonerLabelMouseReleased
-        // TODO add your handling code here:
-        // addPrisoner1.setBackground(new Color(52,58,64));
-        // addPrisoner1.repaint();
-    }//GEN-LAST:event_schedulePrisonerLabelMouseReleased
-
-    private void modifyPrisonerAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_modifyPrisonerAncestorRemoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifyPrisonerAncestorRemoved
-
-    private void modifyPrisonerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseClicked
-        // TODO add your handling code here:
-        setAllBlack();
-        modifyPrisoner.setBackground(clicked);
-
-    }//GEN-LAST:event_modifyPrisonerMouseClicked
-
-    private void modifyPrisonerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseEntered
-        // TODO add your handling code here:
-        if (modifyPrisoner.getBackground().getBlue()!=184 && modifyPrisoner.getBackground().getRed()!=23 && modifyPrisoner.getBackground().getGreen()!=162) {
-
-            modifyPrisoner.setBackground(focusColor);
-
-        }
-
-    }//GEN-LAST:event_modifyPrisonerMouseEntered
-
-    private void modifyPrisonerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseExited
-        // TODO add your handling code here:
-        if (modifyPrisoner.getBackground().getBlue()!=184 && modifyPrisoner.getBackground().getRed()!=23 && modifyPrisoner.getBackground().getGreen()!=162) {
-
-            modifyPrisoner.setBackground(original);
-
-        }
-    }//GEN-LAST:event_modifyPrisonerMouseExited
-
     private void unit_reports_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unit_reports_labelMouseClicked
         // TODO add your handling code here:
         setAllBlack();
@@ -876,6 +810,38 @@ public class head_dash extends javax.swing.JFrame {
         loadingPanel.add(head_notification_panel, BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
+        
+         String q = "SELECT receiver_id,title,description,DATE_FORMAT(receive,'%d/%m/%y   %H:%i')AS receive FROM notification WHERE receiver_id=?";
+                 PreparedStatement ps;
+                 ResultSet rs;
+                 
+                 String title1,description1,receiver1;
+        try {
+            ps = con.prepareStatement(q);
+            ps.setString(1, current_head_id);
+            rs = ps.executeQuery();
+            
+            notification_load_pan.removeAll();
+            while(rs.next()){
+            title1 = rs.getString("title");
+                description1 = rs.getString("description");
+                receiver1 = rs.getString("receive");
+              
+                notify = new head_notification_loadpanel(description1,loadingPanel,title1,current_head_id);
+                notification_load_pan.add(notify);
+                notification_load_pan.revalidate();
+                notification_load_pan.repaint();
+                  
+                notify.fetch_title_label.setText(title1);
+                notify.fetch_description_label.setText(description1);
+                 notify.fetch_receive_label.setText(receiver1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 
 
     }//GEN-LAST:event_homeLabelMouseClicked
 
@@ -1051,19 +1017,95 @@ public class head_dash extends javax.swing.JFrame {
     private void mark_attendance_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mark_attendance_panelMouseClicked
         // TODO add your handling code here:
         loadingPanel.removeAll();
-        mark_Attendance = new Mark_Attendance();
+        mark_Attendance = new Mark_Attendance(current_head_id);
         loadingPanel.add(mark_Attendance , BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
+        
+        String Query1="SELECT c.c_id,c.p_firstname,c.p_midname,c.p_lastname FROM convicted_prisoner c INNER JOIN works_for w ON w.c_id=c.c_id  WHERE w.unit_code = (SELECT unit_code FROM head WHERE head_id = ?)";
+        PreparedStatement pstmt,pst;
+        ResultSet res,res1;
+        
+       String p_id,fir_name,mid_name,l_nm,full_name;
+        try {
+            pstmt = con.prepareStatement(Query1);
+            pstmt.setString(1, current_head_id);
+            res = pstmt.executeQuery();
+            
+          
+            mark_Attendance.loading_panel.removeAll();
+            
+            while(res.next()){
+                mark = new mark_attendance_loadpanel(mark_Attendance);
+                p_id = res.getString("c_id");
+                fir_name = res.getString("p_firstname");
+                mid_name = res.getString("p_midname");
+                l_nm = res.getString("p_lastname");
+                full_name = (fir_name+" "+mid_name+" "+l_nm);
+                
+              /*  printPersonDetail(p_id);
+                 printPersonDetail(fir_name);          
+                printPersonDetail(mid_name);            
+                printPersonDetail(l_nm);*/
+                mark.fetch_id_label.setText(p_id);
+                mark.fetch_name_label.setText(full_name);
+                mark.setAbsentFlag();
+                
+                mark_Attendance.loading_panel.add(mark);
+                mark_Attendance.loading_panel.revalidate();
+                mark_Attendance.loading_panel.repaint();
+                
+                
+               
+            }
+            
+        } 
+      
+        catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mark_attendance_panelMouseClicked
 
+      private static void printPersonDetail(String something){
+                 System.out.println(something);
+         }
+       public String getId() {
+        return c_id;
+    }
+    public void setId(String c_ide) {
+        this.c_id = c_ide;
+    }
+      
+       public String getFirstName() {
+        return f_name;
+    }
+    public void setFirstName(String firstName) {
+        this.f_name = firstName;
+    }
+    public String getLastName() {
+        return l_name;
+    }
+    public void setLastName(String lastName) {
+        this.l_name = lastName;
+    }
+    public String getMidName() {
+        return mid_name;
+    }
+    public void setMidName(String midname) {
+        this.mid_name = midname;
+    }
     private void submit_feedback_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submit_feedback_panelMouseClicked
         // TODO add your handling code here:
-        loadingPanel.removeAll();
-        sub_feed = new submit_feedback();
+       /* loadingPanel.removeAll();
+        sub_feed = new submit_feedback(de);
         loadingPanel.add(sub_feed,BorderLayout.CENTER);
         loadingPanel.revalidate();
         loadingPanel.repaint();
+        
+        String query = "SELECT ";
+        PreparedStatement pstmt;
+        ResultSet res;*/
+        
     }//GEN-LAST:event_submit_feedback_panelMouseClicked
 
     private void head_logout_logo_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_head_logout_logo_labelMouseClicked
@@ -1091,6 +1133,34 @@ public class head_dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         submit_feedback_panel.setBackground(new Color(240, 240, 240));
     }//GEN-LAST:event_submit_feedback_panelMouseExited
+
+    private void modifyPrisonerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseExited
+        // TODO add your handling code here:
+        if (modifyPrisoner.getBackground().getBlue()!=184 && modifyPrisoner.getBackground().getRed()!=23 && modifyPrisoner.getBackground().getGreen()!=162) {
+
+            modifyPrisoner.setBackground(original);
+
+        }
+    }//GEN-LAST:event_modifyPrisonerMouseExited
+
+    private void modifyPrisonerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseEntered
+        // TODO add your handling code here:
+        if (modifyPrisoner.getBackground().getBlue()!=184 && modifyPrisoner.getBackground().getRed()!=23 && modifyPrisoner.getBackground().getGreen()!=162) {
+
+            modifyPrisoner.setBackground(focusColor);
+
+        }
+    }//GEN-LAST:event_modifyPrisonerMouseEntered
+
+    private void modifyPrisonerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyPrisonerMouseClicked
+        // TODO add your handling code here:
+        setAllBlack();
+        modifyPrisoner.setBackground(clicked);
+    }//GEN-LAST:event_modifyPrisonerMouseClicked
+
+    private void modifyPrisonerAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_modifyPrisonerAncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyPrisonerAncestorRemoved
 
     /**
      * @param args the command line arguments
@@ -1134,7 +1204,7 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel head_id_label;
     private javax.swing.JLabel head_logout_logo_label;
     private javax.swing.JLabel head_name_label;
-    private javax.swing.JPanel head_notification_panel;
+    public javax.swing.JPanel head_notification_panel;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1143,7 +1213,6 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1159,15 +1228,16 @@ public class head_dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel loadingPanel;
     private javax.swing.JPanel mark_attendance_panel;
     private javax.swing.JLabel modifyAttendanceLabel;
     private javax.swing.JLabel modifyPrisoner;
     private javax.swing.JLabel modifyRequirementsLabel;
+    public javax.swing.JPanel notification_load_pan;
     private javax.swing.JPanel optionsPanel;
     private javax.swing.JLabel prisonerLabel;
     private javax.swing.JLabel requirementsMenuLabel;
-    private javax.swing.JLabel schedulePrisonerLabel;
     private javax.swing.JPanel submit_feedback_panel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel unit_label;

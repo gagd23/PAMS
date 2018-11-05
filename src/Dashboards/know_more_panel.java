@@ -5,6 +5,8 @@
  */
 package Dashboards;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author 702
@@ -23,9 +25,47 @@ public class know_more_panel extends javax.swing.JPanel {
        s_date = date;
        no_of_days = days;
        
-       fetch_unit_name_label1.setText(unit_name);
+       fetch_unit_name_label.setText(unit_name);
        fetch_from_date_label.setText(s_date);
        fetch_no_of_days_worked_label.setText(""+no_of_days);
+       
+    /**
+     *
+     * @param objPanel
+     * @param max
+     */
+    
+    }
+  public void initProgress(javax.swing.JPanel objPanel,int max){
+    
+        
+        ProgressPanel jpProgress = new ProgressPanel();
+        objPanel.removeAll();
+        objPanel.add(jpProgress,BorderLayout.CENTER);
+        objPanel.revalidate();
+        objPanel.repaint();
+       drawProgress(jpProgress,max);
+       }
+        public void drawProgress(ProgressPanel objPanel ,int max){
+     
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <= max; i++) {
+                    try {
+                        objPanel.updateProgress(i);
+                        objPanel.repaint();
+                        Thread.sleep(20);
+                    } catch (InterruptedException ex) {
+                        System.out.println("Exception");
+                    }
+                    // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            }
+
+        }).start();
+       
+   
     }
 
     /**
@@ -41,7 +81,7 @@ public class know_more_panel extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         fetch_from_date_label = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        fetch_unit_name_label1 = new javax.swing.JLabel();
+        fetch_unit_name_label = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -79,10 +119,10 @@ public class know_more_panel extends javax.swing.JPanel {
         jLabel17.setText("Conduct");
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, -1, -1));
 
-        fetch_unit_name_label1.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
-        fetch_unit_name_label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        fetch_unit_name_label1.setText("Carpentry");
-        jPanel3.add(fetch_unit_name_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+        fetch_unit_name_label.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
+        fetch_unit_name_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        fetch_unit_name_label.setText("Carpentry");
+        jPanel3.add(fetch_unit_name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -100,15 +140,15 @@ public class know_more_panel extends javax.swing.JPanel {
         jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
         conduct_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        conduct_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        conduct_load_panel1.setLayout(new java.awt.BorderLayout());
         jPanel3.add(conduct_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 120, 100));
 
         performance_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        performance_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        performance_load_panel1.setLayout(new java.awt.BorderLayout());
         jPanel3.add(performance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 120, 100));
 
         attendance_load_panel1.setBackground(new java.awt.Color(255, 255, 255));
-        attendance_load_panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        attendance_load_panel1.setLayout(new java.awt.BorderLayout());
         jPanel3.add(attendance_load_panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 120, 100));
 
         jLabel21.setFont(new java.awt.Font("Calibri", 1, 22)); // NOI18N
@@ -126,11 +166,11 @@ public class know_more_panel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel attendance_load_panel1;
-    private javax.swing.JPanel conduct_load_panel1;
+    public javax.swing.JPanel attendance_load_panel1;
+    public javax.swing.JPanel conduct_load_panel1;
     public javax.swing.JLabel fetch_from_date_label;
     public javax.swing.JLabel fetch_no_of_days_worked_label;
-    public javax.swing.JLabel fetch_unit_name_label1;
+    public javax.swing.JLabel fetch_unit_name_label;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -138,6 +178,6 @@ public class know_more_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel performance_load_panel1;
+    public javax.swing.JPanel performance_load_panel1;
     // End of variables declaration//GEN-END:variables
 }

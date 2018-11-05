@@ -57,7 +57,7 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
                     try {
                         objPanel.updateProgress(i);
                         objPanel.repaint();
-                        Thread.sleep(10);
+                        Thread.sleep(20);
                     } catch (InterruptedException ex) {
                         System.out.println("Exception");
                     }
@@ -181,7 +181,7 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
         PreparedStatement pst;
         ResultSet rs;
    
-        String query = "SELECT c_id,sdate,no_of_days FROM feedback WHERE c_id=? AND head_id= (SELECT head_id FROM head WHERE unit_code = (SELECT unit_code FROM unit WHERE unit_name LIKE ?));";
+        String query = "SELECT c_id,sdate,no_of_days,performance,attendance,conduct FROM feedback WHERE c_id=? AND head_id= (SELECT head_id FROM head WHERE unit_code = (SELECT unit_code FROM unit WHERE unit_name LIKE ?));";
         try {
               String u_name = fetch_unit_name_label4.getText();
            
@@ -195,10 +195,16 @@ public class jailor_view_prisoner_history extends javax.swing.JPanel {
             while (rs.next()) {
                  String from_date = rs.getString("sdate");
             int no_of_days = rs.getInt("no_of_days");
+            int performance = rs.getInt("performance");
+            int attendance = rs.getInt("attendance");
+            int conduct = rs.getInt("conduct");
+            
                 System.out.println(from_date);
                 System.out.println(no_of_days);
               know = new know_more_panel(u_name,from_date,no_of_days);
-              
+              know.initProgress(know.performance_load_panel1, performance);
+         know.initProgress(know.attendance_load_panel1,attendance);
+         know.initProgress(know.conduct_load_panel1,conduct);
               
               ref.add(know);
               

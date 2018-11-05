@@ -5,8 +5,13 @@
  */
 package Dashboards;
 
+import databaseConnectivity.MyPrisonConnection;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -22,9 +27,41 @@ public class jailor_Dash extends javax.swing.JFrame {
      * Creates new form jailor_Dash
      */
     String c_id;
+    private jailor_notification_loadpanel notify;
+    Connection con;
     public jailor_Dash() {
         initComponents();
+         MyPrisonConnection o = new MyPrisonConnection();
+                con = o.getMyConnection();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        PreparedStatement pst10;
+        ResultSet res;
+         String Que = "SELECT receiver_id,title,description,DATE_FORMAT(receive,'%d/%m/%y   %H:%i')AS receive FROM notification WHERE receiver_id='J01'";
+        try {
+            pst10 = con.prepareStatement(Que);
+            res = pst10.executeQuery();
+            jailor_notification_load_pan.removeAll();
+            String title,description,receiver;
+            while(res.next()){
+                title = res.getString("title");
+                description = res.getString("description");
+                receiver = res.getString("receive");
+              
+                notify = new jailor_notification_loadpanel(description,loadingPanel,title);
+                jailor_notification_load_pan.add(notify);
+                jailor_notification_load_pan.revalidate();
+                jailor_notification_load_pan.repaint();
+                  
+                notify.fetch_title_label.setText(title);
+                notify.fetch_description_label.setText(description);
+                 notify.fetch_receive_label.setText(receiver);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(head_dash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
      
     }
     
@@ -60,6 +97,8 @@ public class jailor_Dash extends javax.swing.JFrame {
         loadingPanel = new javax.swing.JPanel();
         jailor_notification_panel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jailor_notification_load_pan = new javax.swing.JPanel();
         optionsPanel = new javax.swing.JPanel();
         workLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -100,6 +139,11 @@ public class jailor_Dash extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setText("Notifications");
         jailor_notification_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 200, 40));
+
+        jailor_notification_load_pan.setLayout(new javax.swing.BoxLayout(jailor_notification_load_pan, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(jailor_notification_load_pan);
+
+        jailor_notification_panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 885, 550));
 
         loadingPanel.add(jailor_notification_panel, java.awt.BorderLayout.CENTER);
 
@@ -537,7 +581,9 @@ public class jailor_Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jailor_logout_logo_label;
+    public javax.swing.JPanel jailor_notification_load_pan;
     private javax.swing.JPanel jailor_notification_panel;
     public javax.swing.JPanel loadingPanel;
     private javax.swing.JPanel optionsPanel;

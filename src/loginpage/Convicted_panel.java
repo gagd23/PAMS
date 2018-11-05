@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,14 +21,17 @@ public class Convicted_panel extends javax.swing.JPanel {
      * Creates new form Convicted_panel
      */
     
-    DefaultListModel dm = new DefaultListModel();
+    
+    public DefaultListModel crime_model = new DefaultListModel();
     public Convicted_panel() {
         initComponents();
+        crime_list.setModel(crime_model);
+        
     }
     private int validate_all=0;
     private void add(String name){
-         jList02.setModel(dm);
-         dm.addElement(name);
+         
+         
          
      }
     
@@ -91,7 +95,7 @@ public class Convicted_panel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         daysTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList02 = new javax.swing.JList<>();
+        crime_list = new javax.swing.JList<>();
         addConvicted = new javax.swing.JButton();
         deleteConvicted = new javax.swing.JButton();
         crimestxt1 = new javax.swing.JTextField();
@@ -180,13 +184,13 @@ public class Convicted_panel extends javax.swing.JPanel {
         });
         convictedPanel.add(daysTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 30, -1));
 
-        jList02.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jList02.addMouseListener(new java.awt.event.MouseAdapter() {
+        crime_list.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        crime_list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList02MouseClicked(evt);
+                crime_listMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList02);
+        jScrollPane1.setViewportView(crime_list);
 
         convictedPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 170, 80));
 
@@ -269,27 +273,32 @@ public class Convicted_panel extends javax.swing.JPanel {
     private void deleteConvictedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteConvictedActionPerformed
         // TODO add your handling code here:
         //Get Index,Update
-        int index = jList02.getSelectedIndex();
+        int index = crime_list.getSelectedIndex();
 
-        dm.removeElementAt(index);
+        crime_model.removeElementAt(index);
         //Clear Text
         daysTextField.setText("");
     }//GEN-LAST:event_deleteConvictedActionPerformed
 
     private void addConvictedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConvictedActionPerformed
         // TODO add your handling code here:
-        if(daysTextField.getText().length()!=0)
-        {
-           add(daysTextField.getText());
-           daysTextField.setText("");
-        }
+        
+            if(crimestxt1.getText().matches("[a-zA-Z0-9. -]{3,}"))
+            {
+                crime_model.addElement(crimestxt1.getText());
+                crimestxt1.setText("");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Crime Format.", "Warning", JOptionPane.ERROR_MESSAGE);
+            }
     }//GEN-LAST:event_addConvictedActionPerformed
 
-    private void jList02MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList02MouseClicked
+    private void crime_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crime_listMouseClicked
         // TODO add your handling code here:
         //String selected = jList02.getSelectedValue().toString();
         //crimestxt.setText(selected);
-    }//GEN-LAST:event_jList02MouseClicked
+    }//GEN-LAST:event_crime_listMouseClicked
 
     private void simpleRdoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpleRdoBtnActionPerformed
         // TODO add your handling code here:
@@ -400,6 +409,7 @@ public class Convicted_panel extends javax.swing.JPanel {
     private javax.swing.JButton addConvicted;
     private javax.swing.ButtonGroup convictedBtnGrp;
     private javax.swing.JPanel convictedPanel;
+    public javax.swing.JList<String> crime_list;
     private javax.swing.JTextField crimestxt1;
     public javax.swing.JTextField daysTextField;
     private javax.swing.JButton deleteConvicted;
@@ -409,7 +419,6 @@ public class Convicted_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList02;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField monthsTextfield;
     public javax.swing.JRadioButton rigorousRdoBtn;

@@ -140,7 +140,7 @@ public class superintendant_modify_prisoner_search_panel extends javax.swing.JPa
         else
         {
             System.out.println("in else.....");
-            String query = "SELECT t_id,p_firstname,p_midname,p_lastname,p_indate FROM trial_prisoner WHERE p_firstname LIKE '"+searchstr+"%'";
+            String query = "SELECT t_id,p_firstname,p_midname,p_lastname,p_indate FROM trial_prisoner WHERE p_firstname LIKE '"+searchstr+"%' AND t_remarks=0";
             PreparedStatement pst;
             ResultSet rs;
             String pris,fir_name,mi_name,l_nm,indate;

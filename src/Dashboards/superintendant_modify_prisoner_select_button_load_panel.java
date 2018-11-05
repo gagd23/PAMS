@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import loginpage.Convicted_panel;
 /**
  *
@@ -119,16 +120,45 @@ public class superintendant_modify_prisoner_select_button_load_panel extends jav
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
         // TODO add your handling code here:
  
-        String q="INSERT INTO convicted_prisoner(p_firstname,p_midname,p_lastname,p_birthdate,p_nationality,p_state,p_city,p_locality,p_occupation,p_qualification,p_indate,conviction_date,c_inperiod,c_type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        String q="INSERT INTO convicted_prisoner(p_firstname,p_midname,p_lastname,p_birthdate,p_nationality,p_state,p_city,p_locality,p_occupation,p_qualification,p_indate,conviction_date,c_inperiod,c_type) SELECT p_firstname,p_midname,p_lastname,p_birthdate,p_nationality,p_state,p_city,p_locality,p_occupation,p_qualification,p_indate,CURRENT_DATE(),?,? FROM trial_prisoner WHERE t_id=?";
         PreparedStatement pstm;
         ResultSet res;
         
         try {
             pstm = con.prepareStatement(q);
-              res = pstm.executeQuery();
-        while (res.next()) {            
             
-        }
+            
+              
+               if(convict.simpleRdoBtn.isSelected())
+                {
+                    System.out.println("simplep");
+                    pstm.setString(2,"simple");
+                }
+                if (convict.rigorousRdoBtn.isSelected()) {
+                    System.out.println("rigorousp");
+                    pstm.setString(2, "rigorous");
+                    
+                }
+                int years = Integer.parseInt(convict.yearsTextfield.getText());
+         int months = Integer.parseInt(convict.monthsTextfield.getText());
+         int days = Integer.parseInt(convict.daysTextField.getText());
+                 
+       
+         
+        int in_period;
+        in_period = ((years * 365) + (months * 30) + days);
+        pstm.setInt(1, in_period);
+        pstm.setString(3, c_id);
+                int i = pstm.executeUpdate();
+                
+                 System.out.println("run");
+                if(i>0){
+                    JOptionPane.showMessageDialog(null, "Prisoner successfully added as convicted");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Insertion failed");
+                }
+     
         } catch (SQLException ex) {
             Logger.getLogger(superintendant_modify_prisoner_select_button_load_panel.class.getName()).log(Level.SEVERE, null, ex);
         }

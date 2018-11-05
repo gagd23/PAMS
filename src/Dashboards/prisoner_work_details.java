@@ -63,7 +63,7 @@ public class prisoner_work_details extends javax.swing.JPanel {
                     try {
                         objPanel.updateProgress(i);
                         objPanel.repaint();
-                        Thread.sleep(10);
+                        Thread.sleep(20);
                     } catch (InterruptedException ex) {
                         System.out.println("Exception");
                     }

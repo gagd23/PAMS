@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +21,14 @@ public class Under_trial_panel extends javax.swing.JPanel {
      * Creates new form Under_trial_panel
      */
     
-      DefaultListModel dm = new DefaultListModel();
+      
+      public DefaultListModel cases_model=new DefaultListModel();
       private int validate_all=0;
     public Under_trial_panel() {
         initComponents();
+        
+        case_list.setModel(cases_model);
+        
     }
       
     private boolean check_regex(String regex,String inputString){
@@ -38,8 +43,8 @@ public class Under_trial_panel extends javax.swing.JPanel {
     }
 
     private void add(String name){
-         jList02.setModel(dm);
-         dm.addElement(name);
+         
+         
          
      }
     /**
@@ -52,37 +57,28 @@ public class Under_trial_panel extends javax.swing.JPanel {
     private void initComponents() {
 
         undertrialPanel = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList02 = new javax.swing.JList<>();
+        case_list = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         Delete2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         casestxt = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        remarks = new javax.swing.JTextArea();
         Add1 = new javax.swing.JButton();
         Add2 = new javax.swing.JButton();
 
         undertrialPanel.setBackground(new java.awt.Color(255, 255, 255));
         undertrialPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setBackground(new java.awt.Color(36, 47, 65));
-        jLabel16.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel16.setText("Remarks");
-        undertrialPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 90, 20));
-
-        jList02.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jList02.addMouseListener(new java.awt.event.MouseAdapter() {
+        case_list.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        case_list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList02MouseClicked(evt);
+                case_listMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jList02);
+        jScrollPane1.setViewportView(case_list);
 
-        undertrialPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 170, 80));
+        undertrialPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 170, 80));
 
         jList2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,7 +97,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
                 Delete2ActionPerformed(evt);
             }
         });
-        undertrialPanel.add(Delete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 80, -1));
+        undertrialPanel.add(Delete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 80, -1));
 
         jLabel17.setBackground(new java.awt.Color(36, 47, 65));
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
@@ -121,15 +117,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
                 casestxtActionPerformed(evt);
             }
         });
-        undertrialPanel.add(casestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 170, 30));
-
-        remarks.setColumns(20);
-        remarks.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        remarks.setForeground(new java.awt.Color(51, 51, 51));
-        remarks.setRows(5);
-        jScrollPane3.setViewportView(remarks);
-
-        undertrialPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 240, 130));
+        undertrialPanel.add(casestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 170, 30));
 
         Add1.setBackground(new java.awt.Color(255, 255, 255));
         Add1.setText("Add");
@@ -142,7 +130,7 @@ public class Under_trial_panel extends javax.swing.JPanel {
                 Add2ActionPerformed(evt);
             }
         });
-        undertrialPanel.add(Add2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 80, -1));
+        undertrialPanel.add(Add2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 80, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -166,11 +154,11 @@ public class Under_trial_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jList02MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList02MouseClicked
+    private void case_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_case_listMouseClicked
         // TODO add your handling code here:
        // String selected = jList02.getSelectedValue().toString();
         //casestxt.setText(selected);
-    }//GEN-LAST:event_jList02MouseClicked
+    }//GEN-LAST:event_case_listMouseClicked
 
     private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
         // TODO add your handling code here:
@@ -180,19 +168,23 @@ public class Under_trial_panel extends javax.swing.JPanel {
     private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
         // TODO add your handling code here:
         //Get Index,Update
-        int index = jList02.getSelectedIndex();
+        int index = case_list.getSelectedIndex();
 
-        dm.removeElementAt(index);
+        cases_model.removeElementAt(index);
         //Clear Text
         casestxt.setText("");
     }//GEN-LAST:event_Delete2ActionPerformed
 
     private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
         // TODO add your handling code here:
-             if(casestxt.getText().length()!=0)
+        if(casestxt.getText().matches("[a-zA-Z0-9 .-]{3,}"))
         {
-           add(casestxt.getText());
-           casestxt.setText("");
+            cases_model.addElement(casestxt.getText());
+            casestxt.setText("");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Case Format.", "Warning", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_Add2ActionPerformed
 
@@ -236,15 +228,12 @@ public class Under_trial_panel extends javax.swing.JPanel {
     private javax.swing.JButton Add1;
     private javax.swing.JButton Add2;
     private javax.swing.JButton Delete2;
+    private javax.swing.JList<String> case_list;
     public javax.swing.JTextField casestxt;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JList<String> jList02;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JTextArea remarks;
     private javax.swing.JPanel undertrialPanel;
     // End of variables declaration//GEN-END:variables
 }

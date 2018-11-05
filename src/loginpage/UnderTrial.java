@@ -39,7 +39,6 @@ public class UnderTrial extends javax.swing.JFrame {
     private void initComponents() {
 
         undertrialPanel = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList02 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -49,8 +48,6 @@ public class UnderTrial extends javax.swing.JFrame {
         Delete2 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         nametxt2 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         Add1 = new javax.swing.JButton();
         Add2 = new javax.swing.JButton();
 
@@ -59,12 +56,6 @@ public class UnderTrial extends javax.swing.JFrame {
 
         undertrialPanel.setBackground(new java.awt.Color(255, 255, 255));
         undertrialPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel16.setBackground(new java.awt.Color(36, 47, 65));
-        jLabel16.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel16.setText("Remarks");
-        undertrialPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 90, 20));
 
         jList02.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jList02.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,14 +116,6 @@ public class UnderTrial extends javax.swing.JFrame {
         nametxt2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         nametxt2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         undertrialPanel.add(nametxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 150, 20));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
-        undertrialPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, 110));
 
         Add1.setBackground(new java.awt.Color(255, 255, 255));
         Add1.setText("Add");
@@ -240,14 +223,11 @@ public class UnderTrial extends javax.swing.JFrame {
     private javax.swing.JButton Add2;
     private javax.swing.JButton Delete2;
     private javax.swing.JButton Update2;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JList<String> jList02;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nametxt2;
     private javax.swing.JPanel undertrialPanel;
     // End of variables declaration//GEN-END:variables

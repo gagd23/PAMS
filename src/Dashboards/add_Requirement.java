@@ -28,6 +28,9 @@ public class add_Requirement extends javax.swing.JPanel {
         head_dash href;
         Connection con = null;
         String current_id;
+        private slot_panel slot;
+        String unit;
+        String duration;
     public add_Requirement(String head_id) {
         initComponents();
         current_id=head_id;
@@ -58,17 +61,17 @@ public class add_Requirement extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         working_hrs_load_panel = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        new_requirement_panel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        requirement_name_textbox = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        days_txtfld = new javax.swing.JTextField();
+        minimum_no_prisoners_txtbox = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         checkButton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        months_txtfld = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         load_slot_panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -77,6 +80,7 @@ public class add_Requirement extends javax.swing.JPanel {
         panel_text = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        add_btn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,44 +112,44 @@ public class add_Requirement extends javax.swing.JPanel {
 
         add(unit_details_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 160));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "New Requirement Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        new_requirement_panel.setBackground(new java.awt.Color(255, 255, 255));
+        new_requirement_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "New Requirement Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
+        new_requirement_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel15.setText("Requirement Name");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        new_requirement_panel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        requirement_name_textbox.setColumns(20);
+        requirement_name_textbox.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        requirement_name_textbox.setRows(5);
+        jScrollPane1.setViewportView(requirement_name_textbox);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 200, 80));
+        new_requirement_panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 200, 80));
 
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel16.setText("Minimum No Of Prisoners");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, -1));
+        new_requirement_panel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, -1));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        days_txtfld.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        days_txtfld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                days_txtfldActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 100, 40, 30));
+        new_requirement_panel.add(days_txtfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 100, 40, 30));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        minimum_no_prisoners_txtbox.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        minimum_no_prisoners_txtbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                minimum_no_prisoners_txtboxActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 60, 30));
+        new_requirement_panel.add(minimum_no_prisoners_txtbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 60, 30));
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel18.setText("Days");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
+        new_requirement_panel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
 
         checkButton.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         checkButton.setText("Check");
@@ -154,29 +158,29 @@ public class add_Requirement extends javax.swing.JPanel {
                 checkButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(checkButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 100, -1));
+        new_requirement_panel.add(checkButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 100, -1));
 
         jLabel21.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel21.setText("Requirement Duration");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
+        new_requirement_panel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        months_txtfld.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        months_txtfld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                months_txtfldActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 40, 30));
+        new_requirement_panel.add(months_txtfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 40, 30));
 
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         jLabel22.setText("Months");
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
+        new_requirement_panel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 1090, 290));
+        add(new_requirement_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 1090, 290));
 
         load_slot_panel.setBackground(new java.awt.Color(255, 255, 255));
         load_slot_panel.setLayout(new java.awt.BorderLayout());
-        add(load_slot_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, 520, 115));
+        add(load_slot_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 520, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Active Requirements", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 24))); // NOI18N
@@ -206,33 +210,43 @@ public class add_Requirement extends javax.swing.JPanel {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 680, 200));
+
+        add_btn.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        add_btn.setText("Add");
+        add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_btnActionPerformed(evt);
+            }
+        });
+        add(add_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void days_txtfldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_days_txtfldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_days_txtfldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void minimum_no_prisoners_txtboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimum_no_prisoners_txtboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_minimum_no_prisoners_txtboxActionPerformed
 
     private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
         // TODO add your handling code here
-        load_slot_panel.removeAll();
+     /*   load_slot_panel.removeAll();
         load_slot_panel.add(new slot_panel(), BorderLayout.CENTER);
         load_slot_panel.revalidate();
         load_slot_panel.repaint();
+*/
         
         String qu = "SELECT unit_code,workstart_time,workend_time FROM work_hrs WHERE unit_code=(SELECT unit_code FROM head WHERE head_id=?)";
-        PreparedStatement pst,pst1;
-        ResultSet rs;
+        PreparedStatement pst,pst1,pstm;
+        ResultSet rs,resq;
         try {
             pst = con.prepareStatement(qu);
             System.out.println(current_id);
             pst.setString(1,current_id);
             rs = pst.executeQuery();
             while(rs.next()){
-            String unit = rs.getString("unit_code");
+             unit = rs.getString("unit_code");
             String start_time = rs.getString("workstart_time");
             String end_time = rs.getString("workend_time");
              
@@ -252,16 +266,94 @@ public class add_Requirement extends javax.swing.JPanel {
             Logger.getLogger(add_Requirement.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        String qw = "CALL gettime(?,?)";
+            try {
+                pstm = con.prepareStatement(qw);
+                pstm.setString(1, current_id);
+                pstm.setString(2, minimum_no_prisoners_txtbox.getText());
+                resq = pstm.executeQuery();
+                
+                String start_time,end_time;
+                
+                if(!resq.next())
+                {
+                    JOptionPane.showMessageDialog(null, "No Slot Available For Adding a Requirement");
+                    
+                }
+                
+                else 
+                {
+                    
+                      start_time = resq.getString("fstart_time");
+                    end_time = resq.getString("fend_time");
+                    String unit_code = resq.getString("unit_code");
+                     duration = resq.getString("duration");
+                
+                     System.out.println(duration);
+                    slot = new slot_panel(unit_code,duration);
+                    load_slot_panel.removeAll();
+                    load_slot_panel.add(slot, BorderLayout.CENTER);
+                    load_slot_panel.revalidate();
+                    load_slot_panel.repaint();
+                    
+                  
+                    slot.fetch_start_time_label.setText(start_time);
+                    slot.fetch_endtime_label.setText(end_time);
+                    
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(add_Requirement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
     }//GEN-LAST:event_checkButtonActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void months_txtfldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_months_txtfldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_months_txtfldActionPerformed
+
+    private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
+        // TODO add your handling code here:
+        
+        String q = "INSERT INTO requirements(req_name,unit_code,rmin_capacity,rstart_date,r_period,rstart_time,r_duration) VALUES(?,?,?,CURRENT_DATE(),?,?,?)";
+        PreparedStatement pst;
+        ResultSet res;
+        
+        int months = Integer.parseInt(months_txtfld.getText());
+        int days = Integer.parseInt(days_txtfld.getText());
+        
+        int final_days = 30 * months + days;
+            try {
+                pst = con.prepareStatement(q);
+                pst.setString(1, requirement_name_textbox.getText());
+                pst.setString(2, unit);
+                pst.setString(3, minimum_no_prisoners_txtbox.getText());
+                pst.setInt(4, final_days);
+                pst.setString(5, slot.fetch_start_time_label.getText());
+                pst.setString(6, duration);
+                
+                int i = pst.executeUpdate();
+                
+                if(i>0){
+                    JOptionPane.showMessageDialog(null, "Requirement is added successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Requirement addition failure");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(add_Requirement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    }//GEN-LAST:event_add_btnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel active_requirement_panel;
+    private javax.swing.JButton add_btn;
     private javax.swing.JButton checkButton;
+    public javax.swing.JTextField days_txtfld;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -272,16 +364,15 @@ public class add_Requirement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel load_slot_panel;
+    public javax.swing.JTextField minimum_no_prisoners_txtbox;
+    public javax.swing.JTextField months_txtfld;
+    public javax.swing.JPanel new_requirement_panel;
     private javax.swing.JPanel panel_text;
+    public javax.swing.JTextArea requirement_name_textbox;
     public javax.swing.JPanel unit_details_display;
     public javax.swing.JLabel unit_name_label;
     public javax.swing.JPanel working_hrs_load_panel;

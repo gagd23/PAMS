@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
                 login_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(login_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 80, 30));
+        jPanel1.add(login_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/final.png"))); // NOI18N
